@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HYORA STUDY</title>
+<style>
+:root{--bg:#100d0a;--panel:#19130f;--panel2:#211913;--line:#49352a;--text:#f4eee8;--muted:#a99b91;--green:#39ff88;--yellow:#ffe84a;--red:#ff405d}
+*{box-sizing:border-box}body{margin:0;color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Noto Sans KR",sans-serif;background:radial-gradient(circle at 15% 0%,rgba(255,180,80,.08),transparent 30%),repeating-linear-gradient(8deg,rgba(255,255,255,.018) 0 2px,transparent 2px 10px),linear-gradient(135deg,#0e0b09,#1a110d 45%,#0c0a08);min-height:100vh}
+.app{max-width:1100px;margin:auto;padding:20px}header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:18px}.logo{font-weight:900;letter-spacing:.16em;font-size:20px}.sub{font-size:11px;color:var(--muted);letter-spacing:.15em}
+button,input{font:inherit}button{border:1px solid var(--line);background:#241a14;color:var(--text);border-radius:10px;padding:10px 13px;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}button:hover{border-color:#765441}.primary{border-color:var(--green);color:var(--green);box-shadow:0 0 14px #39ff8830}
+.card{background:linear-gradient(145deg,rgba(34,24,18,.96),rgba(19,14,11,.96));border:1px solid var(--line);border-radius:16px;padding:17px;box-shadow:0 10px 35px #0008}.grid{display:grid;gap:14px}.top{grid-template-columns:1.3fr .7fr}.two{grid-template-columns:1fr 1fr}
+h1,h2,h3,p{margin:0}h2{font-size:15px;margin-bottom:12px}h3{font-size:14px}.muted{color:var(--muted);font-size:12px}.big{font-size:42px;font-weight:900;line-height:1}.neon{color:var(--green);text-shadow:0 0 16px #39ff8860}
+.dday{display:flex;align-items:end;justify-content:space-between}.dday strong{font-size:46px;color:var(--yellow);text-shadow:0 0 18px #ffe84a55}
+label{display:block;color:var(--muted);font-size:12px;margin:8px 0 5px}input[type=text],input[type=date]{width:100%;background:#0e0b09;border:1px solid #4b362a;color:var(--text);border-radius:9px;padding:10px;outline:none}
+.progress{height:9px;background:#0b0908;border-radius:99px;overflow:hidden;border:1px solid #3b2a21}.fill{height:100%;background:var(--green);box-shadow:0 0 13px #39ff8870}
+.subjects{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;align-items:stretch}.subject{min-height:110px;border-radius:14px;border:1px solid #555;padding:12px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}.subject.green{border-color:var(--green);box-shadow:0 0 20px #39ff8830;background:#12271b}.subject.yellow{border-color:var(--yellow);box-shadow:0 0 20px #ffe84a25;background:#29250f}.subject.red{border-color:var(--red);box-shadow:0 0 20px #ff405d25;background:#2b1018}.subject .pct{font-size:25px;font-weight:900}.subject .weight{font-size:11px;color:var(--muted)}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.row{display:flex;gap:8px;align-items:center}.wrap{flex-wrap:wrap}.subject-form{display:grid;grid-template-columns:1fr minmax(150px,2fr) 58px 42px;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #33251d}.range{width:100%;accent-color:var(--green);cursor:pointer}.weight-num{font-weight:900;text-align:right;color:var(--green)}.del{padding:7px 9px}
+.sum{font-weight:800}.ok{color:var(--green)}.bad{color:var(--red)}.task{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #33251d}.task:last-child{border-bottom:0}.task input{width:18px;height:18px;accent-color:var(--green)}.badge{font-size:10px;border:1px solid #765d4d;border-radius:99px;padding:3px 7px;color:var(--muted)}.homework{color:#ff9b8d}.hidden{display:none}.notice{font-size:12px;color:var(--muted);line-height:1.6}
+@media(max-width:720px){.top,.two{grid-template-columns:1fr}.app{padding:13px}.subject-form{grid-template-columns:1fr 100px auto}.big{font-size:34px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div><div class="logo">HYORA STUDY</div><div class="sub">FOCUS • PLAN • IMPROVE</div></div><button onclick="resetAll()">초기화</button></header>
+<section id="setup" class="card">
+<div class="section-title"><div><h2>01 · 과목 비중 설정</h2><div class="muted">과목을 직접 추가하고 슬라이더로 비중을 조절해줘.</div></div><div class="sum" id="sum">합계 0%</div></div>
+<div id="subjectRows"></div><div class="row wrap" style="margin-top:14px"><button class="primary" onclick="addSubject()">＋ 과목 추가</button><button id="saveBtn" onclick="saveSubjects()" disabled>100%로 저장</button></div>
+<p class="notice" style="margin-top:10px">각 과목의 비중을 슬라이더로 움직여 합계가 정확히 100%가 되면 저장할 수 있어.</p>
+</section>
+<main id="main" class="hidden">
+<div class="grid top"><section class="card"><div class="section-title"><h2>HOME · 과목 신호등</h2><button onclick="showSetup()">비중 수정</button></div><div class="subjects" id="subjects"></div><div class="notice" style="margin-top:10px">네모가 클수록 설정한 공부 비중이 크고, 남은 공부량도 많다는 뜻이야.</div></section>
+<section class="card"><h2>EXAM D-DAY</h2><div class="dday"><strong id="dday">D-?</strong><div class="muted">시험일까지<br>남은 날</div></div><label>시험 날짜</label><input type="date" id="examDate" onchange="saveExam()"><div style="margin-top:14px"><div class="row" style="justify-content:space-between"><span class="muted">전체 공부 진행률</span><b id="overall">0%</b></div><div class="progress"><div class="fill" id="overallFill" style="width:0%"></div></div></div></section></div>
+<section class="card" style="margin-top:14px"><div class="section-title"><h2>오늘의 순공시간</h2><span class="muted">‘숙제’가 들어간 할 일은 순공에 포함하지 않음</span></div><div class="row" style="justify-content:space-between"><div class="big neon" id="studyTime">00:00:00</div><button class="primary" id="timerBtn" onclick="toggleTimer()">▶ 시작</button></div><div class="progress" style="margin-top:12px"><div class="fill" id="timerFill" style="width:0%"></div></div><div class="muted" style="margin-top:6px">오늘 목표 180분</div></section>
+<section class="card" style="margin-top:14px"><div class="section-title"><h2>오늘의 플래너</h2><button onclick="addTask()">+ 할 일</button></div><div id="tasks"></div></section>
+<section class="grid two" style="margin-top:14px">
+<section class="card">
+<div class="section-title"><h2>주간 공부</h2><button onclick="addPlan('weekly')">+ 계획</button></div>
+<div id="weekly"></div>
+</section>
+<section class="card">
+<div class="section-title"><h2>월간 공부</h2><button onclick="addPlan('monthly')">+ 계획</button></div>
+<div id="monthly"></div>
+</section>
+</section>
+</main></div>
+<script>
+const KEY='hyora_study_v1';
+let state=JSON.parse(localStorage.getItem(KEY)||'null')||{subjects:[{name:'수학',weight:30,done:0},{name:'영어',weight:25,done:0},{name:'국어',weight:20,done:0},{name:'과학',weight:15,done:0},{name:'사회',weight:10,done:0}],exam:'',tasks:[],weekly:[],monthly:[],studySeconds:0,timerRunning:false,timerStarted:0};
+// STEP 1: remove only the original built-in planner items once, while keeping anything the user added.
+if(!state.taskEditorV2){
+ const builtIn=['수학 개념 공부','수학 숙제','영어 단어 암기','국어 문제풀이'];
+ state.tasks=(state.tasks||[]).filter(t=>!builtIn.includes(t.name));
+ state.weekly=(state.weekly||[]).filter(x=>!['수학 시험범위 1회독','영어 단어 300개'].includes(x));
+ state.monthly=(state.monthly||[]).filter(x=>x!=='전 과목 시험범위 1회독');
+ state.taskEditorV2=true;
+ persist();
+}
+function persist(){localStorage.setItem(KEY,JSON.stringify(state))}
+function setupRows(){const box=document.getElementById('subjectRows');box.innerHTML='';state.subjects.forEach((s,i)=>{const r=document.createElement('div');r.className='subject-form';r.innerHTML=`<input type="text" value="${escapeHtml(s.name)}" placeholder="과목명" inputmode="text" oninput="state.subjects[${i}].name=this.value;updateSum()"><input class="range" type="range" min="0" max="100" step="1" value="${Number(s.weight)||0}" oninput="state.subjects[${i}].weight=Number(this.value);this.nextElementSibling.textContent=this.value+'%';updateSum()"><div class="weight-num">${Number(s.weight)||0}%</div><button class="del" onclick="removeSubject(${i})">×</button>`;box.appendChild(r)});updateSum()}
+function escapeHtml(v){return String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;')}
+function updateSum(){const total=state.subjects.reduce((a,s)=>a+Number(s.weight||0),0),sum=document.getElementById('sum');sum.textContent=`합계 ${total}%`;sum.className='sum '+(total===100?'ok':'bad');const valid=total===100&&state.subjects.length>0&&state.subjects.every(s=>String(s.name).trim());document.getElementById('saveBtn').disabled=!valid}
+function addSubject(){state.subjects.push({name:'',weight:0,done:0});setupRows();setTimeout(()=>{const inputs=document.querySelectorAll('#subjectRows input[type="text"]'),last=inputs[inputs.length-1];if(last){last.focus();last.select()}},50)}
+function removeSubject(i){state.subjects.splice(i,1);setupRows()}
+function saveSubjects(){if(state.subjects.reduce((a,s)=>a+Number(s.weight||0),0)!==100)return;state.subjects.forEach(s=>s.done=Math.min(100,Number(s.done)||0));persist();document.getElementById('setup').classList.add('hidden');document.getElementById('main').classList.remove('hidden');render()}
+function showSetup(){document.getElementById('main').classList.add('hidden');document.getElementById('setup').classList.remove('hidden');setupRows()}
+function saveExam(){state.exam=document.getElementById('examDate').value;persist();renderDday()}
+function renderDday(){document.getElementById('examDate').value=state.exam||'';if(!state.exam){document.getElementById('dday').textContent='D-?';return}const today=new Date();today.setHours(0,0,0,0);const d=new Date(state.exam+'T00:00:00'),n=Math.ceil((d-today)/86400000);document.getElementById('dday').textContent=n>0?'D-'+n:n===0?'D-DAY':'D+'+Math.abs(n)}
+function isHomework(n){return /숙제/.test(n)}
+function renderSubjects(){const box=document.getElementById('subjects');box.innerHTML='';state.subjects.forEach(s=>{const remain=Math.max(0,100-s.done),size=.8+(s.weight/30)*.6+(remain/100)*.9,el=document.createElement('div');el.className='subject '+(s.done>=70?'green':s.done>=40?'yellow':'red');el.style.minHeight=(100+size*25)+'px';el.innerHTML=`<div><h3>${escapeHtml(s.name)}</h3><div class="weight">비중 ${s.weight}% · 남은 공부 ${remain}%</div></div><div class="pct">${s.done}%</div>`;box.appendChild(el)})}
+function completion(){const eligible=state.tasks.filter(t=>!isHomework(t.name));return eligible.length?Math.round(eligible.filter(t=>t.done).length/eligible.length*100):0}
+function renderTasks(){const box=document.getElementById('tasks');box.innerHTML='';state.tasks.forEach((t,i)=>{const row=document.createElement('div');row.className='task';row.innerHTML=`<input type="checkbox" ${t.done?'checked':''} onchange="state.tasks[${i}].done=this.checked;persist();render()"><div style="flex:1"><b class="${isHomework(t.name)?'homework':''}">${escapeHtml(t.name)}</b></div>${isHomework(t.name)?'<span class="badge homework">순공 제외</span>':'<span class="badge">순공 대상</span>'}<button onclick="deleteTask(${i})">×</button>`;box.appendChild(row)})}
+function addTask(){const n=prompt('오늘 할 일을 입력해줘. “숙제”가 들어가면 순공/공부 퍼센트에서 제외돼.');if(!n)return;state.tasks.push({name:n,done:false});persist();render()}
+function deleteTask(i){state.tasks.splice(i,1);persist();render()}
+function renderList(id,arr){
+ const box=document.getElementById(id);
+ box.innerHTML=arr.map((x,i)=>`<div class="task"><div style="flex:1">${escapeHtml(x)}</div><button class="del" onclick="deletePlan('${id}',${i})">×</button></div>`).join('')||'<div class="muted">아직 계획이 없어.</div>';
+}
+function addPlan(type){
+ const n=prompt(type==='weekly'?'이번 주 계획을 입력해줘.':'이번 달 계획을 입력해줘.');
+ if(!n||!n.trim())return;
+ state[type].push(n.trim());
+ persist();
+ render();
+}
+function deletePlan(type,i){
+ state[type].splice(i,1);
+ persist();
+ render();
+}
+function render(){renderSubjects();renderTasks();renderList('weekly',state.weekly);renderList('monthly',state.monthly);const p=completion();document.getElementById('overall').textContent=p+'%';document.getElementById('overallFill').style.width=p+'%';renderDday();updateTimerUI()}
+function toggleTimer(){if(!state.timerRunning){state.timerRunning=true;state.timerStarted=Date.now();document.getElementById('timerBtn').textContent='■ 정지'}else{state.studySeconds+=Math.floor((Date.now()-state.timerStarted)/1000);state.timerRunning=false;state.timerStarted=0;persist();document.getElementById('timerBtn').textContent='▶ 시작'}updateTimerUI()}
+function currentSeconds(){return state.studySeconds+(state.timerRunning?Math.floor((Date.now()-state.timerStarted)/1000):0)}
+function updateTimerUI(){const sec=currentSeconds(),h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60;document.getElementById('studyTime').textContent=[h,m,s].map(x=>String(x).padStart(2,'0')).join(':');document.getElementById('timerFill').style.width=Math.min(100,sec/(180*60)*100)+'%';if(state.timerRunning)requestAnimationFrame(updateTimerUI)}
+function resetAll(){if(confirm('저장된 HYORA STUDY 데이터를 모두 초기화할까?')){localStorage.removeItem(KEY);location.reload()}}
+setupRows();if(state.subjects.reduce((a,s)=>a+Number(s.weight||0),0)===100){document.getElementById('setup').classList.add('hidden');document.getElementById('main').classList.remove('hidden');render()}else setupRows();setInterval(()=>{if(state.timerRunning)updateTimerUI()},1000);
+</script>
+</body></html>
