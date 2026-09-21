@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NOCTURNE STUDY</title>
+<style>
+:root{
+ --bg:#090604;--wood:#17100b;--wood2:#21140d;--line:#3a2416;--text:#f5ede2;--muted:#a99786;
+ --green:#b8ff35;--yellow:#ffe447;--red:#ff3e48;--cyan:#58e8ff;
+}
+*{box-sizing:border-box}body{margin:0;color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:radial-gradient(circle at 15% 0,#633c1d30,transparent 34%),repeating-linear-gradient(8deg,#fff2 0 1px,transparent 1px 12px),linear-gradient(135deg,#070504,#1a100a 55%,#070504);min-height:100vh}
+button,input,select,textarea{font:inherit}.app{max-width:1080px;margin:auto;padding:18px 14px 60px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.logo{font-weight:900;letter-spacing:.16em}.logo b{color:var(--green);text-shadow:0 0 20px #b8ff3566}.date{font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:1.45fr 1fr;gap:14px}.wide{grid-column:1/-1}
+.card{background:linear-gradient(145deg,#25170fe8,#100a07ed);border:1px solid var(--line);border-radius:21px;padding:18px;box-shadow:0 18px 48px #0009;overflow:hidden}
+.title{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}.title h2{font-size:16px;margin:0}.muted{color:var(--muted);font-size:12px}
+.dday{font-size:58px;line-height:1;font-weight:950;color:var(--green);text-shadow:0 0 28px #b8ff3548}.exam{color:var(--muted);margin:7px 0 15px}
+input,select,textarea{background:#0b0705;color:var(--text);border:1px solid var(--line);border-radius:11px;padding:10px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:#b8ff3566}.controls{display:grid;grid-template-columns:1fr 1fr;gap:9px}.field label{display:block;color:var(--muted);font-size:11px;margin-bottom:5px}
+.btn{background:#ffffff08;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:9px 12px;cursor:pointer}.btn:hover{border-color:var(--green);color:var(--green)}.green{color:var(--green);border-color:#b8ff3550;background:#b8ff3510}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{border:1px solid var(--line);border-radius:13px;padding:11px;background:#0b070655}.stat b{display:block;font-size:21px;margin-top:3px}
+.meter{height:9px;border-radius:99px;background:#fff1;overflow:hidden}.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green));box-shadow:0 0 16px #b8ff3566;transition:.25s}
+.subject-map{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:46px;gap:8px}.tile{border:1px solid currentColor;border-radius:14px;padding:9px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;transition:.2s}.tile:hover{transform:translateY(-2px)}
+.tile strong{font-size:14px}.tile span{font-size:11px;font-weight:800}.g{color:var(--green);background:#b8ff350d;box-shadow:0 0 20px #b8ff3518}.y{color:var(--yellow);background:#ffe4470d;box-shadow:0 0 20px #ffe44718}.r{color:var(--red);background:#ff3e480d;box-shadow:0 0 20px #ff3e4818}
+.legend{display:flex;gap:14px;margin-top:10px;color:var(--muted);font-size:11px}.legend b{font-size:16px}.lg{color:var(--green)}.ly{color:var(--yellow)}.lr{color:var(--red)}
+.ratio{display:grid;grid-template-columns:52px 1fr 42px;align-items:center;gap:8px;margin:8px 0}.ratio input{width:100%;accent-color:var(--green)}
+.schedule,.list{display:flex;flex-direction:column;gap:7px}.slot,.item{border:1px solid var(--line);border-radius:12px;padding:10px;background:#0b070655}.slot{display:flex;justify-content:space-between}.slot.current{border-color:var(--green);box-shadow:0 0 22px #b8ff3520}
+.item{display:flex;align-items:center;gap:9px}.item.done{opacity:.42;text-decoration:line-through}.check{width:18px;height:18px;accent-color:var(--green)}.sub{font-size:10px;color:var(--green);font-weight:800}
+.add{display:flex;gap:7px;margin-top:9px}.add input{flex:1;min-width:0}.add select{width:90px}
+.timer{font-size:43px;font-weight:950;letter-spacing:.04em}.timer.running{color:var(--green);text-shadow:0 0 22px #b8ff3550}
+.ai{border-color:#b8ff3540;background:linear-gradient(145deg,#17200c,#110b07)}textarea{width:100%;height:78px;resize:vertical}.answer{margin-top:9px;padding:11px;border:1px solid #b8ff3530;border-radius:12px;background:#b8ff3508;min-height:43px}
+.drop{border:1px dashed #b8ff3555;border-radius:13px;padding:17px;text-align:center;color:var(--muted);cursor:pointer}.drop:hover{background:#b8ff3507;color:var(--text)}
+.wrong{display:flex;align-items:center;gap:9px}.wrong img{width:58px;height:58px;object-fit:cover;border-radius:8px}.small{font-size:11px;color:var(--muted)}
+footer{text-align:center;color:#706459;font-size:11px;margin-top:26px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}.subject-map{grid-template-columns:repeat(6,1fr)}.dday{font-size:48px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="logo">NOCTURNE <b>STUDY</b></div><div class="date" id="date"></div></header>
+<div class="grid">
+
+<section class="card wide">
+<div class="title"><h2>🏠 홈 · 과목 공부 신호등</h2><span class="muted">네모가 클수록 앞으로 공부할 비중이 큼</span></div>
+<div id="subjectMap" class="subject-map"></div>
+<div class="legend"><span><b class="lg">■</b> 충분</span><span><b class="ly">■</b> 보통</span><span><b class="lr">■</b> 더 공부 필요</span></div>
+<div class="stats" style="margin-top:12px">
+<div class="stat"><span class="muted">오늘 순공</span><b id="homeFocus">0분</b></div>
+<div class="stat"><span class="muted">순공 목표</span><b id="homeGoal">180분</b></div>
+<div class="stat"><span class="muted">전체 계획</span><b id="homePct">0%</b></div>
+</div>
+</section>
+
+<section class="card">
+<div class="title"><h2>🎯 시험 D-Day</h2></div>
+<div id="dday" class="dday">D-—</div><div id="examLabel" class="exam"></div>
+<div class="controls">
+<div class="field"><label>시험일</label><input id="examDate" type="date"></div>
+<div class="field"><label>시험 이름</label><input id="examName" value="중간고사"></div>
+</div>
+<div style="margin-top:13px"><div class="title"><h2 style="font-size:13px">시험까지 전체 달성률</h2><b id="examPct">0%</b></div><div class="meter"><i id="examBar"></i></div></div>
+</section>
+
+<section class="card">
+<div class="title"><h2>⏱ 순공시간</h2><button id="focusBtn" class="btn green">공부 시작</button></div>
+<div id="timer" class="timer">00:00:00</div>
+<div class="small" style="margin:6px 0 11px">※ 플래너에서 ‘숙제’가 들어간 항목은 순공시간에 포함하지 않음</div>
+<div class="meter"><i id="focusBar"></i></div>
+</section>
+
+<section class="card">
+<div class="title"><h2>📚 오늘 공부 비중</h2><span class="muted">합계 100%</span></div>
+<div id="ratios"></div><div id="schedule" class="schedule"></div>
+</section>
+
+<section class="card">
+<div class="title"><h2>📋 플래너 · 오늘</h2><span class="muted" id="todayCount"></span></div>
+<div id="todayList" class="list"></div>
+<div class="add"><select id="taskSubject"><option>수학</option><option>영어</option><option>국어</option><option>사회</option><option>과학</option></select><input id="taskInput" placeholder="오늘 할 일 (예: 수학 숙제)"><button id="addTask" class="btn green">+</button></div>
+</section>
+
+<section class="card">
+<div class="title"><h2>🗓 플래너 · 주간 / 월간</h2></div>
+<div class="title"><h2 style="font-size:13px">이번 주</h2><button id="addWeek" class="btn">+ 추가</button></div>
+<div id="weekList" class="list"></div>
+<div class="title" style="margin-top:14px"><h2 style="font-size:13px">이번 달</h2><button id="addMonth" class="btn">+ 추가</button></div>
+<div id="monthList" class="list"></div>
+</section>
+
+<section class="card ai">
+<div class="title"><h2>🤖 티라</h2><span class="muted">모르는 부분 바로 질문</span></div>
+<textarea id="aiQuestion" placeholder="예: 이 문제 풀이 과정을 설명해줘."></textarea>
+<button id="ask" class="btn green" style="margin-top:8px">티라에게 질문하기</button>
+<div id="aiAnswer" class="answer">질문을 입력하면 이곳에서 티라에게 물어볼 수 있어.</div>
+</section>
+
+<section class="card">
+<div class="title"><h2>📸 수업자료 분석</h2><span class="muted">밑줄 · 형광펜 중심</span></div>
+<div id="materialDrop" class="drop">교과서나 학습지 사진을 선택<br><span class="small">강조된 부분 → 핵심 요약 → 변형 문제</span></div>
+<input id="materialFile" type="file" accept="image/*" hidden>
+<div id="materialResult" class="answer" style="display:none"></div>
+</section>
+
+<section class="card wide">
+<div class="title"><h2>📕 오답노트</h2><span class="muted">매일 한 문제씩 다시 풀기</span></div>
+<div id="wrongList" class="list"></div>
+<div id="wrongDrop" class="drop" style="margin-top:9px">틀린 문제 사진 추가</div>
+<input id="wrongFile" type="file" accept="image/*" hidden>
+</section>
+
+</div>
+<footer>NOCTURNE STUDY · DARK WOOD × NEON</footer>
+</div>
+
+<script>
+const state={
+ subjects:[
+  {name:'수학',done:45,weight:35},{name:'영어',done:72,weight:20},{name:'국어',done:58,weight:20},
+  {name:'사회',done:28,weight:15},{name:'과학',done:84,weight:10}
+ ],
+ ratios:[['수학',40],['영어',25],['국어',20],['사회',10],['과학',5]],
+ today:[
+  {s:'수학',n:'수학 개념 복습',done:false},{s:'수학',n:'수학 숙제',done:false},
+  {s:'영어',n:'영어 단어 50개',done:false},{s:'국어',n:'문법 문제 풀이',done:false}
+ ],
+ week:[{n:'수학 시험범위 1회독',done:false},{n:'영어 단어 300개',done:false}],
+ month:[{n:'전 과목 시험범위 1회독',done:false}],
+ wrong:[{s:'수학',n:'저장된 오답 · 다시 풀기',img:null,done:false}],
+ focusSeconds:0,running:false,startedAt:null
+};
+const $=id=>document.getElementById(id);
+const nowDate=new Date(); let ed=new Date();ed.setDate(ed.getDate()+21);$('examDate').value=ed.toISOString().slice(0,10);
+$('date').textContent=nowDate.toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric'});
+function isHomework(x){return /숙제/.test(x.n)}
+function dday(){const e=new Date($('examDate').value+'T00:00:00'),t=new Date(),today=new Date(t.getFullYear(),t.getMonth(),t.getDate());const n=Math.ceil((e-today)/86400000);$('dday').textContent=n>0?'D-'+n:n===0?'D-DAY':'END';$('examLabel').textContent=$('examName').value+' · '+e.toLocaleDateString('ko-KR');}
+function planProgress(){const all=[...state.today,...state.week,...state.month];const done=all.filter(x=>x.done).length;return all.length?Math.round(done/all.length*100):0}
+function renderMap(){
+ const box=$('subjectMap');box.innerHTML='';
+ state.subjects.forEach(x=>{
+  const remain=100-x.done, size=Math.max(2,Math.min(6,Math.ceil((remain*x.weight)/12)));
+  const cls=x.done>=70?'g':x.done>=40?'y':'r';
+  const el=document.createElement('div');el.className='tile '+cls;
+  el.style.gridColumn='span '+size;el.style.gridRow='span '+Math.max(1,Math.min(4,Math.ceil(size/2)));
+  el.innerHTML='<strong>'+x.name+'</strong><span>'+x.done+'% 완료</span>';
+  box.appendChild(el);
+ });
+}
+function renderRatios(){
+ const box=$('ratios');box.innerHTML=state.ratios.map((r,i)=>'<div class="ratio"><b>'+r[0]+'</b><input type="range" min="0" max="100" value="'+r[1]+'" data-r="'+i+'"><span>'+r[1]+'%</span></div>').join('');
+ box.querySelectorAll('input').forEach(el=>el.oninput=()=>{const i=+el.dataset.r;state.ratios[i][1]=+el.value;el.nextElementSibling.textContent=el.value+'%';renderSchedule()});
+}
+function renderSchedule(){
+ const box=$('schedule'),sum=state.ratios.reduce((a,b)=>a+b[1],0),total=180;box.innerHTML='';
+ if(sum!==100){box.innerHTML='<span class="muted">과목 비율 합계를 100%로 맞춰줘.</span>';return}
+ let cur=19*60;
+ state.ratios.filter(r=>r[1]).forEach((r,i)=>{const dur=i===state.ratios.length-1?total-(cur-19*60):Math.round(total*r[1]/100),a=cur,b=cur+dur;cur=b;
+  const el=document.createElement('div');el.className='slot';el.dataset.a=a;el.dataset.b=b;
+  el.innerHTML='<b>'+r[0]+'</b><span class="muted">'+fmtClock(a)+' → '+fmtClock(b)+'</span>';box.appendChild(el);
+ });
+ highlightSlot();
+}
+function fmtClock(m){return Math.floor(m/60)+':'+String(m%60).padStart(2,'0')}
+function highlightSlot(){const d=new Date(),m=d.getHours()*60+d.getMinutes();document.querySelectorAll('.slot').forEach(s=>s.classList.toggle('current',m>=+s.dataset.a&&m<+s.dataset.b))}
+function renderList(key,id){
+ const box=$(id);box.innerHTML=state[key].map((x,i)=>'<label class="item '+(x.done?'done':'')+'"><input class="check" type="checkbox" data-k="'+key+'" data-i="'+i+'" '+(x.done?'checked':'')+'><span>'+((x.s?'<span class="sub">'+x.s+(isHomework(x)?' · 숙제':'')+'</span><br>':'')+x.n)+'</span></label>').join('');
+}
+function renderWrong(){
+ const box=$('wrongList');box.innerHTML=state.wrong.map((x,i)=>'<div class="item wrong '+(x.done?'done':'')+'"><input class="check" type="checkbox" data-w="'+i+'" '+(x.done?'checked':'')+'>'+ (x.img?'<img src="'+x.img+'">':'') +'<span><span class="sub">'+x.s+'</span><br>'+x.n+'<br><span class="small">정답 · 해설 → AI 분석 연결 가능</span></span></div>').join('');
+}
+function renderAll(){
+ renderMap();renderRatios();renderSchedule();renderList('today','todayList');renderList('week','weekList');renderList('month','monthList');renderWrong();dday();
+ const p=planProgress();$('homePct').textContent=p+'%';$('examPct').textContent=p+'%';$('examBar').style.width=p+'%';
+ const td=state.today.filter(x=>x.done).length;$('todayCount').textContent=td+' / '+state.today.length;
+ $('homeFocus').textContent=Math.floor(currentFocus()/60)+'분';
+}
+function currentFocus(){return state.focusSeconds+(state.running&&state.startedAt?Math.floor((Date.now()-state.startedAt)/1000):0)}
+function updateTimer(){
+ const sec=currentFocus(),h=String(Math.floor(sec/3600)).padStart(2,'0'),m=String(Math.floor(sec%3600/60)).padStart(2,'0'),s=String(sec%60).padStart(2,'0');
+ $('timer').textContent=h+':'+m+':'+s;$('homeFocus').textContent=Math.floor(sec/60)+'분';$('timer').classList.toggle('running',state.running);
+ $('focusBar').style.width=Math.min(100,sec/10800*100)+'%';
+}
+$('focusBtn').onclick=()=>{
+ if(!state.running){state.running=true;state.startedAt=Date.now();$('focusBtn').textContent='공부 종료';}
+ else{state.focusSeconds=currentFocus();state.running=false;state.startedAt=null;$('focusBtn').textContent='공부 시작';}
+ updateTimer();
+};
+$('addTask').onclick=()=>{const n=$('taskInput').value.trim();if(!n)return;state.today.push({s:$('taskSubject').value,n,done:false});$('taskInput').value='';renderAll()};
+$('addWeek').onclick=()=>{const n=prompt('이번 주 계획을 입력해줘');if(n?.trim()){state.week.push({n:n.trim(),done:false});renderAll()}};
+$('addMonth').onclick=()=>{const n=prompt('이번 달 계획을 입력해줘');if(n?.trim()){state.month.push({n:n.trim(),done:false});renderAll()}};
+document.addEventListener('change',e=>{
+ if(e.target.dataset.k){state[e.target.dataset.k][+e.target.dataset.i].done=e.target.checked;renderAll()}
+ if(e.target.dataset.w!==undefined){state.wrong[+e.target.dataset.w].done=e.target.checked;renderWrong()}
+});
+$('examDate').onchange=dday;$('examName').oninput=dday;
+$('ask').onclick=()=>{
+ const q=$('aiQuestion').value.trim();
+ $('aiAnswer').innerHTML=q?'<b>🤖 티라에게 질문 준비!</b><br>“'+q.replaceAll('<','&lt;')+'”<br><span class="small">이 프로토타입에서는 질문창을 먼저 연결해두었어. 실제 AI 답변 연결 시 문제·개념 질문을 바로 처리하도록 확장할 수 있어.</span>':'질문을 먼저 입력해줘.';
+};
+$('materialDrop').onclick=()=>$('materialFile').click();
+$('materialFile').onchange=e=>{if(e.target.files[0]){$('materialResult').style.display='block';$('materialResult').innerHTML='<b>📸 수업자료가 들어왔어.</b><br>형광펜·밑줄 감지 → 중요 부분 요약 → 변형 문제 생성 화면으로 연결할 수 있어.'}};
+$('wrongDrop').onclick=()=>$('wrongFile').click();
+$('wrongFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{state.wrong.unshift({s:'새 오답',n:'사진으로 저장된 문제 · 다시 풀기',img:r.result,done:false});renderWrong()};r.readAsDataURL(f)};
+setInterval(()=>{updateTimer();highlightSlot()},1000);renderAll();updateTimer();
+</script>
+</body></html>
