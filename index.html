@@ -92,6 +92,50 @@ header{
   color:#a6ff00;
 }
 
+/* =========================
+   STUDY SIGNAL
+========================= */
+
+.study-signal{
+  display:flex;
+  gap:8px;
+  margin-top:17px;
+  margin-bottom:2px;
+}
+
+.signal-box{
+  width:18px;
+  height:18px;
+  border-radius:5px;
+  background:#242424;
+  border:1px solid #303030;
+  transition:
+    background .25s,
+    box-shadow .25s,
+    transform .25s;
+}
+
+.signal-box.active.red{
+  background:#ff4545;
+  border-color:#ff4545;
+  box-shadow:0 0 12px rgba(255,69,69,.45);
+  transform:scale(1.08);
+}
+
+.signal-box.active.yellow{
+  background:#ffd43b;
+  border-color:#ffd43b;
+  box-shadow:0 0 12px rgba(255,212,59,.4);
+  transform:scale(1.08);
+}
+
+.signal-box.active.green{
+  background:#a6ff00;
+  border-color:#a6ff00;
+  box-shadow:0 0 12px rgba(166,255,0,.45);
+  transform:scale(1.08);
+}
+
 .progress-info{
   display:flex;
   justify-content:space-between;
@@ -575,9 +619,12 @@ input:focus,select:focus,textarea:focus{
   <div class="logo">
     HYORA <span>STUDY</span>
   </div>
+
   <div class="date" id="date"></div>
 </header>
 
+
+<!-- HERO -->
 
 <div class="card hero">
 
@@ -589,37 +636,59 @@ input:focus,select:focus,textarea:focus{
     오늘도 <span class="accent">끝까지.</span>
   </div>
 
+  <!-- 네모 신호등 -->
+  <div class="study-signal">
+    <div class="signal-box red" id="signalRed"></div>
+    <div class="signal-box yellow" id="signalYellow"></div>
+    <div class="signal-box green" id="signalGreen"></div>
+  </div>
+
   <div class="progress-info">
     <span>시험기간 전체 진행률</span>
     <strong id="overallPercent">0%</strong>
   </div>
 
   <div class="progress">
-    <div class="progress-bar" id="overallBar"></div>
+    <div
+      class="progress-bar"
+      id="overallBar">
+    </div>
   </div>
 
 </div>
 
 
+<!-- TABS -->
+
 <div class="tabs">
 
-  <button class="tab active" data-tab="today">
+  <button
+    class="tab active"
+    data-tab="today">
     오늘
   </button>
 
-  <button class="tab" data-tab="week">
+  <button
+    class="tab"
+    data-tab="week">
     주간
   </button>
 
-  <button class="tab" data-tab="exam">
+  <button
+    class="tab"
+    data-tab="exam">
     시험기간
   </button>
 
-  <button class="tab" data-tab="mistakes">
+  <button
+    class="tab"
+    data-tab="mistakes">
     오답노트
   </button>
 
-  <button class="tab" data-tab="settings">
+  <button
+    class="tab"
+    data-tab="settings">
     설정
   </button>
 
@@ -628,7 +697,9 @@ input:focus,select:focus,textarea:focus{
 
 <!-- TODAY -->
 
-<section class="section active" id="today">
+<section
+  class="section active"
+  id="today">
 
   <div class="card">
 
@@ -689,7 +760,9 @@ input:focus,select:focus,textarea:focus{
 
 <!-- WEEK -->
 
-<section class="section" id="week">
+<section
+  class="section"
+  id="week">
 
   <div class="card">
 
@@ -722,7 +795,9 @@ input:focus,select:focus,textarea:focus{
 
 <!-- EXAM -->
 
-<section class="section" id="exam">
+<section
+  class="section"
+  id="exam">
 
   <div class="card">
 
@@ -805,7 +880,9 @@ input:focus,select:focus,textarea:focus{
 
 <!-- MISTAKES -->
 
-<section class="section" id="mistakes">
+<section
+  class="section"
+  id="mistakes">
 
   <div class="card">
 
@@ -857,7 +934,10 @@ input:focus,select:focus,textarea:focus{
       과목별 오답
     </div>
 
-    <div class="stats" id="mistakeStats"></div>
+    <div
+      class="stats"
+      id="mistakeStats">
+    </div>
 
   </div>
 
@@ -866,7 +946,9 @@ input:focus,select:focus,textarea:focus{
 
 <!-- SETTINGS -->
 
-<section class="section" id="settings">
+<section
+  class="section"
+  id="settings">
 
   <div class="card">
 
@@ -902,10 +984,12 @@ input:focus,select:focus,textarea:focus{
     <div id="settingsWeights"></div>
 
     <div class="total-weight">
+
       현재 비중 합계:
       <strong id="totalWeight">
         0%
       </strong>
+
     </div>
 
   </div>
@@ -921,7 +1005,9 @@ input:focus,select:focus,textarea:focus{
     STUDY STOPWATCH
   </div>
 
-  <div class="stopwatch-time" id="stopwatch">
+  <div
+    class="stopwatch-time"
+    id="stopwatch">
     00:00:00
   </div>
 
@@ -941,10 +1027,12 @@ input:focus,select:focus,textarea:focus{
   </div>
 
   <div class="study-time">
+
     공부시간:
     <span id="totalStudyTime">
       00:00:00
     </span>
+
   </div>
 
 </div>
@@ -958,12 +1046,16 @@ input:focus,select:focus,textarea:focus{
     ✦ 티라
   </div>
 
-  <div class="chat" id="chat">
+  <div
+    class="chat"
+    id="chat">
 
     <div class="message bot">
+
       안녕 효라! 👋
       오늘 공부 계획이나 시험기간 진행률,
       오답노트에 대해 물어봐!
+
     </div>
 
   </div>
@@ -984,6 +1076,8 @@ input:focus,select:focus,textarea:focus{
 
 </div>
 
+
+<!-- RESET -->
 
 <div class="card">
 
@@ -1041,6 +1135,7 @@ JSON.parse(
 ========================= */
 
 if(!Array.isArray(data.subjects)){
+
   data.subjects=[
     "국어",
     "영어",
@@ -1048,6 +1143,7 @@ if(!Array.isArray(data.subjects)){
     "과학",
     "사회"
   ];
+
 }
 
 if(!data.weights){
@@ -1055,12 +1151,17 @@ if(!data.weights){
 }
 
 data.subjects.forEach(subject=>{
+
   if(
     typeof data.weights[subject] !== "number"
   ){
+
     data.weights[subject]=0;
+
   }
+
 });
+
 
 if(!Array.isArray(data.today)){
   data.today=[];
@@ -1101,15 +1202,18 @@ function updateDate(){
 
   const now=new Date();
 
-  const y=now.getFullYear();
+  const y=
+    now.getFullYear();
 
-  const m=String(
-    now.getMonth()+1
-  ).padStart(2,"0");
+  const m=
+    String(
+      now.getMonth()+1
+    ).padStart(2,"0");
 
-  const d=String(
-    now.getDate()
-  ).padStart(2,"0");
+  const d=
+    String(
+      now.getDate()
+    ).padStart(2,"0");
 
   document.getElementById(
     "date"
@@ -1185,16 +1289,20 @@ function renderSubjectSelects(){
     select.innerHTML=
       data.subjects
       .map(subject=>`
+
         <option value="${escapeHTML(subject)}">
           ${escapeHTML(subject)}
         </option>
+
       `)
       .join("");
 
     if(
       data.subjects.includes(current)
     ){
+
       select.value=current;
+
     }
 
   });
@@ -1217,15 +1325,25 @@ function addSubject(){
     input.value.trim();
 
   if(!name){
-    alert("과목 이름을 입력해줘!");
+
+    alert(
+      "과목 이름을 입력해줘!"
+    );
+
     return;
+
   }
 
   if(
     data.subjects.includes(name)
   ){
-    alert("이미 있는 과목이야!");
+
+    alert(
+      "이미 있는 과목이야!"
+    );
+
     return;
+
   }
 
   data.subjects.push(name);
@@ -1250,8 +1368,13 @@ function deleteSubject(name){
   if(
     data.subjects.length<=1
   ){
-    alert("과목은 최소 1개가 있어야 해!");
+
+    alert(
+      "과목은 최소 1개가 있어야 해!"
+    );
+
     return;
+
   }
 
   const used =
@@ -1298,19 +1421,30 @@ function renameSubject(
   newName
 ){
 
-  newName=newName.trim();
+  newName=
+    newName.trim();
 
   if(!newName){
-    alert("과목 이름을 입력해줘!");
+
+    alert(
+      "과목 이름을 입력해줘!"
+    );
+
     return;
+
   }
 
   if(
     oldName!==newName &&
     data.subjects.includes(newName)
   ){
-    alert("이미 있는 과목이야!");
+
+    alert(
+      "이미 있는 과목이야!"
+    );
+
     return;
+
   }
 
   const index=
@@ -1320,7 +1454,8 @@ function renameSubject(
 
   if(index===-1)return;
 
-  data.subjects[index]=newName;
+  data.subjects[index]=
+    newName;
 
   data.weights[newName]=
     data.weights[oldName] || 0;
@@ -1337,7 +1472,10 @@ function renameSubject(
     if(
       item.subject===oldName
     ){
-      item.subject=newName;
+
+      item.subject=
+        newName;
+
     }
 
   });
@@ -1473,7 +1611,8 @@ function toggleTask(
 
   if(!task)return;
 
-  task.done=!task.done;
+  task.done=
+    !task.done;
 
   saveData();
 
@@ -1534,7 +1673,8 @@ function renderTasks(
   }
 
   box.innerHTML=
-    tasks.map(task=>`
+    tasks
+    .map(task=>`
 
       <div class="task ${
         task.done?"done":""
@@ -1586,7 +1726,8 @@ function renderTasks(
 
       </div>
 
-    `).join("");
+    `)
+    .join("");
 
 }
 
@@ -1607,11 +1748,13 @@ function renderTodayStats(){
 
   document.getElementById(
     "todayDone"
-  ).textContent=done;
+  ).textContent=
+    done;
 
   document.getElementById(
     "todayTotal"
-  ).textContent=total;
+  ).textContent=
+    total;
 
   document.getElementById(
     "todayRate"
@@ -1663,6 +1806,59 @@ function renderProgress(){
   ).style.width=
     percent+"%";
 
+
+  /* =========================
+     STUDY SIGNAL
+  ========================= */
+
+  const red=
+    document.getElementById(
+      "signalRed"
+    );
+
+  const yellow=
+    document.getElementById(
+      "signalYellow"
+    );
+
+  const green=
+    document.getElementById(
+      "signalGreen"
+    );
+
+  red.classList.remove(
+    "active"
+  );
+
+  yellow.classList.remove(
+    "active"
+  );
+
+  green.classList.remove(
+    "active"
+  );
+
+
+  if(percent<40){
+
+    red.classList.add(
+      "active"
+    );
+
+  }else if(percent<80){
+
+    yellow.classList.add(
+      "active"
+    );
+
+  }else{
+
+    green.classList.add(
+      "active"
+    );
+
+  }
+
 }
 
 
@@ -1706,12 +1902,17 @@ function renderWeights(){
           >
 
           <div class="weight-line">
+
             <i
               style="width:${Math.min(
                 100,
-                Math.max(0,value)
+                Math.max(
+                  0,
+                  value
+                )
               )}%"
             ></i>
+
           </div>
 
         </div>
@@ -1760,12 +1961,17 @@ function renderSettingsWeights(){
           >
 
           <div class="weight-line">
+
             <i
               style="width:${Math.min(
                 100,
-                Math.max(0,value)
+                Math.max(
+                  0,
+                  value
+                )
               )}%"
             ></i>
+
           </div>
 
         </div>
@@ -1778,9 +1984,12 @@ function renderSettingsWeights(){
   const total=
     data.subjects.reduce(
       (sum,subject)=>
-        sum+(Number(
-          data.weights[subject]
-        )||0),
+        sum+
+        (
+          Number(
+            data.weights[subject]
+          )||0
+        ),
       0
     );
 
@@ -1977,10 +2186,12 @@ function renderNotes(){
   if(!data.mistakes.length){
 
     box.innerHTML=`
+
       <div class="empty">
         아직 오답이 없어!<br>
         틀린 문제를 하나씩 기록해보자 📕
       </div>
+
     `;
 
   }else{
@@ -1990,7 +2201,9 @@ function renderNotes(){
       .map(note=>`
 
         <div class="note ${
-          note.reviewed?"reviewed":""
+          note.reviewed
+          ?"reviewed"
+          :""
         }">
 
           <div class="note-head">
@@ -2020,8 +2233,13 @@ function renderNotes(){
             note.reason
             ?`
               <div class="note-text">
+
                 <b>틀린 이유</b><br>
-                ${escapeHTML(note.reason)}
+
+                ${escapeHTML(
+                  note.reason
+                )}
+
               </div>
             `
             :""
@@ -2031,8 +2249,13 @@ function renderNotes(){
             note.point
             ?`
               <div class="note-review">
+
                 <b>기억할 점</b><br>
-                ${escapeHTML(note.point)}
+
+                ${escapeHTML(
+                  note.point
+                )}
+
               </div>
             `
             :""
@@ -2046,11 +2269,13 @@ function renderNotes(){
               )
             "
           >
+
             ${
               note.reviewed
               ?"✓ 복습 완료"
               :"복습 완료 체크"
             }
+
           </button>
 
         </div>
@@ -2115,9 +2340,11 @@ let stopwatchSeconds=
     )
   )||0;
 
-let stopwatchRunning=false;
+let stopwatchRunning=
+  false;
 
-let stopwatchInterval=null;
+let stopwatchInterval=
+  null;
 
 
 function formatTime(seconds){
@@ -2136,9 +2363,16 @@ function formatTime(seconds){
     seconds%60;
 
   return [
-    String(hours).padStart(2,"0"),
-    String(minutes).padStart(2,"0"),
-    String(secs).padStart(2,"0")
+
+    String(hours)
+      .padStart(2,"0"),
+
+    String(minutes)
+      .padStart(2,"0"),
+
+    String(secs)
+      .padStart(2,"0")
+
   ].join(":");
 
 }
@@ -2182,7 +2416,8 @@ function startStopwatch(){
 
   if(stopwatchRunning)return;
 
-  stopwatchRunning=true;
+  stopwatchRunning=
+    true;
 
   document.getElementById(
     "stopwatchButton"
@@ -2208,13 +2443,15 @@ function startStopwatch(){
 
 function stopStopwatch(){
 
-  stopwatchRunning=false;
+  stopwatchRunning=
+    false;
 
   clearInterval(
     stopwatchInterval
   );
 
-  stopwatchInterval=null;
+  stopwatchInterval=
+    null;
 
   document.getElementById(
     "stopwatchButton"
@@ -2228,7 +2465,8 @@ function resetStopwatch(){
 
   stopStopwatch();
 
-  stopwatchSeconds=0;
+  stopwatchSeconds=
+    0;
 
   localStorage.setItem(
     "hyoraStopwatch",
@@ -2330,10 +2568,12 @@ function getTiraReply(text){
   ){
 
     return `
+
 시험기간 전체 진행률은
 ${progress}%야!
 
 ${examDone}/${examTotal}개 완료했어.
+
     `.trim();
 
   }
@@ -2345,10 +2585,12 @@ ${examDone}/${examTotal}개 완료했어.
   ){
 
     return `
+
 현재 오답노트에는
 ${mistakeCount}개의 오답이 있어.
 
 복습 완료도 하나씩 늘려보자 📕
+
     `.trim();
 
   }
@@ -2368,11 +2610,13 @@ ${mistakeCount}개의 오답이 있어.
       ).length;
 
     return `
+
 오늘은 ${total}개 중
 ${done}개 완료했어!
 
 남은 건
 ${total-done}개야.
+
     `.trim();
 
   }
@@ -2383,6 +2627,7 @@ ${total-done}개야.
   ){
 
     return `
+
 지금 설정된 과목은
 
 ${data.subjects.join(" · ")}
@@ -2391,12 +2636,14 @@ ${data.subjects.join(" · ")}
 
 설정 탭에서
 직접 추가하거나 수정할 수 있어 ✦
+
     `.trim();
 
   }
 
 
   return `
+
 응! ✦
 
 현재 시험기간 진행률은
@@ -2406,6 +2653,7 @@ ${progress}%이고,
 ${mistakeCount}개가 있어.
 
 하나씩 끝내보자!
+
   `.trim();
 
 }
@@ -2418,11 +2666,31 @@ ${mistakeCount}개가 있어.
 function escapeHTML(text){
 
   return String(text)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
@@ -2430,8 +2698,16 @@ function escapeHTML(text){
 function escapeJS(text){
 
   return String(text)
-    .replace(/\\/g,"\\\\")
-    .replace(/'/g,"\\'");
+
+    .replace(
+      /\\/g,
+      "\\\\"
+    )
+
+    .replace(
+      /'/g,
+      "\\'"
+    );
 
 }
 
