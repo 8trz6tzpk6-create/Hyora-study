@@ -3,335 +3,470 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+
 <title>HYORA STUDY</title>
 
 <style>
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  background:#050505;
-  color:#f5f5f5;
-  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
+body {
+  margin: 0;
+  background: #050505;
+  color: #f5f5f5;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Pretendard",
+    sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+.app {
+  max-width: 760px;
+  margin: auto;
+  padding: 20px 16px 100px;
+}
+
+/* HEADER */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.logo span {
+  color: #a6ff00;
+}
+
+.date {
+  color: #777;
+  font-size: 12px;
+}
+
+/* CARD */
+
+.card {
+  background: #0d0d0d;
+  border: 1px solid #1d1d1d;
+  border-radius: 20px;
+  padding: 18px;
+  margin-bottom: 14px;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+/* HERO */
+
+.hero {
   background:
-    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
-  background-size:24px 24px;
+    radial-gradient(
+      circle at 90% 0%,
+      rgba(166,255,0,.13),
+      transparent 40%
+    ),
+    #0d0d0d;
 }
 
-.app{
-  width:min(100%,900px);
-  margin:auto;
-  padding:25px 16px 60px;
+.greeting {
+  color: #777;
+  font-size: 12px;
 }
 
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  margin-bottom:25px;
+.big-title {
+  margin-top: 5px;
+  font-size: 29px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
 }
 
-.logo{
-  font-size:28px;
-  font-weight:900;
-  letter-spacing:3px;
-  color:#fff;
-  text-shadow:
-    0 0 5px #00f5ff,
-    0 0 18px #00f5ff;
+.accent {
+  color: #a6ff00;
 }
 
-.date{
-  color:#858b94;
-  font-size:13px;
+/* PROGRESS */
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+  margin-bottom: 7px;
+  font-size: 12px;
+  color: #777;
 }
 
-.card{
-  background:rgba(12,13,17,.92);
-  border:1px solid #272b33;
-  border-radius:20px;
-  padding:18px;
-  margin-bottom:16px;
-  box-shadow:0 0 25px rgba(0,238,255,.05);
+.progress-info strong {
+  color: #a6ff00;
 }
 
-.section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:15px;
+.progress {
+  height: 8px;
+  background: #202020;
+  border-radius: 99px;
+  overflow: hidden;
 }
 
-.section-title h2{
-  margin:0;
-  font-size:17px;
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #a6ff00;
+  border-radius: 99px;
+  transition: width .3s;
 }
 
-.neon{
-  color:#76f8ff;
-  text-shadow:0 0 10px rgba(0,245,255,.65);
+/* TABS */
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 5px;
+  padding: 5px;
+  background: #0b0b0b;
+  border-radius: 14px;
+  margin-bottom: 14px;
 }
 
-button{
-  min-height:42px;
-  border:1px solid #00e5ff;
-  background:#071316;
-  color:#dfffff;
-  border-radius:11px;
-  padding:8px 13px;
-  font-weight:700;
-  cursor:pointer;
+.tab {
+  background: transparent;
+  color: #666;
+  padding: 10px 5px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
 }
 
-button:active{
-  transform:scale(.97);
+.tab.active {
+  background: #191919;
+  color: #a6ff00;
 }
 
-button.danger{
-  border-color:#ff5470;
-  color:#ff9aaa;
-  background:#19080d;
+/* SECTIONS */
+
+.section {
+  display: none;
 }
 
-input,select,textarea{
-  width:100%;
-  min-height:42px;
-  background:#08090c;
-  color:white;
-  border:1px solid #30343c;
-  border-radius:11px;
-  padding:9px 11px;
-  font-size:15px;
+.section.active {
+  display: block;
 }
 
-textarea{
-  min-height:80px;
-  resize:vertical;
+/* INPUT */
+
+.add-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
 }
 
-.form{
-  display:grid;
-  grid-template-columns:1fr 100px auto;
-  gap:8px;
+input,
+select {
+  background: #151515;
+  color: #fff;
+  border: 1px solid #292929;
+  border-radius: 11px;
+  padding: 11px;
+  outline: none;
 }
 
-.form2{
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:8px;
+input:focus,
+select:focus {
+  border-color: #a6ff00;
 }
 
-.empty{
-  color:#777;
-  text-align:center;
-  padding:25px 10px;
+.add-row input {
+  flex: 1;
+  min-width: 0;
 }
 
-/* 과목 영역 */
-.subject-grid{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  grid-auto-rows:115px;
-  gap:8px;
+.add-btn {
+  background: #a6ff00;
+  color: #050505;
+  border-radius: 11px;
+  padding: 0 15px;
+  font-weight: 900;
 }
 
-.subject{
-  position:relative;
-  overflow:hidden;
-  border-radius:16px;
-  border:1px solid #343941;
-  background:#111318;
-  padding:13px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  min-width:0;
+/* TASK */
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid #181818;
 }
 
-.subject .fill{
-  position:absolute;
-  left:0;
-  bottom:0;
-  width:100%;
-  height:0%;
-  opacity:.25;
-  transition:height .5s ease,background .5s ease;
+.task:last-child {
+  border-bottom: none;
 }
 
-.subject-content{
-  position:relative;
-  z-index:2;
+.check {
+  width: 21px;
+  height: 21px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.subject-name{
-  font-weight:800;
-  font-size:17px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+.task.done .check {
+  background: #a6ff00;
+  border-color: #a6ff00;
+  color: #000;
 }
 
-.subject-percent{
-  font-size:28px;
-  font-weight:900;
-  margin-top:4px;
+.task-main {
+  flex: 1;
+  min-width: 0;
 }
 
-.subject-meta{
-  color:#9ca1aa;
-  font-size:12px;
+.task-text {
+  font-size: 14px;
 }
 
-.red .fill{background:#ff304f}
-.yellow .fill{background:#ffd21f}
-.green .fill{background:#27f06b}
-
-.red{
-  border-color:#ff304f66;
-  box-shadow:0 0 15px #ff304f18;
+.task.done .task-text {
+  color: #555;
+  text-decoration: line-through;
 }
 
-.yellow{
-  border-color:#ffd21f66;
-  box-shadow:0 0 15px #ffd21f18;
+.task-meta {
+  margin-top: 3px;
+  color: #666;
+  font-size: 11px;
 }
 
-.green{
-  border-color:#27f06b66;
-  box-shadow:0 0 15px #27f06b18;
+.delete {
+  background: none;
+  color: #555;
+  font-size: 18px;
+  padding: 4px 7px;
 }
 
-/* 할 일 */
-.task{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:11px 0;
-  border-bottom:1px solid #20232a;
+.empty {
+  text-align: center;
+  color: #555;
+  font-size: 13px;
+  padding: 25px 5px;
 }
 
-.task:last-child{
-  border-bottom:0;
+/* STATS */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 7px;
 }
 
-.task input[type="checkbox"]{
-  width:22px;
-  min-height:22px;
-  accent-color:#00e5ff;
+.stat {
+  background: #151515;
+  border-radius: 13px;
+  padding: 13px 5px;
+  text-align: center;
 }
 
-.task-info{
-  flex:1;
-  min-width:0;
+.stat strong {
+  display: block;
+  color: #a6ff00;
+  font-size: 20px;
 }
 
-.task-name{
-  font-weight:650;
-  word-break:break-word;
+.stat span {
+  color: #666;
+  font-size: 10px;
 }
 
-.task-subject{
-  color:#858b94;
-  font-size:12px;
-  margin-top:3px;
+/* EXAM */
+
+.exam-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
 }
 
-.completed{
-  text-decoration:line-through;
-  color:#666;
+.exam-grid label {
+  display: block;
+  color: #777;
+  font-size: 11px;
+  margin-bottom: 5px;
 }
 
-/* 스톱워치 */
-.stopwatch{
-  text-align:center;
+.exam-grid input {
+  width: 100%;
 }
 
-.time{
-  font-size:52px;
-  font-weight:900;
-  letter-spacing:3px;
-  text-shadow:0 0 18px #00e5ff;
-  margin:8px 0 15px;
+.save-exam {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
 }
 
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
+/* WEIGHTS */
+
+.subject-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
-.stat{
-  background:#090a0d;
-  border:1px solid #252932;
-  border-radius:13px;
-  padding:12px;
-  text-align:center;
+.subject-name {
+  width: 48px;
+  font-size: 13px;
 }
 
-.stat strong{
-  display:block;
-  font-size:20px;
-  color:#7df9ff;
+.subject-row input {
+  width: 65px;
+  text-align: center;
 }
 
-.stat span{
-  color:#777;
-  font-size:11px;
+.weight-line {
+  flex: 1;
+  height: 5px;
+  background: #222;
+  border-radius: 99px;
+  overflow: hidden;
 }
 
-/* 목록 */
-.list-item{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  padding:9px 0;
-  border-bottom:1px solid #20232a;
+.weight-line i {
+  display: block;
+  height: 100%;
+  background: #a6ff00;
 }
 
-.list-item:last-child{
-  border-bottom:0;
+/* STOPWATCH */
+
+.stopwatch {
+  text-align: center;
 }
 
-.list-item .main{
-  flex:1;
-  min-width:0;
+.stopwatch-title {
+  color: #777;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
-.small{
-  color:#777;
-  font-size:12px;
+.stopwatch-time {
+  margin: 15px 0 18px;
+  font-size: 52px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
 }
 
-/* 반응형 */
-@media(max-width:600px){
-  .app{padding:20px 12px 50px}
-  header{align-items:flex-start}
-  .logo{font-size:24px}
-  .form{
-    grid-template-columns:1fr 90px;
-  }
-  .form button{
-    grid-column:1/-1;
-  }
-  .subject-grid{
-    grid-auto-rows:105px;
-    gap:6px;
-  }
-  .subject{
-    padding:10px;
-  }
-  .subject-name{font-size:14px}
-  .subject-percent{font-size:22px}
-  .time{font-size:42px}
+.stopwatch-buttons {
+  display: flex;
+  gap: 7px;
+}
+
+.stopwatch-buttons button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  background: #191919;
+  color: #fff;
+}
+
+.stopwatch-buttons .start {
+  background: #a6ff00;
+  color: #000;
+  font-weight: 900;
+}
+
+.study-time {
+  margin-top: 13px;
+  color: #666;
+  font-size: 11px;
+}
+
+/* TIRA */
+
+.tira {
+  background:
+    radial-gradient(
+      circle at 90% 0%,
+      rgba(166,255,0,.08),
+      transparent 35%
+    ),
+    #0d0d0d;
+}
+
+.chat {
+  min-height: 100px;
+  max-height: 250px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.message {
+  max-width: 88%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin-bottom: 7px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.message.bot {
+  background: #171717;
+}
+
+.message.user {
+  background: #a6ff00;
+  color: #000;
+  margin-left: auto;
+}
+
+.chat-row {
+  display: flex;
+  gap: 6px;
+}
+
+.chat-row input {
+  flex: 1;
+}
+
+.small {
+  color: #666;
+  font-size: 11px;
+}
+
+/* RESET */
+
+.reset {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background: #151515;
+  color: #666;
 }
 </style>
 </head>
@@ -341,114 +476,129 @@ textarea{
 <div class="app">
 
 <header>
-  <div>
-    <div class="logo">HYORA STUDY</div>
-    <div class="date" id="today"></div>
+  <div class="logo">
+    HYORA <span>STUDY</span>
   </div>
+
+  <div class="date" id="date"></div>
 </header>
 
-<!-- 과목 -->
-<section class="card">
 
-  <div class="section-title">
-    <h2>📚 <span class="neon">MY SUBJECTS</span></h2>
-    <button onclick="addSubject()">＋ 과목</button>
+<!-- HERO -->
+
+<div class="card hero">
+
+  <div class="greeting">
+    TODAY'S STUDY
   </div>
 
-  <div id="subjectGrid" class="subject-grid"></div>
-
-  <div id="subjectEmpty" class="empty">
-    아직 과목이 없어.<br>
-    원하는 과목과 비중을 직접 추가해줘.
+  <div class="big-title">
+    오늘도 <span class="accent">끝까지.</span>
   </div>
 
-</section>
-
-
-<!-- 할 일 -->
-<section class="card">
-
-  <div class="section-title">
-    <h2>✅ <span class="neon">TODAY'S STUDY</span></h2>
+  <div class="progress-info">
+    <span>시험기간 전체 진행률</span>
+    <strong id="overallPercent">0%</strong>
   </div>
 
-  <div class="form">
-    <input id="taskInput" placeholder="오늘 할 일을 입력">
-    <select id="taskSubject"></select>
-    <button onclick="addTask()">추가</button>
+  <div class="progress">
+    <div
+      class="progress-bar"
+      id="overallBar">
+    </div>
   </div>
 
-  <div id="taskList"></div>
-
-</section>
+</div>
 
 
-<!-- 스톱워치 -->
-<section class="card stopwatch">
+<!-- TABS -->
 
-  <div class="section-title">
-    <h2>⏱ <span class="neon">STOPWATCH</span></h2>
-  </div>
+<div class="tabs">
 
-  <div id="time" class="time">00:00:00</div>
+  <button
+    class="tab active"
+    data-tab="today">
+    오늘
+  </button>
 
-  <div>
-    <button onclick="startWatch()">START</button>
-    <button onclick="pauseWatch()">PAUSE</button>
-    <button onclick="resetWatch()">RESET</button>
-  </div>
+  <button
+    class="tab"
+    data-tab="week">
+    주간
+  </button>
 
-</section>
+  <button
+    class="tab"
+    data-tab="exam">
+    시험기간
+  </button>
 
-
-<!-- 오답 -->
-<section class="card">
-
-  <div class="section-title">
-    <h2>📝 <span class="neon">MISTAKE LOG</span></h2>
-    <button onclick="addMistake()">＋ 기록</button>
-  </div>
-
-  <div id="mistakeList"></div>
-
-</section>
+</div>
 
 
-<!-- 일정 -->
-<section class="card">
+<!-- TODAY -->
 
-  <div class="section-title">
-    <h2>📅 <span class="neon">SCHEDULE</span></h2>
-    <button onclick="addSchedule()">＋ 일정</button>
-  </div>
+<section
+  class="section active"
+  id="today">
 
-  <div id="scheduleList"></div>
+  <div class="card">
 
-</section>
-
-
-<!-- 통계 -->
-<section class="card">
-
-  <div class="section-title">
-    <h2>📊 <span class="neon">STATS</span></h2>
-  </div>
-
-  <div class="stats">
-
-    <div class="stat">
-      <strong id="totalTasks">0</strong>
-      <span>전체 할 일</span>
+    <div class="card-title">
+      오늘 할 일
     </div>
 
-    <div class="stat">
-      <strong id="doneTasks">0</strong>
-      <span>완료</span>
+    <div class="add-row">
+
+      <input
+        id="todayInput"
+        placeholder="오늘 할 일을 추가해줘">
+
+      <select id="todaySubject">
+        <option>국어</option>
+        <option>영어</option>
+        <option>수학</option>
+        <option>과학</option>
+        <option>사회</option>
+        <option>기타</option>
+      </select>
+
+      <button
+        class="add-btn"
+        onclick="addTask('today')">
+        +
+      </button>
+
     </div>
 
-    <div class="stat">
-      <strong id="overall">0%</strong>
-      <span>전체 진행률</span>
+    <div id="todayTasks"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      오늘 통계
+    </div>
+
+    <div class="stats">
+
+      <div class="stat">
+        <strong id="todayDone">0</strong>
+        <span>완료</span>
+      </div>
+
+      <div class="stat">
+        <strong id="todayTotal">0</strong>
+        <span>전체</span>
+      </div>
+
+      <div class="stat">
+        <strong id="todayRate">0%</strong>
+        <span>달성률</span>
+      </div>
+
     </div>
 
   </div>
@@ -456,18 +606,221 @@ textarea{
 </section>
 
 
-<!-- 티라 -->
-<section class="card">
+<!-- WEEK -->
 
-  <div class="section-title">
-    <h2>🤖 <span class="neon">티라</span></h2>
-  </div>
+<section
+  class="section"
+  id="week">
 
-  <div id="tiraMessage" class="small">
-    오늘 공부를 시작해보자!
+  <div class="card">
+
+    <div class="card-title">
+      이번 주에 끝낼 공부
+    </div>
+
+    <div class="add-row">
+
+      <input
+        id="weekInput"
+        placeholder="이번 주 공부 추가">
+
+      <select id="weekSubject">
+        <option>국어</option>
+        <option>영어</option>
+        <option>수학</option>
+        <option>과학</option>
+        <option>사회</option>
+        <option>기타</option>
+      </select>
+
+      <button
+        class="add-btn"
+        onclick="addTask('week')">
+        +
+      </button>
+
+    </div>
+
+    <div id="weekTasks"></div>
+
   </div>
 
 </section>
+
+
+<!-- EXAM -->
+
+<section
+  class="section"
+  id="exam">
+
+  <div class="card">
+
+    <div class="card-title">
+      시험기간
+    </div>
+
+    <div class="exam-grid">
+
+      <div>
+        <label>시작일</label>
+        <input
+          type="date"
+          id="examStart">
+      </div>
+
+      <div>
+        <label>시험일</label>
+        <input
+          type="date"
+          id="examEnd">
+      </div>
+
+    </div>
+
+    <button
+      class="add-btn save-exam"
+      onclick="saveExamDate()">
+      시험기간 저장
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      시험일까지 끝낼 공부
+    </div>
+
+    <div class="add-row">
+
+      <input
+        id="examInput"
+        placeholder="시험 전까지 끝낼 공부">
+
+      <select id="examSubject">
+        <option>국어</option>
+        <option>영어</option>
+        <option>수학</option>
+        <option>과학</option>
+        <option>사회</option>
+        <option>기타</option>
+      </select>
+
+      <button
+        class="add-btn"
+        onclick="addTask('exam')">
+        +
+      </button>
+
+    </div>
+
+    <div id="examTasks"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      과목별 비중
+    </div>
+
+    <div id="weights"></div>
+
+    <div class="small">
+      시험기간 계획에서 과목별 중요도를 직접 설정할 수 있어.
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- STOPWATCH -->
+
+<div class="card stopwatch">
+
+  <div class="stopwatch-title">
+    STUDY STOPWATCH
+  </div>
+
+  <div
+    class="stopwatch-time"
+    id="stopwatch">
+    00:00:00
+  </div>
+
+  <div class="stopwatch-buttons">
+
+    <button
+      onclick="resetStopwatch()">
+      리셋
+    </button>
+
+    <button
+      class="start"
+      id="stopwatchButton"
+      onclick="toggleStopwatch()">
+      시작
+    </button>
+
+  </div>
+
+  <div class="study-time">
+    오늘 누적 공부시간:
+    <span id="totalStudyTime">00:00:00</span>
+  </div>
+
+</div>
+
+
+<!-- TIRA -->
+
+<div class="card tira">
+
+  <div class="card-title">
+    ✦ 티라
+  </div>
+
+  <div
+    class="chat"
+    id="chat">
+
+    <div class="message bot">
+      안녕 효라! 👋<br>
+      오늘 공부 계획이나 시험기간 진행률을 물어봐!
+    </div>
+
+  </div>
+
+  <div class="chat-row">
+
+    <input
+      id="tiraInput"
+      placeholder="티라에게 물어보기">
+
+    <button
+      class="add-btn"
+      onclick="askTira()">
+      전송
+    </button>
+
+  </div>
+
+</div>
+
+
+<div class="card">
+
+  <button
+    class="reset"
+    onclick="resetAll()">
+    전체 데이터 초기화
+  </button>
+
+</div>
 
 </div>
 
@@ -478,785 +831,891 @@ textarea{
    DATA
 ========================= */
 
-let data = JSON.parse(
-  localStorage.getItem("HYORA_STUDY_FINAL")
-  || '{"subjects":[],"tasks":[],"mistakes":[],"schedule":[]}'
-);
+let data =
+JSON.parse(
+  localStorage.getItem("hyoraStudy")
+) || {
+
+  today: [],
+
+  week: [],
+
+  exam: [],
+
+  examStart: "",
+
+  examEnd: "",
+
+  weights: {
+    국어: 20,
+    영어: 20,
+    수학: 20,
+    과학: 20,
+    사회: 20,
+    기타: 0
+  },
+
+  totalStudySeconds: 0,
+
+  lastStudyDate: ""
+
+};
 
 
 /* =========================
-   저장
+   SAVE
 ========================= */
 
-function save(){
+function saveData() {
+
   localStorage.setItem(
-    "HYORA_STUDY_FINAL",
+    "hyoraStudy",
     JSON.stringify(data)
   );
-}
-
-
-/* =========================
-   오늘 날짜
-========================= */
-
-const now = new Date();
-
-document.getElementById("today").textContent =
-  now.toLocaleDateString("ko-KR",{
-    year:"numeric",
-    month:"long",
-    day:"numeric",
-    weekday:"long"
-  });
-
-
-/* =========================
-   과목
-========================= */
-
-function addSubject(){
-
-  const name = prompt("과목 이름을 입력해줘");
-
-  if(!name || !name.trim()) return;
-
-  let weight = prompt(
-    "이 과목의 비중을 입력해줘 (%)\n예: 수학 40"
-  );
-
-  weight = Number(weight);
-
-  if(!Number.isFinite(weight) || weight <= 0){
-    alert("비중은 1 이상의 숫자로 입력해줘.");
-    return;
-  }
-
-  data.subjects.push({
-    name:name.trim(),
-    weight:weight,
-    done:0
-  });
-
-  normalizeWeights();
-
-  save();
-  render();
-}
-
-
-function deleteSubject(index){
-
-  const subject = data.subjects[index];
-
-  if(!confirm(
-    `"${subject.name}" 과목을 삭제할까?`
-  )) return;
-
-  data.tasks.forEach(task=>{
-    if(task.subject === index){
-      task.subject = -1;
-    }
-    else if(task.subject > index){
-      task.subject--;
-    }
-  });
-
-  data.subjects.splice(index,1);
-
-  save();
-  render();
-}
-
-
-function normalizeWeights(){
-
-  const total =
-    data.subjects.reduce(
-      (sum,s)=>sum + Number(s.weight || 0),
-      0
-    );
-
-  if(total <= 0) return;
-
-  /*
-    사용자가 입력한 비중은 그대로 저장.
-    네모의 실제 크기는 이 비중을 기준으로 계산.
-  */
-}
-
-
-/* =========================
-   과목 진행률
-========================= */
-
-function subjectProgress(index){
-
-  const tasks =
-    data.tasks.filter(
-      t=>t.subject === index
-    );
-
-  if(tasks.length === 0) return 0;
-
-  const done =
-    tasks.filter(t=>t.completed).length;
-
-  return Math.round(
-    done / tasks.length * 100
-  );
-}
-
-
-/* =========================
-   신호등
-========================= */
-
-function trafficClass(progress){
-
-  if(progress >= 70) return "green";
-
-  if(progress >= 30) return "yellow";
-
-  return "red";
-}
-
-
-/* =========================
-   과목 렌더링
-========================= */
-
-function renderSubjects(){
-
-  const grid =
-    document.getElementById("subjectGrid");
-
-  const empty =
-    document.getElementById("subjectEmpty");
-
-  if(data.subjects.length === 0){
-
-    grid.innerHTML="";
-    empty.style.display="block";
-
-    return;
-  }
-
-  empty.style.display="none";
-
-  /*
-    비중을 전체 합계로 계산해서
-    CSS grid의 12칸 중 실제 크기를 배정
-  */
-
-  const totalWeight =
-    data.subjects.reduce(
-      (sum,s)=>sum + Number(s.weight || 0),
-      0
-    );
-
-  grid.innerHTML="";
-
-  data.subjects.forEach((subject,index)=>{
-
-    const progress =
-      subjectProgress(index);
-
-    const cls =
-      trafficClass(progress);
-
-    const tile =
-      document.createElement("div");
-
-    tile.className =
-      `subject ${cls}`;
-
-    /*
-      최소 1칸을 보장하면서
-      비중에 따라 크기 변화
-    */
-
-    const fraction =
-      totalWeight > 0
-      ? Number(subject.weight) / totalWeight
-      : 1 / data.subjects.length;
-
-    const columns =
-      Math.max(
-        1,
-        Math.round(fraction * 12)
-      );
-
-    tile.style.gridColumn =
-      `span ${Math.min(columns,12)}`;
-
-    tile.innerHTML=`
-
-      <div class="fill"
-           style="height:${progress}%">
-      </div>
-
-      <div class="subject-content">
-
-        <div class="subject-name">
-          ${escapeHTML(subject.name)}
-        </div>
-
-        <div class="subject-percent">
-          ${progress}%
-        </div>
-
-        <div class="subject-meta">
-          비중 ${subject.weight}%
-        </div>
-
-      </div>
-
-      <div class="subject-content"
-           style="display:flex;gap:5px">
-
-        <button
-          onclick="editSubject(${index})"
-          style="padding:5px 8px;min-height:32px">
-          수정
-        </button>
-
-        <button
-          onclick="deleteSubject(${index})"
-          class="danger"
-          style="padding:5px 8px;min-height:32px">
-          삭제
-        </button>
-
-      </div>
-
-    `;
-
-    grid.appendChild(tile);
-
-  });
-
-}
-
-
-function editSubject(index){
-
-  const subject =
-    data.subjects[index];
-
-  const name =
-    prompt(
-      "과목 이름",
-      subject.name
-    );
-
-  if(!name || !name.trim()) return;
-
-  const weight =
-    Number(
-      prompt(
-        "과목 비중 (%)",
-        subject.weight
-      )
-    );
-
-  if(!Number.isFinite(weight) || weight <= 0){
-    alert("비중을 올바르게 입력해줘.");
-    return;
-  }
-
-  subject.name=name.trim();
-  subject.weight=weight;
-
-  save();
-  render();
-}
-
-
-/* =========================
-   할 일
-========================= */
-
-function addTask(){
-
-  const input =
-    document.getElementById("taskInput");
-
-  const select =
-    document.getElementById("taskSubject");
-
-  const name =
-    input.value.trim();
-
-  if(!name){
-    alert("할 일을 입력해줘.");
-    return;
-  }
-
-  data.tasks.push({
-    name:name,
-    subject:Number(select.value),
-    completed:false
-  });
-
-  input.value="";
-
-  save();
-  render();
-}
-
-
-function toggleTask(index){
-
-  data.tasks[index].completed =
-    !data.tasks[index].completed;
-
-  save();
-  render();
-}
-
-
-function deleteTask(index){
-
-  data.tasks.splice(index,1);
-
-  save();
-  render();
-}
-
-
-function renderTasks(){
-
-  const list =
-    document.getElementById("taskList");
-
-  const select =
-    document.getElementById("taskSubject");
-
-  select.innerHTML =
-    `<option value="-1">과목 없음</option>`;
-
-  data.subjects.forEach((subject,index)=>{
-
-    select.innerHTML +=
-      `<option value="${index}">
-        ${escapeHTML(subject.name)}
-      </option>`;
-
-  });
-
-
-  if(data.tasks.length===0){
-
-    list.innerHTML =
-      `<div class="empty">
-        아직 오늘의 할 일이 없어.
-      </div>`;
-
-    return;
-  }
-
-
-  list.innerHTML="";
-
-
-  data.tasks.forEach((task,index)=>{
-
-    const div =
-      document.createElement("div");
-
-    div.className="task";
-
-    const subjectName =
-      task.subject >= 0 &&
-      data.subjects[task.subject]
-      ? data.subjects[task.subject].name
-      : "과목 없음";
-
-    div.innerHTML=`
-
-      <input
-        type="checkbox"
-        ${task.completed?"checked":""}
-        onchange="toggleTask(${index})">
-
-      <div class="task-info">
-
-        <div class="
-          task-name
-          ${task.completed?"completed":""}
-        ">
-          ${escapeHTML(task.name)}
-        </div>
-
-        <div class="task-subject">
-          ${escapeHTML(subjectName)}
-        </div>
-
-      </div>
-
-      <button
-        class="danger"
-        onclick="deleteTask(${index})">
-        삭제
-      </button>
-
-    `;
-
-    list.appendChild(div);
-
-  });
 
 }
 
 
 /* =========================
-   오답
+   DATE
 ========================= */
 
-function addMistake(){
+function updateDate() {
 
-  const subject =
-    prompt("과목을 입력해줘");
+  const now = new Date();
 
-  if(!subject) return;
-
-  const content =
-    prompt("어떤 문제에서 실수했는지 기록해줘");
-
-  if(!content) return;
-
-  data.mistakes.push({
-    subject:subject,
-    content:content,
-    date:new Date().toLocaleDateString("ko-KR")
-  });
-
-  save();
-  renderMistakes();
-}
-
-
-function deleteMistake(index){
-
-  data.mistakes.splice(index,1);
-
-  save();
-  renderMistakes();
-}
-
-
-function renderMistakes(){
-
-  const list =
-    document.getElementById("mistakeList");
-
-  if(data.mistakes.length===0){
-
-    list.innerHTML=
-      `<div class="empty">
-        아직 오답 기록이 없어.
-      </div>`;
-
-    return;
-  }
-
-  list.innerHTML="";
-
-  data.mistakes.forEach((mistake,index)=>{
-
-    const div =
-      document.createElement("div");
-
-    div.className="list-item";
-
-    div.innerHTML=`
-
-      <div class="main">
-
-        <strong>
-          ${escapeHTML(mistake.subject)}
-        </strong>
-
-        <div>
-          ${escapeHTML(mistake.content)}
-        </div>
-
-        <div class="small">
-          ${mistake.date}
-        </div>
-
-      </div>
-
-      <button
-        class="danger"
-        onclick="deleteMistake(${index})">
-        삭제
-      </button>
-
-    `;
-
-    list.appendChild(div);
-
-  });
-
-}
-
-
-/* =========================
-   일정
-========================= */
-
-function addSchedule(){
-
-  const title =
-    prompt("일정 이름");
-
-  if(!title) return;
-
-  const time =
-    prompt("시간 (예: 17:00)");
-
-  data.schedule.push({
-    title:title,
-    time:time || ""
-  });
-
-  save();
-  renderSchedule();
-}
-
-
-function deleteSchedule(index){
-
-  data.schedule.splice(index,1);
-
-  save();
-  renderSchedule();
-}
-
-
-function renderSchedule(){
-
-  const list =
-    document.getElementById("scheduleList");
-
-  if(data.schedule.length===0){
-
-    list.innerHTML=
-      `<div class="empty">
-        오늘 일정을 추가해줘.
-      </div>`;
-
-    return;
-  }
-
-  list.innerHTML="";
-
-  data.schedule.forEach((item,index)=>{
-
-    const div =
-      document.createElement("div");
-
-    div.className="list-item";
-
-    div.innerHTML=`
-
-      <div class="main">
-        <strong>${escapeHTML(item.title)}</strong>
-        <div class="small">
-          ${escapeHTML(item.time)}
-        </div>
-      </div>
-
-      <button
-        class="danger"
-        onclick="deleteSchedule(${index})">
-        삭제
-      </button>
-
-    `;
-
-    list.appendChild(div);
-
-  });
-
-}
-
-
-/* =========================
-   통계
-========================= */
-
-function renderStats(){
-
-  const total =
-    data.tasks.length;
-
-  const done =
-    data.tasks.filter(
-      t=>t.completed
-    ).length;
-
-  const percent =
-    total
-    ? Math.round(done/total*100)
-    : 0;
-
-  document.getElementById("totalTasks")
-    .textContent=total;
-
-  document.getElementById("doneTasks")
-    .textContent=done;
-
-  document.getElementById("overall")
-    .textContent=percent+"%";
-
-}
-
-
-/* =========================
-   티라
-========================= */
-
-function renderTira(){
-
-  const el =
-    document.getElementById("tiraMessage");
-
-  const total =
-    data.tasks.length;
-
-  const done =
-    data.tasks.filter(
-      t=>t.completed
-    ).length;
-
-  if(total===0){
-
-    el.textContent=
-      "오늘 할 일을 하나씩 추가해보자. 내가 공부 흐름을 같이 정리해줄게.";
-
-    return;
-  }
-
-  if(done===total){
-
-    el.textContent=
-      "오늘 할 일 전부 완료! 오늘 공부 정말 잘했어. 🔥";
-
-    return;
-  }
-
-  const percent =
-    Math.round(done/total*100);
-
-  if(percent<30){
-
-    el.textContent=
-      "아직 시작 단계야. 제일 쉬운 것부터 하나 끝내보자.";
-
-  }
-  else if(percent<70){
-
-    el.textContent=
-      `현재 ${percent}% 완료! 흐름 잘 잡고 있어. 조금만 더 가보자.`;
-
-  }
-  else{
-
-    el.textContent=
-      `현재 ${percent}% 완료! 거의 다 왔어. 마지막까지 가보자!`;
-
-  }
-
-}
-
-
-/* =========================
-   스톱워치
-========================= */
-
-let stopwatchSeconds=0;
-let stopwatchInterval=null;
-
-
-function formatTime(seconds){
-
-  const h =
-    Math.floor(seconds/3600);
+  const y = now.getFullYear();
 
   const m =
-    Math.floor(
-      (seconds%3600)/60
+    String(now.getMonth()+1)
+    .padStart(2,"0");
+
+  const d =
+    String(now.getDate())
+    .padStart(2,"0");
+
+  document.getElementById("date")
+    .textContent =
+    `${y}.${m}.${d}`;
+
+}
+
+updateDate();
+
+
+/* =========================
+   TAB
+========================= */
+
+document
+.querySelectorAll(".tab")
+.forEach(button => {
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      document
+      .querySelectorAll(".tab")
+      .forEach(x =>
+        x.classList.remove("active")
+      );
+
+      document
+      .querySelectorAll(".section")
+      .forEach(x =>
+        x.classList.remove("active")
+      );
+
+      button.classList.add("active");
+
+      document
+      .getElementById(button.dataset.tab)
+      .classList.add("active");
+
+    }
+  );
+
+});
+
+
+/* =========================
+   ADD TASK
+========================= */
+
+function addTask(type) {
+
+  const input =
+    document.getElementById(
+      type + "Input"
     );
 
-  const s =
-    seconds%60;
+  const subject =
+    document.getElementById(
+      type + "Subject"
+    ).value;
+
+  const text =
+    input.value.trim();
+
+  if (!text) return;
+
+  data[type].push({
+
+    id: Date.now(),
+
+    text: text,
+
+    subject: subject,
+
+    done: false
+
+  });
+
+  input.value = "";
+
+  saveData();
+
+  render();
+
+}
+
+
+/* =========================
+   TOGGLE TASK
+========================= */
+
+function toggleTask(type,id) {
+
+  const task =
+    data[type].find(
+      x => x.id === id
+    );
+
+  if (!task) return;
+
+  task.done = !task.done;
+
+  saveData();
+
+  render();
+
+}
+
+
+/* =========================
+   DELETE TASK
+========================= */
+
+function deleteTask(type,id) {
+
+  data[type] =
+    data[type].filter(
+      x => x.id !== id
+    );
+
+  saveData();
+
+  render();
+
+}
+
+
+/* =========================
+   RENDER TASK
+========================= */
+
+function renderTasks(
+  type,
+  elementId
+) {
+
+  const box =
+    document.getElementById(elementId);
+
+  const tasks =
+    data[type];
+
+  if (!tasks.length) {
+
+    box.innerHTML = `
+      <div class="empty">
+        아직 계획이 없어!<br>
+        위에서 직접 추가해봐 ✦
+      </div>
+    `;
+
+    return;
+  }
+
+
+  box.innerHTML =
+    tasks.map(task => `
+
+      <div class="task
+        ${task.done ? "done" : ""}">
+
+        <div
+          class="check"
+          onclick="
+            toggleTask(
+              '${type}',
+              ${task.id}
+            )
+          ">
+
+          ${task.done ? "✓" : ""}
+
+        </div>
+
+
+        <div
+          class="task-main"
+          onclick="
+            toggleTask(
+              '${type}',
+              ${task.id}
+            )
+          ">
+
+          <div class="task-text">
+            ${escapeHTML(task.text)}
+          </div>
+
+          <div class="task-meta">
+            ${task.subject}
+          </div>
+
+        </div>
+
+
+        <button
+          class="delete"
+          onclick="
+            deleteTask(
+              '${type}',
+              ${task.id}
+            )
+          ">
+
+          ×
+
+        </button>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================
+   TODAY STATS
+========================= */
+
+function renderTodayStats() {
+
+  const total =
+    data.today.length;
+
+  const done =
+    data.today
+    .filter(x => x.done)
+    .length;
+
+  document.getElementById(
+    "todayDone"
+  ).textContent = done;
+
+  document.getElementById(
+    "todayTotal"
+  ).textContent = total;
+
+  document.getElementById(
+    "todayRate"
+  ).textContent =
+    total
+      ? Math.round(done / total * 100) + "%"
+      : "0%";
+
+}
+
+
+/* =========================
+   EXAM PROGRESS
+========================= */
+
+function getExamProgress() {
+
+  const total =
+    data.exam.length;
+
+  if (!total) return 0;
+
+  const done =
+    data.exam
+    .filter(x => x.done)
+    .length;
+
+  return Math.round(
+    done / total * 100
+  );
+
+}
+
+
+function renderOverallProgress() {
+
+  const percent =
+    getExamProgress();
+
+  document.getElementById(
+    "overallPercent"
+  ).textContent =
+    percent + "%";
+
+  document.getElementById(
+    "overallBar"
+  ).style.width =
+    percent + "%";
+
+}
+
+
+/* =========================
+   WEIGHTS
+========================= */
+
+const subjects = [
+  "국어",
+  "영어",
+  "수학",
+  "과학",
+  "사회",
+  "기타"
+];
+
+
+function renderWeights() {
+
+  const box =
+    document.getElementById("weights");
+
+  box.innerHTML =
+    subjects.map(subject => {
+
+      const value =
+        data.weights[subject] || 0;
+
+      return `
+
+        <div class="subject-row">
+
+          <div class="subject-name">
+            ${subject}
+          </div>
+
+          <input
+            type="number"
+            min="0"
+            max="100"
+            value="${value}"
+            onchange="
+              changeWeight(
+                '${subject}',
+                this.value
+              )
+            "
+          >
+
+          <div class="weight-line">
+            <i
+              style="
+                width:${value}%;
+              ">
+            </i>
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+function changeWeight(
+  subject,
+  value
+) {
+
+  let number =
+    Number(value);
+
+  if (isNaN(number))
+    number = 0;
+
+  number =
+    Math.max(
+      0,
+      Math.min(100,number)
+    );
+
+  data.weights[subject] =
+    number;
+
+  saveData();
+
+  renderWeights();
+
+}
+
+
+/* =========================
+   EXAM DATE
+========================= */
+
+function loadExamDate() {
+
+  document.getElementById(
+    "examStart"
+  ).value =
+    data.examStart || "";
+
+  document.getElementById(
+    "examEnd"
+  ).value =
+    data.examEnd || "";
+
+}
+
+
+function saveExamDate() {
+
+  data.examStart =
+    document.getElementById(
+      "examStart"
+    ).value;
+
+  data.examEnd =
+    document.getElementById(
+      "examEnd"
+    ).value;
+
+  saveData();
+
+  alert(
+    "시험기간이 저장됐어!"
+  );
+
+}
+
+
+/* =========================
+   STOPWATCH
+========================= */
+
+/*
+  중요:
+  이건 타이머가 아니라
+  00:00:00 → 계속 증가하는
+  실제 스톱워치다.
+*/
+
+let stopwatchSeconds = 0;
+
+let stopwatchRunning = false;
+
+let stopwatchInterval = null;
+
+
+/* 페이지를 새로 열어도
+   현재 스톱워치 시간이 유지되도록
+   별도 저장 */
+
+stopwatchSeconds =
+  Number(
+    localStorage.getItem(
+      "hyoraStopwatch"
+    )
+  ) || 0;
+
+
+function formatTime(seconds) {
+
+  const hours =
+    Math.floor(seconds / 3600);
+
+  const minutes =
+    Math.floor(
+      (seconds % 3600) / 60
+    );
+
+  const secs =
+    seconds % 60;
+
 
   return [
-    h,m,s
-  ].map(
-    n=>String(n).padStart(2,"0")
-  ).join(":");
+
+    String(hours).padStart(2,"0"),
+
+    String(minutes).padStart(2,"0"),
+
+    String(secs).padStart(2,"0")
+
+  ].join(":");
 
 }
 
 
-function updateWatch(){
+function renderStopwatch() {
 
-  document.getElementById("time")
-    .textContent=
-    formatTime(stopwatchSeconds);
+  document.getElementById(
+    "stopwatch"
+  ).textContent =
+    formatTime(
+      stopwatchSeconds
+    );
 
 }
 
 
-function startWatch(){
+function toggleStopwatch() {
 
-  if(stopwatchInterval) return;
+  if (stopwatchRunning) {
+
+    stopStopwatch();
+
+  } else {
+
+    startStopwatch();
+
+  }
+
+}
+
+
+function startStopwatch() {
+
+  if (stopwatchRunning)
+    return;
+
+  stopwatchRunning = true;
+
+  document.getElementById(
+    "stopwatchButton"
+  ).textContent =
+    "일시정지";
+
 
   stopwatchInterval =
-    setInterval(()=>{
+    setInterval(() => {
 
       stopwatchSeconds++;
 
-      updateWatch();
+      localStorage.setItem(
+        "hyoraStopwatch",
+        stopwatchSeconds
+      );
+
+      renderStopwatch();
+
+      updateStudyTime();
 
     },1000);
 
 }
 
 
-function pauseWatch(){
+function stopStopwatch() {
+
+  stopwatchRunning = false;
 
   clearInterval(
     stopwatchInterval
   );
 
-  stopwatchInterval=null;
+  stopwatchInterval = null;
+
+  document.getElementById(
+    "stopwatchButton"
+  ).textContent =
+    "시작";
 
 }
 
 
-function resetWatch(){
+function resetStopwatch() {
 
-  pauseWatch();
+  stopStopwatch();
 
-  stopwatchSeconds=0;
+  stopwatchSeconds = 0;
 
-  updateWatch();
+  localStorage.setItem(
+    "hyoraStopwatch",
+    "0"
+  );
+
+  renderStopwatch();
 
 }
 
 
 /* =========================
-   보안용 문자 처리
+   STUDY TIME
 ========================= */
 
-function escapeHTML(value){
+function updateStudyTime() {
 
-  return String(value)
+  document.getElementById(
+    "totalStudyTime"
+  ).textContent =
+    formatTime(
+      stopwatchSeconds
+    );
+
+}
+
+
+/* =========================
+   TIRA
+========================= */
+
+function askTira() {
+
+  const input =
+    document.getElementById(
+      "tiraInput"
+    );
+
+  const text =
+    input.value.trim();
+
+  if (!text) return;
+
+  addChat(
+    text,
+    "user"
+  );
+
+  input.value = "";
+
+
+  setTimeout(() => {
+
+    const reply =
+      getTiraReply(text);
+
+    addChat(
+      reply,
+      "bot"
+    );
+
+  },200);
+
+}
+
+
+function addChat(
+  text,
+  type
+) {
+
+  const chat =
+    document.getElementById(
+      "chat"
+    );
+
+  const message =
+    document.createElement(
+      "div"
+    );
+
+  message.className =
+    "message " + type;
+
+  message.textContent =
+    text;
+
+  chat.appendChild(
+    message
+  );
+
+  chat.scrollTop =
+    chat.scrollHeight;
+
+}
+
+
+function getTiraReply(text) {
+
+  const t =
+    text.toLowerCase();
+
+
+  const progress =
+    getExamProgress();
+
+  const examTotal =
+    data.exam.length;
+
+  const examDone =
+    data.exam.filter(
+      x => x.done
+    ).length;
+
+
+  if (
+    t.includes("진행률") ||
+    t.includes("퍼센트") ||
+    t.includes("몇 프로")
+  ) {
+
+    return `
+시험기간 전체 진행률은
+${progress}%야!
+
+현재 ${examDone}/${examTotal}개 완료했어.
+  `.trim();
+
+  }
+
+
+  if (
+    t.includes("오늘") ||
+    t.includes("할 일")
+  ) {
+
+    const total =
+      data.today.length;
+
+    const done =
+      data.today.filter(
+        x => x.done
+      ).length;
+
+    if (!total) {
+
+      return
+        "오늘 계획이 아직 없어! 하나 추가해보자 ✦";
+
+    }
+
+    return `
+오늘은 ${total}개 중
+${done}개 완료했어.
+
+남은 건 ${total-done}개야!
+    `.trim();
+
+  }
+
+
+  if (
+    t.includes("시험")
+  ) {
+
+    if (!data.examEnd) {
+
+      return
+        "아직 시험일을 설정하지 않았어! 시험기간 탭에서 시험일을 설정해줘.";
+
+    }
+
+    const end =
+      new Date(data.examEnd);
+
+    const today =
+      new Date();
+
+    const diff =
+      Math.ceil(
+        (end - today) /
+        (1000*60*60*24)
+      );
+
+    return `
+시험기간 전체 계획은
+${examTotal}개고,
+
+현재 ${progress}% 완료했어.
+
+시험일까지 약
+${Math.max(0,diff)}일 남았어!
+    `.trim();
+
+  }
+
+
+  for (
+    const subject
+    of subjects
+  ) {
+
+    if (
+      text.includes(subject)
+    ) {
+
+      const tasks =
+        data.exam.filter(
+          x =>
+            x.subject === subject
+        );
+
+      const done =
+        tasks.filter(
+          x => x.done
+        ).length;
+
+      return `
+${subject} 계획은
+${tasks.length}개이고
+
+${done}개 완료했어!
+      `.trim();
+
+    }
+
+  }
+
+
+  if (
+    t.includes("힘들") ||
+    t.includes("하기 싫") ||
+    t.includes("귀찮")
+  ) {
+
+    return `
+괜찮아.
+일단 딱 하나만 끝내자.
+
+하나 완료하면
+그다음 하나로 넘어가자 💪
+    `.trim();
+
+  }
+
+
+  return `
+응! 내가 확인해볼게 ✦
+
+현재 시험기간 전체 진행률은
+${progress}%야.
+
+오늘 계획도 하나씩 끝내보자!
+  `.trim();
+
+}
+
+
+/* =========================
+   ESCAPE
+========================= */
+
+function escapeHTML(text) {
+
+  return text
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
@@ -1267,22 +1726,72 @@ function escapeHTML(value){
 
 
 /* =========================
-   전체 렌더링
+   RESET
 ========================= */
 
-function render(){
+function resetAll() {
 
-  renderSubjects();
-  renderTasks();
-  renderMistakes();
-  renderSchedule();
-  renderStats();
-  renderTira();
+  const ok =
+    confirm(
+      "정말 모든 공부 데이터를 삭제할까?"
+    );
+
+  if (!ok) return;
+
+  localStorage.removeItem(
+    "hyoraStudy"
+  );
+
+  localStorage.removeItem(
+    "hyoraStopwatch"
+  );
+
+  location.reload();
 
 }
 
+
+/* =========================
+   RENDER ALL
+========================= */
+
+function render() {
+
+  renderTasks(
+    "today",
+    "todayTasks"
+  );
+
+  renderTasks(
+    "week",
+    "weekTasks"
+  );
+
+  renderTasks(
+    "exam",
+    "examTasks"
+  );
+
+  renderTodayStats();
+
+  renderOverallProgress();
+
+  renderWeights();
+
+  loadExamDate();
+
+  renderStopwatch();
+
+  updateStudyTime();
+
+}
+
+
+/* =========================
+   START
+========================= */
+
 render();
-updateWatch();
 
 </script>
 
