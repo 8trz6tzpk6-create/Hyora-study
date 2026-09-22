@@ -92,48 +92,124 @@ header{
   color:#a6ff00;
 }
 
+
 /* =========================
-   STUDY SIGNAL
+   SUBJECT STUDY MAP
 ========================= */
 
-.study-signal{
+.study-map-title{
+  margin-top:20px;
+  margin-bottom:8px;
   display:flex;
-  gap:8px;
-  margin-top:17px;
-  margin-bottom:2px;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.signal-box{
-  width:18px;
-  height:18px;
-  border-radius:5px;
-  background:#242424;
-  border:1px solid #303030;
+.study-map-title span:first-child{
+  color:#777;
+  font-size:11px;
+  font-weight:700;
+}
+
+.study-map-title span:last-child{
+  color:#555;
+  font-size:10px;
+}
+
+.study-map{
+  width:100%;
+  height:210px;
+  display:flex;
+  gap:4px;
+  overflow:hidden;
+  border-radius:14px;
+  background:#171717;
+}
+
+.study-map-column{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  min-width:0;
+  min-height:0;
+}
+
+.study-tile{
+  position:relative;
+  min-width:0;
+  min-height:0;
+  overflow:hidden;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,.06);
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
   transition:
-    background .25s,
-    box-shadow .25s,
-    transform .25s;
+    flex .3s,
+    background .3s,
+    transform .2s;
 }
 
-.signal-box.active.red{
-  background:#ff4545;
-  border-color:#ff4545;
-  box-shadow:0 0 12px rgba(255,69,69,.45);
-  transform:scale(1.08);
+.study-tile:active{
+  transform:scale(.985);
 }
 
-.signal-box.active.yellow{
-  background:#ffd43b;
-  border-color:#ffd43b;
-  box-shadow:0 0 12px rgba(255,212,59,.4);
-  transform:scale(1.08);
+.study-tile.none{
+  background:#242424;
 }
 
-.signal-box.active.green{
+.study-tile.low{
+  background:#542424;
+}
+
+.study-tile.medium{
+  background:#554b22;
+}
+
+.study-tile.high{
+  background:#304d20;
+}
+
+.study-tile-name{
+  font-size:13px;
+  font-weight:900;
+  color:#fff;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.study-tile-percent{
+  font-size:11px;
+  color:rgba(255,255,255,.7);
+  margin-top:4px;
+}
+
+.study-tile-bar{
+  height:3px;
+  border-radius:99px;
+  background:rgba(255,255,255,.13);
+  overflow:hidden;
+  margin-top:8px;
+}
+
+.study-tile-bar i{
+  display:block;
+  height:100%;
   background:#a6ff00;
-  border-color:#a6ff00;
-  box-shadow:0 0 12px rgba(166,255,0,.45);
-  transform:scale(1.08);
+  border-radius:99px;
+}
+
+.study-map-empty{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#555;
+  font-size:12px;
+  text-align:center;
 }
 
 .progress-info{
@@ -548,6 +624,7 @@ input:focus,select:focus,textarea:focus{
   flex:1;
 }
 
+
 /* SETTINGS */
 
 .subject-manage{
@@ -608,6 +685,29 @@ input:focus,select:focus,textarea:focus{
   background:#151515;
   color:#666;
 }
+
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+  .study-map{
+    height:190px;
+  }
+
+  .study-tile{
+    padding:9px;
+  }
+
+  .study-tile-name{
+    font-size:12px;
+  }
+
+  .study-tile-percent{
+    font-size:10px;
+  }
+
+}
 </style>
 </head>
 
@@ -636,12 +736,19 @@ input:focus,select:focus,textarea:focus{
     오늘도 <span class="accent">끝까지.</span>
   </div>
 
-  <!-- 네모 신호등 -->
-  <div class="study-signal">
-    <div class="signal-box red" id="signalRed"></div>
-    <div class="signal-box yellow" id="signalYellow"></div>
-    <div class="signal-box green" id="signalGreen"></div>
+
+  <!-- 과목별 공부량 타일 -->
+
+  <div class="study-map-title">
+    <span>과목별 공부량</span>
+    <span>비중 × 실제 진행률</span>
   </div>
+
+  <div
+    class="study-map"
+    id="studyMap">
+  </div>
+
 
   <div class="progress-info">
     <span>시험기간 전체 진행률</span>
@@ -1791,6 +1898,354 @@ function getExamProgress(){
 }
 
 
+/* =========================
+   SUBJECT PROGRESS
+========================= */
+
+function getSubjectProgress(subject){
+
+  const tasks=
+    data.exam.filter(
+      task=>task.subject===subject
+    );
+
+  if(!tasks.length){
+    return null;
+  }
+
+  const done=
+    tasks.filter(
+      task=>task.done
+    ).length;
+
+  return Math.round(
+    done/tasks.length*100
+  );
+
+}
+
+
+/* =========================
+   STUDY TILE COLOR
+========================= */
+
+function getStudyLevel(percent){
+
+  if(percent===null){
+    return "none";
+  }
+
+  if(percent<40){
+    return "low";
+  }
+
+  if(percent<80){
+    return "medium";
+  }
+
+  return "high";
+
+}
+
+
+/* =========================
+   SUBJECT TILE
+========================= */
+
+function createStudyTile(subject){
+
+  const percent=
+    getSubjectProgress(subject);
+
+  const weight=
+    Number(
+      data.weights[subject]
+    )||0;
+
+  const tile=
+    document.createElement(
+      "div"
+    );
+
+  tile.className=
+    "study-tile "+
+    getStudyLevel(percent);
+
+  tile.style.flex=
+    Math.max(
+      weight,
+      1
+    );
+
+  const percentText=
+    percent===null
+      ?"계획 없음"
+      :percent+"% 완료";
+
+  const barWidth=
+    percent===null
+      ?0
+      :percent;
+
+  tile.innerHTML=`
+
+    <div>
+
+      <div class="study-tile-name">
+        ${escapeHTML(subject)}
+      </div>
+
+      <div class="study-tile-percent">
+        ${percentText}
+      </div>
+
+    </div>
+
+    <div class="study-tile-bar">
+      <i style="width:${barWidth}%"></i>
+    </div>
+
+  `;
+
+  return tile;
+
+}
+
+
+/* =========================
+   BUILD SUBJECT MAP
+========================= */
+
+function renderStudyMap(){
+
+  const box=
+    document.getElementById(
+      "studyMap"
+    );
+
+  box.innerHTML="";
+
+  if(!data.subjects.length){
+
+    box.innerHTML=`
+      <div class="study-map-empty">
+        과목을 추가하면<br>
+        공부량 지도가 만들어져!
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  /*
+    과목 비중을 이용해서
+    서로 다른 크기의 타일을
+    하나의 직사각형 안에 배치한다.
+  */
+
+  const subjects=
+    [...data.subjects]
+    .sort(
+      (a,b)=>
+        (Number(data.weights[b])||0)
+        -
+        (Number(data.weights[a])||0)
+    );
+
+
+  /*
+    너무 작은 비중 때문에
+    타일이 사라지지 않도록
+    최소값을 조금 둔다.
+  */
+
+  const weightedSubjects=
+    subjects.map(subject=>({
+
+      subject,
+
+      weight:
+        Math.max(
+          Number(
+            data.weights[subject]
+          )||0,
+          1
+        )
+
+    }));
+
+
+  /*
+    가장 큰 과목을 중심으로
+    좌우/상하 영역을 번갈아
+    나누는 방식으로 배치한다.
+  */
+
+  const totalWeight=
+    weightedSubjects.reduce(
+      (sum,item)=>
+        sum+item.weight,
+      0
+    );
+
+
+  if(weightedSubjects.length===1){
+
+    const tile=
+      createStudyTile(
+        weightedSubjects[0].subject
+      );
+
+    tile.style.width="100%";
+    box.appendChild(tile);
+
+    return;
+
+  }
+
+
+  /*
+    화면 폭에 따라
+    2~3개의 큰 영역을 만든 뒤
+    각 영역 안에 타일을 쌓는다.
+  */
+
+  const columns=[];
+
+  let currentColumn={
+    items:[],
+    weight:0
+  };
+
+  const target=
+    totalWeight/2;
+
+
+  weightedSubjects.forEach(item=>{
+
+    if(
+      currentColumn.items.length>0 &&
+      currentColumn.weight+item.weight>target &&
+      columns.length<2
+    ){
+
+      columns.push(
+        currentColumn
+      );
+
+      currentColumn={
+        items:[],
+        weight:0
+      };
+
+    }
+
+    currentColumn.items.push(item);
+
+    currentColumn.weight+=
+      item.weight;
+
+  });
+
+
+  if(currentColumn.items.length){
+    columns.push(currentColumn);
+  }
+
+
+  /*
+    3개 이상의 과목이 있을 때
+    최대 3개의 큰 영역으로 정리한다.
+  */
+
+  if(columns.length>3){
+
+    const merged={
+      items:[],
+      weight:0
+    };
+
+    while(columns.length>2){
+
+      const last=
+        columns.pop();
+
+      merged.items.push(
+        ...last.items
+      );
+
+      merged.weight+=
+        last.weight;
+
+    }
+
+    columns.push(merged);
+
+  }
+
+
+  const columnTotal=
+    columns.reduce(
+      (sum,column)=>
+        sum+column.weight,
+      0
+    );
+
+
+  columns.forEach(column=>{
+
+    const columnBox=
+      document.createElement(
+        "div"
+      );
+
+    columnBox.className=
+      "study-map-column";
+
+    columnBox.style.flex=
+      Math.max(
+        column.weight,
+        1
+      );
+
+    column.items.forEach(item=>{
+
+      const tile=
+        createStudyTile(
+          item.subject
+        );
+
+      const ratio=
+        item.weight/
+        column.weight;
+
+      tile.style.flex=
+        Math.max(
+          ratio,
+          .05
+        );
+
+      columnBox.appendChild(
+        tile
+      );
+
+    });
+
+    box.appendChild(
+      columnBox
+    );
+
+  });
+
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
 function renderProgress(){
 
   const percent=
@@ -1806,58 +2261,7 @@ function renderProgress(){
   ).style.width=
     percent+"%";
 
-
-  /* =========================
-     STUDY SIGNAL
-  ========================= */
-
-  const red=
-    document.getElementById(
-      "signalRed"
-    );
-
-  const yellow=
-    document.getElementById(
-      "signalYellow"
-    );
-
-  const green=
-    document.getElementById(
-      "signalGreen"
-    );
-
-  red.classList.remove(
-    "active"
-  );
-
-  yellow.classList.remove(
-    "active"
-  );
-
-  green.classList.remove(
-    "active"
-  );
-
-
-  if(percent<40){
-
-    red.classList.add(
-      "active"
-    );
-
-  }else if(percent<80){
-
-    yellow.classList.add(
-      "active"
-    );
-
-  }else{
-
-    green.classList.add(
-      "active"
-    );
-
-  }
+  renderStudyMap();
 
 }
 
