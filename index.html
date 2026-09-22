@@ -2,206 +2,1288 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HYORA STUDY</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#050507;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 4px)}
-.wrap{max-width:650px;margin:auto;padding:22px 16px 50px}
-h1{margin:5px 0 4px;font-size:30px;letter-spacing:3px;text-shadow:0 0 12px #00f5ff}
-.sub{color:#8d929b;margin-bottom:22px}
-.card{background:#0d0e12;border:1px solid #252831;border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 0 18px #00e5ff12}
-.title{font-size:18px;font-weight:700;margin-bottom:12px;color:#7df9ff}
-button,input,select{font:inherit}
-button{border:1px solid #00e5ff;background:#071317;color:#dffcff;border-radius:11px;padding:9px 12px;margin:4px;cursor:pointer}
-button:hover{box-shadow:0 0 12px #00e5ff55}
-input,select{width:100%;background:#08090c;color:#fff;border:1px solid #30343d;border-radius:10px;padding:10px;margin:5px 0}
-.row{display:flex;gap:8px;align-items:center}
-.row>*{flex:1}
-.task{display:flex;gap:10px;align-items:center;border-bottom:1px solid #20232a;padding:10px 0}
-.task:last-child{border:0}
-.task span{flex:1}
-.done{text-decoration:line-through;color:#777}
-.bar{height:9px;background:#20232a;border-radius:10px;overflow:hidden}
-.bar i{display:block;height:100%;background:#00e5ff;box-shadow:0 0 12px #00e5ff}
-.timer{text-align:center;font-size:48px;font-weight:700;text-shadow:0 0 15px #00e5ff;margin:8px}
-.empty{color:#777;text-align:center;padding:15px}
+
+body{
+  margin:0;
+  background:#050505;
+  color:#f5f5f5;
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:24px 24px;
+}
+
+.app{
+  width:min(100%,900px);
+  margin:auto;
+  padding:25px 16px 60px;
+}
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:25px;
+}
+
+.logo{
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:3px;
+  color:#fff;
+  text-shadow:
+    0 0 5px #00f5ff,
+    0 0 18px #00f5ff;
+}
+
+.date{
+  color:#858b94;
+  font-size:13px;
+}
+
+.card{
+  background:rgba(12,13,17,.92);
+  border:1px solid #272b33;
+  border-radius:20px;
+  padding:18px;
+  margin-bottom:16px;
+  box-shadow:0 0 25px rgba(0,238,255,.05);
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.section-title h2{
+  margin:0;
+  font-size:17px;
+}
+
+.neon{
+  color:#76f8ff;
+  text-shadow:0 0 10px rgba(0,245,255,.65);
+}
+
+button{
+  min-height:42px;
+  border:1px solid #00e5ff;
+  background:#071316;
+  color:#dfffff;
+  border-radius:11px;
+  padding:8px 13px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+button:active{
+  transform:scale(.97);
+}
+
+button.danger{
+  border-color:#ff5470;
+  color:#ff9aaa;
+  background:#19080d;
+}
+
+input,select,textarea{
+  width:100%;
+  min-height:42px;
+  background:#08090c;
+  color:white;
+  border:1px solid #30343c;
+  border-radius:11px;
+  padding:9px 11px;
+  font-size:15px;
+}
+
+textarea{
+  min-height:80px;
+  resize:vertical;
+}
+
+.form{
+  display:grid;
+  grid-template-columns:1fr 100px auto;
+  gap:8px;
+}
+
+.form2{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+}
+
+.empty{
+  color:#777;
+  text-align:center;
+  padding:25px 10px;
+}
+
+/* 과목 영역 */
+.subject-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:115px;
+  gap:8px;
+}
+
+.subject{
+  position:relative;
+  overflow:hidden;
+  border-radius:16px;
+  border:1px solid #343941;
+  background:#111318;
+  padding:13px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-width:0;
+}
+
+.subject .fill{
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:0%;
+  opacity:.25;
+  transition:height .5s ease,background .5s ease;
+}
+
+.subject-content{
+  position:relative;
+  z-index:2;
+}
+
+.subject-name{
+  font-weight:800;
+  font-size:17px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.subject-percent{
+  font-size:28px;
+  font-weight:900;
+  margin-top:4px;
+}
+
+.subject-meta{
+  color:#9ca1aa;
+  font-size:12px;
+}
+
+.red .fill{background:#ff304f}
+.yellow .fill{background:#ffd21f}
+.green .fill{background:#27f06b}
+
+.red{
+  border-color:#ff304f66;
+  box-shadow:0 0 15px #ff304f18;
+}
+
+.yellow{
+  border-color:#ffd21f66;
+  box-shadow:0 0 15px #ffd21f18;
+}
+
+.green{
+  border-color:#27f06b66;
+  box-shadow:0 0 15px #27f06b18;
+}
+
+/* 할 일 */
+.task{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:11px 0;
+  border-bottom:1px solid #20232a;
+}
+
+.task:last-child{
+  border-bottom:0;
+}
+
+.task input[type="checkbox"]{
+  width:22px;
+  min-height:22px;
+  accent-color:#00e5ff;
+}
+
+.task-info{
+  flex:1;
+  min-width:0;
+}
+
+.task-name{
+  font-weight:650;
+  word-break:break-word;
+}
+
+.task-subject{
+  color:#858b94;
+  font-size:12px;
+  margin-top:3px;
+}
+
+.completed{
+  text-decoration:line-through;
+  color:#666;
+}
+
+/* 스톱워치 */
+.stopwatch{
+  text-align:center;
+}
+
+.time{
+  font-size:52px;
+  font-weight:900;
+  letter-spacing:3px;
+  text-shadow:0 0 18px #00e5ff;
+  margin:8px 0 15px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.stat{
+  background:#090a0d;
+  border:1px solid #252932;
+  border-radius:13px;
+  padding:12px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:20px;
+  color:#7df9ff;
+}
+
+.stat span{
+  color:#777;
+  font-size:11px;
+}
+
+/* 목록 */
+.list-item{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:9px 0;
+  border-bottom:1px solid #20232a;
+}
+
+.list-item:last-child{
+  border-bottom:0;
+}
+
+.list-item .main{
+  flex:1;
+  min-width:0;
+}
+
+.small{
+  color:#777;
+  font-size:12px;
+}
+
+/* 반응형 */
+@media(max-width:600px){
+  .app{padding:20px 12px 50px}
+  header{align-items:flex-start}
+  .logo{font-size:24px}
+  .form{
+    grid-template-columns:1fr 90px;
+  }
+  .form button{
+    grid-column:1/-1;
+  }
+  .subject-grid{
+    grid-auto-rows:105px;
+    gap:6px;
+  }
+  .subject{
+    padding:10px;
+  }
+  .subject-name{font-size:14px}
+  .subject-percent{font-size:22px}
+  .time{font-size:42px}
+}
 </style>
 </head>
 
 <body>
-<main class="wrap">
 
-<h1>HYORA STUDY</h1>
-<div class="sub">MY STUDY SYSTEM</div>
+<div class="app">
 
+<header>
+  <div>
+    <div class="logo">HYORA STUDY</div>
+    <div class="date" id="today"></div>
+  </div>
+</header>
+
+<!-- 과목 -->
 <section class="card">
-<div class="title">⏱ STUDY TIMER</div>
-<div id="time" class="timer">25:00</div>
-<div class="row">
-<button onclick="start()">START</button>
-<button onclick="pause()">PAUSE</button>
-<button onclick="resetTimer()">RESET</button>
-</div>
+
+  <div class="section-title">
+    <h2>📚 <span class="neon">MY SUBJECTS</span></h2>
+    <button onclick="addSubject()">＋ 과목</button>
+  </div>
+
+  <div id="subjectGrid" class="subject-grid"></div>
+
+  <div id="subjectEmpty" class="empty">
+    아직 과목이 없어.<br>
+    원하는 과목과 비중을 직접 추가해줘.
+  </div>
+
 </section>
 
+
+<!-- 할 일 -->
 <section class="card">
-<div class="title">📚 SUBJECTS</div>
-<div id="subjects"></div>
-<div class="row">
-<input id="subjectName" placeholder="과목 이름">
-<input id="subjectWeight" type="number" min="0" value="25" placeholder="비중 %">
-<button onclick="addSubject()">추가</button>
-</div>
+
+  <div class="section-title">
+    <h2>✅ <span class="neon">TODAY'S STUDY</span></h2>
+  </div>
+
+  <div class="form">
+    <input id="taskInput" placeholder="오늘 할 일을 입력">
+    <select id="taskSubject"></select>
+    <button onclick="addTask()">추가</button>
+  </div>
+
+  <div id="taskList"></div>
+
 </section>
 
-<section class="card">
-<div class="title">✅ TODAY'S TASKS</div>
-<div id="tasks"></div>
-<div class="row">
-<input id="taskName" placeholder="할 일 추가">
-<select id="taskSubject"></select>
-<button onclick="addTask()">추가</button>
-</div>
-<div id="progressText"></div>
-<div class="bar"><i id="progress"></i></div>
+
+<!-- 스톱워치 -->
+<section class="card stopwatch">
+
+  <div class="section-title">
+    <h2>⏱ <span class="neon">STOPWATCH</span></h2>
+  </div>
+
+  <div id="time" class="time">00:00:00</div>
+
+  <div>
+    <button onclick="startWatch()">START</button>
+    <button onclick="pauseWatch()">PAUSE</button>
+    <button onclick="resetWatch()">RESET</button>
+  </div>
+
 </section>
 
-</main>
+
+<!-- 오답 -->
+<section class="card">
+
+  <div class="section-title">
+    <h2>📝 <span class="neon">MISTAKE LOG</span></h2>
+    <button onclick="addMistake()">＋ 기록</button>
+  </div>
+
+  <div id="mistakeList"></div>
+
+</section>
+
+
+<!-- 일정 -->
+<section class="card">
+
+  <div class="section-title">
+    <h2>📅 <span class="neon">SCHEDULE</span></h2>
+    <button onclick="addSchedule()">＋ 일정</button>
+  </div>
+
+  <div id="scheduleList"></div>
+
+</section>
+
+
+<!-- 통계 -->
+<section class="card">
+
+  <div class="section-title">
+    <h2>📊 <span class="neon">STATS</span></h2>
+  </div>
+
+  <div class="stats">
+
+    <div class="stat">
+      <strong id="totalTasks">0</strong>
+      <span>전체 할 일</span>
+    </div>
+
+    <div class="stat">
+      <strong id="doneTasks">0</strong>
+      <span>완료</span>
+    </div>
+
+    <div class="stat">
+      <strong id="overall">0%</strong>
+      <span>전체 진행률</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 티라 -->
+<section class="card">
+
+  <div class="section-title">
+    <h2>🤖 <span class="neon">티라</span></h2>
+  </div>
+
+  <div id="tiraMessage" class="small">
+    오늘 공부를 시작해보자!
+  </div>
+
+</section>
+
+</div>
+
 
 <script>
-let data=JSON.parse(localStorage.getItem("hyora-study-v2")||'{"subjects":[],"tasks":[]}');
-let sec=1500,timer=null;
 
-const $=id=>document.getElementById(id);
+/* =========================
+   DATA
+========================= */
+
+let data = JSON.parse(
+  localStorage.getItem("HYORA_STUDY_FINAL")
+  || '{"subjects":[],"tasks":[],"mistakes":[],"schedule":[]}'
+);
+
+
+/* =========================
+   저장
+========================= */
 
 function save(){
-localStorage.setItem("hyora-study-v2",JSON.stringify(data));
+  localStorage.setItem(
+    "HYORA_STUDY_FINAL",
+    JSON.stringify(data)
+  );
 }
 
-function esc(x){
-return String(x).replace(/[&<>"']/g,m=>({
-'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-}[m]));
+
+/* =========================
+   오늘 날짜
+========================= */
+
+const now = new Date();
+
+document.getElementById("today").textContent =
+  now.toLocaleDateString("ko-KR",{
+    year:"numeric",
+    month:"long",
+    day:"numeric",
+    weekday:"long"
+  });
+
+
+/* =========================
+   과목
+========================= */
+
+function addSubject(){
+
+  const name = prompt("과목 이름을 입력해줘");
+
+  if(!name || !name.trim()) return;
+
+  let weight = prompt(
+    "이 과목의 비중을 입력해줘 (%)\n예: 수학 40"
+  );
+
+  weight = Number(weight);
+
+  if(!Number.isFinite(weight) || weight <= 0){
+    alert("비중은 1 이상의 숫자로 입력해줘.");
+    return;
+  }
+
+  data.subjects.push({
+    name:name.trim(),
+    weight:weight,
+    done:0
+  });
+
+  normalizeWeights();
+
+  save();
+  render();
 }
+
+
+function deleteSubject(index){
+
+  const subject = data.subjects[index];
+
+  if(!confirm(
+    `"${subject.name}" 과목을 삭제할까?`
+  )) return;
+
+  data.tasks.forEach(task=>{
+    if(task.subject === index){
+      task.subject = -1;
+    }
+    else if(task.subject > index){
+      task.subject--;
+    }
+  });
+
+  data.subjects.splice(index,1);
+
+  save();
+  render();
+}
+
+
+function normalizeWeights(){
+
+  const total =
+    data.subjects.reduce(
+      (sum,s)=>sum + Number(s.weight || 0),
+      0
+    );
+
+  if(total <= 0) return;
+
+  /*
+    사용자가 입력한 비중은 그대로 저장.
+    네모의 실제 크기는 이 비중을 기준으로 계산.
+  */
+}
+
+
+/* =========================
+   과목 진행률
+========================= */
+
+function subjectProgress(index){
+
+  const tasks =
+    data.tasks.filter(
+      t=>t.subject === index
+    );
+
+  if(tasks.length === 0) return 0;
+
+  const done =
+    tasks.filter(t=>t.completed).length;
+
+  return Math.round(
+    done / tasks.length * 100
+  );
+}
+
+
+/* =========================
+   신호등
+========================= */
+
+function trafficClass(progress){
+
+  if(progress >= 70) return "green";
+
+  if(progress >= 30) return "yellow";
+
+  return "red";
+}
+
+
+/* =========================
+   과목 렌더링
+========================= */
+
+function renderSubjects(){
+
+  const grid =
+    document.getElementById("subjectGrid");
+
+  const empty =
+    document.getElementById("subjectEmpty");
+
+  if(data.subjects.length === 0){
+
+    grid.innerHTML="";
+    empty.style.display="block";
+
+    return;
+  }
+
+  empty.style.display="none";
+
+  /*
+    비중을 전체 합계로 계산해서
+    CSS grid의 12칸 중 실제 크기를 배정
+  */
+
+  const totalWeight =
+    data.subjects.reduce(
+      (sum,s)=>sum + Number(s.weight || 0),
+      0
+    );
+
+  grid.innerHTML="";
+
+  data.subjects.forEach((subject,index)=>{
+
+    const progress =
+      subjectProgress(index);
+
+    const cls =
+      trafficClass(progress);
+
+    const tile =
+      document.createElement("div");
+
+    tile.className =
+      `subject ${cls}`;
+
+    /*
+      최소 1칸을 보장하면서
+      비중에 따라 크기 변화
+    */
+
+    const fraction =
+      totalWeight > 0
+      ? Number(subject.weight) / totalWeight
+      : 1 / data.subjects.length;
+
+    const columns =
+      Math.max(
+        1,
+        Math.round(fraction * 12)
+      );
+
+    tile.style.gridColumn =
+      `span ${Math.min(columns,12)}`;
+
+    tile.innerHTML=`
+
+      <div class="fill"
+           style="height:${progress}%">
+      </div>
+
+      <div class="subject-content">
+
+        <div class="subject-name">
+          ${escapeHTML(subject.name)}
+        </div>
+
+        <div class="subject-percent">
+          ${progress}%
+        </div>
+
+        <div class="subject-meta">
+          비중 ${subject.weight}%
+        </div>
+
+      </div>
+
+      <div class="subject-content"
+           style="display:flex;gap:5px">
+
+        <button
+          onclick="editSubject(${index})"
+          style="padding:5px 8px;min-height:32px">
+          수정
+        </button>
+
+        <button
+          onclick="deleteSubject(${index})"
+          class="danger"
+          style="padding:5px 8px;min-height:32px">
+          삭제
+        </button>
+
+      </div>
+
+    `;
+
+    grid.appendChild(tile);
+
+  });
+
+}
+
+
+function editSubject(index){
+
+  const subject =
+    data.subjects[index];
+
+  const name =
+    prompt(
+      "과목 이름",
+      subject.name
+    );
+
+  if(!name || !name.trim()) return;
+
+  const weight =
+    Number(
+      prompt(
+        "과목 비중 (%)",
+        subject.weight
+      )
+    );
+
+  if(!Number.isFinite(weight) || weight <= 0){
+    alert("비중을 올바르게 입력해줘.");
+    return;
+  }
+
+  subject.name=name.trim();
+  subject.weight=weight;
+
+  save();
+  render();
+}
+
+
+/* =========================
+   할 일
+========================= */
+
+function addTask(){
+
+  const input =
+    document.getElementById("taskInput");
+
+  const select =
+    document.getElementById("taskSubject");
+
+  const name =
+    input.value.trim();
+
+  if(!name){
+    alert("할 일을 입력해줘.");
+    return;
+  }
+
+  data.tasks.push({
+    name:name,
+    subject:Number(select.value),
+    completed:false
+  });
+
+  input.value="";
+
+  save();
+  render();
+}
+
+
+function toggleTask(index){
+
+  data.tasks[index].completed =
+    !data.tasks[index].completed;
+
+  save();
+  render();
+}
+
+
+function deleteTask(index){
+
+  data.tasks.splice(index,1);
+
+  save();
+  render();
+}
+
+
+function renderTasks(){
+
+  const list =
+    document.getElementById("taskList");
+
+  const select =
+    document.getElementById("taskSubject");
+
+  select.innerHTML =
+    `<option value="-1">과목 없음</option>`;
+
+  data.subjects.forEach((subject,index)=>{
+
+    select.innerHTML +=
+      `<option value="${index}">
+        ${escapeHTML(subject.name)}
+      </option>`;
+
+  });
+
+
+  if(data.tasks.length===0){
+
+    list.innerHTML =
+      `<div class="empty">
+        아직 오늘의 할 일이 없어.
+      </div>`;
+
+    return;
+  }
+
+
+  list.innerHTML="";
+
+
+  data.tasks.forEach((task,index)=>{
+
+    const div =
+      document.createElement("div");
+
+    div.className="task";
+
+    const subjectName =
+      task.subject >= 0 &&
+      data.subjects[task.subject]
+      ? data.subjects[task.subject].name
+      : "과목 없음";
+
+    div.innerHTML=`
+
+      <input
+        type="checkbox"
+        ${task.completed?"checked":""}
+        onchange="toggleTask(${index})">
+
+      <div class="task-info">
+
+        <div class="
+          task-name
+          ${task.completed?"completed":""}
+        ">
+          ${escapeHTML(task.name)}
+        </div>
+
+        <div class="task-subject">
+          ${escapeHTML(subjectName)}
+        </div>
+
+      </div>
+
+      <button
+        class="danger"
+        onclick="deleteTask(${index})">
+        삭제
+      </button>
+
+    `;
+
+    list.appendChild(div);
+
+  });
+
+}
+
+
+/* =========================
+   오답
+========================= */
+
+function addMistake(){
+
+  const subject =
+    prompt("과목을 입력해줘");
+
+  if(!subject) return;
+
+  const content =
+    prompt("어떤 문제에서 실수했는지 기록해줘");
+
+  if(!content) return;
+
+  data.mistakes.push({
+    subject:subject,
+    content:content,
+    date:new Date().toLocaleDateString("ko-KR")
+  });
+
+  save();
+  renderMistakes();
+}
+
+
+function deleteMistake(index){
+
+  data.mistakes.splice(index,1);
+
+  save();
+  renderMistakes();
+}
+
+
+function renderMistakes(){
+
+  const list =
+    document.getElementById("mistakeList");
+
+  if(data.mistakes.length===0){
+
+    list.innerHTML=
+      `<div class="empty">
+        아직 오답 기록이 없어.
+      </div>`;
+
+    return;
+  }
+
+  list.innerHTML="";
+
+  data.mistakes.forEach((mistake,index)=>{
+
+    const div =
+      document.createElement("div");
+
+    div.className="list-item";
+
+    div.innerHTML=`
+
+      <div class="main">
+
+        <strong>
+          ${escapeHTML(mistake.subject)}
+        </strong>
+
+        <div>
+          ${escapeHTML(mistake.content)}
+        </div>
+
+        <div class="small">
+          ${mistake.date}
+        </div>
+
+      </div>
+
+      <button
+        class="danger"
+        onclick="deleteMistake(${index})">
+        삭제
+      </button>
+
+    `;
+
+    list.appendChild(div);
+
+  });
+
+}
+
+
+/* =========================
+   일정
+========================= */
+
+function addSchedule(){
+
+  const title =
+    prompt("일정 이름");
+
+  if(!title) return;
+
+  const time =
+    prompt("시간 (예: 17:00)");
+
+  data.schedule.push({
+    title:title,
+    time:time || ""
+  });
+
+  save();
+  renderSchedule();
+}
+
+
+function deleteSchedule(index){
+
+  data.schedule.splice(index,1);
+
+  save();
+  renderSchedule();
+}
+
+
+function renderSchedule(){
+
+  const list =
+    document.getElementById("scheduleList");
+
+  if(data.schedule.length===0){
+
+    list.innerHTML=
+      `<div class="empty">
+        오늘 일정을 추가해줘.
+      </div>`;
+
+    return;
+  }
+
+  list.innerHTML="";
+
+  data.schedule.forEach((item,index)=>{
+
+    const div =
+      document.createElement("div");
+
+    div.className="list-item";
+
+    div.innerHTML=`
+
+      <div class="main">
+        <strong>${escapeHTML(item.title)}</strong>
+        <div class="small">
+          ${escapeHTML(item.time)}
+        </div>
+      </div>
+
+      <button
+        class="danger"
+        onclick="deleteSchedule(${index})">
+        삭제
+      </button>
+
+    `;
+
+    list.appendChild(div);
+
+  });
+
+}
+
+
+/* =========================
+   통계
+========================= */
+
+function renderStats(){
+
+  const total =
+    data.tasks.length;
+
+  const done =
+    data.tasks.filter(
+      t=>t.completed
+    ).length;
+
+  const percent =
+    total
+    ? Math.round(done/total*100)
+    : 0;
+
+  document.getElementById("totalTasks")
+    .textContent=total;
+
+  document.getElementById("doneTasks")
+    .textContent=done;
+
+  document.getElementById("overall")
+    .textContent=percent+"%";
+
+}
+
+
+/* =========================
+   티라
+========================= */
+
+function renderTira(){
+
+  const el =
+    document.getElementById("tiraMessage");
+
+  const total =
+    data.tasks.length;
+
+  const done =
+    data.tasks.filter(
+      t=>t.completed
+    ).length;
+
+  if(total===0){
+
+    el.textContent=
+      "오늘 할 일을 하나씩 추가해보자. 내가 공부 흐름을 같이 정리해줄게.";
+
+    return;
+  }
+
+  if(done===total){
+
+    el.textContent=
+      "오늘 할 일 전부 완료! 오늘 공부 정말 잘했어. 🔥";
+
+    return;
+  }
+
+  const percent =
+    Math.round(done/total*100);
+
+  if(percent<30){
+
+    el.textContent=
+      "아직 시작 단계야. 제일 쉬운 것부터 하나 끝내보자.";
+
+  }
+  else if(percent<70){
+
+    el.textContent=
+      `현재 ${percent}% 완료! 흐름 잘 잡고 있어. 조금만 더 가보자.`;
+
+  }
+  else{
+
+    el.textContent=
+      `현재 ${percent}% 완료! 거의 다 왔어. 마지막까지 가보자!`;
+
+  }
+
+}
+
+
+/* =========================
+   스톱워치
+========================= */
+
+let stopwatchSeconds=0;
+let stopwatchInterval=null;
+
+
+function formatTime(seconds){
+
+  const h =
+    Math.floor(seconds/3600);
+
+  const m =
+    Math.floor(
+      (seconds%3600)/60
+    );
+
+  const s =
+    seconds%60;
+
+  return [
+    h,m,s
+  ].map(
+    n=>String(n).padStart(2,"0")
+  ).join(":");
+
+}
+
+
+function updateWatch(){
+
+  document.getElementById("time")
+    .textContent=
+    formatTime(stopwatchSeconds);
+
+}
+
+
+function startWatch(){
+
+  if(stopwatchInterval) return;
+
+  stopwatchInterval =
+    setInterval(()=>{
+
+      stopwatchSeconds++;
+
+      updateWatch();
+
+    },1000);
+
+}
+
+
+function pauseWatch(){
+
+  clearInterval(
+    stopwatchInterval
+  );
+
+  stopwatchInterval=null;
+
+}
+
+
+function resetWatch(){
+
+  pauseWatch();
+
+  stopwatchSeconds=0;
+
+  updateWatch();
+
+}
+
+
+/* =========================
+   보안용 문자 처리
+========================= */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   전체 렌더링
+========================= */
 
 function render(){
 
-$("subjects").innerHTML=data.subjects.length
-?data.subjects.map((s,i)=>`
-<div class="row">
-<span>${esc(s.name)}</span>
-<input type="number" value="${s.weight}"
-onchange="data.subjects[${i}].weight=Number(this.value)||0;save()">
-<button onclick="delSubject(${i})">삭제</button>
-</div>`).join("")
-:'<div class="empty">과목을 직접 추가하세요.</div>';
+  renderSubjects();
+  renderTasks();
+  renderMistakes();
+  renderSchedule();
+  renderStats();
+  renderTira();
 
-$("taskSubject").innerHTML=
-'<option value="-1">과목 없음</option>'+
-data.subjects.map((s,i)=>
-`<option value="${i}">${esc(s.name)}</option>`).join("");
-
-$("tasks").innerHTML=data.tasks.length
-?data.tasks.map((t,i)=>`
-<div class="task">
-<input type="checkbox" ${t.done?'checked':''} onchange="toggle(${i})">
-<span class="${t.done?'done':''}">
-${esc(t.name)}
-${t.sub>=0&&data.subjects[t.sub]?' · '+esc(data.subjects[t.sub].name):''}
-</span>
-<button onclick="delTask(${i})">삭제</button>
-</div>`).join("")
-:'<div class="empty">할 일을 추가하세요.</div>';
-
-let n=data.tasks.length;
-let d=data.tasks.filter(t=>t.done).length;
-let p=n?Math.round(d/n*100):0;
-
-$("progress").style.width=p+"%";
-$("progressText").textContent=`진행률 ${p}% (${d}/${n})`;
-}
-
-function addSubject(){
-let n=$("subjectName").value.trim();
-let w=Number($("subjectWeight").value)||0;
-if(!n)return;
-
-data.subjects.push({name:n,weight:w});
-$("subjectName").value="";
-save();
-render();
-}
-
-function delSubject(i){
-data.tasks.forEach(t=>{
-if(t.sub===i)t.sub=-1;
-else if(t.sub>i)t.sub--;
-});
-data.subjects.splice(i,1);
-save();
-render();
-}
-
-function addTask(){
-let n=$("taskName").value.trim();
-if(!n)return;
-
-data.tasks.push({
-name:n,
-done:false,
-sub:Number($("taskSubject").value)
-});
-
-$("taskName").value="";
-save();
-render();
-}
-
-function toggle(i){
-data.tasks[i].done=!data.tasks[i].done;
-save();
-render();
-}
-
-function delTask(i){
-data.tasks.splice(i,1);
-save();
-render();
-}
-
-function show(){
-let m=Math.floor(sec/60);
-let s=sec%60;
-$("time").textContent=
-`${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
-}
-
-function start(){
-if(timer)return;
-timer=setInterval(()=>{
-if(sec>0){
-sec--;
-show();
-}else{
-pause();
-}
-},1000);
-}
-
-function pause(){
-clearInterval(timer);
-timer=null;
-}
-
-function resetTimer(){
-pause();
-sec=1500;
-show();
 }
 
 render();
+updateWatch();
+
 </script>
 
 </body>
