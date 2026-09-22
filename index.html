@@ -2,711 +2,412 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050505">
-<title>HYORA STUDY</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#06142f">
+<title>승리를 가져가</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
+:root{
+  --navy:#06142f;
+  --deep:#020817;
+  --blue:#0878ff;
+  --cyan:#38a8ff;
+  --white:#f7faff;
+  --muted:#9eabc1;
+  --line:rgba(255,255,255,.1);
+  --green:#36d399;
 }
 
 body{
   margin:0;
-  background:#050505;
-  color:#f5f5f5;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Pretendard",sans-serif;
-}
-
-button,input,select,textarea{
-  font:inherit;
-}
-
-button{
-  border:0;
-  cursor:pointer;
+  background:var(--deep);
+  color:var(--white);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",
+  "Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
 }
 
 .app{
-  max-width:760px;
-  margin:auto;
-  padding:20px 16px 100px;
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 10%,rgba(20,105,220,.22),transparent 38%),
+    linear-gradient(180deg,#06142f 0%,#020817 75%);
 }
 
-header{
+/* ---------------- WAVE BACKGROUND ---------------- */
+
+.wave-area{
+  position:absolute;
+  left:-20%;
+  right:-20%;
+  top:220px;
+  height:500px;
+  z-index:0;
+  pointer-events:none;
+}
+
+.wave{
+  position:absolute;
+  left:-5%;
+  width:110%;
+  height:270px;
+  border-radius:48% 52% 0 0 / 24% 27% 0 0;
+  filter:blur(.2px);
+  transition:all 1.2s ease;
+}
+
+.wave.nc{
+  bottom:0;
+  background:
+    linear-gradient(180deg,
+      rgba(10,125,255,.92),
+      rgba(3,62,160,.88) 55%,
+      rgba(3,30,83,.92));
+  clip-path:polygon(
+    0 45%,5% 38%,10% 43%,15% 32%,20% 40%,
+    25% 30%,30% 38%,35% 27%,40% 35%,45% 24%,
+    50% 33%,55% 22%,60% 31%,65% 20%,70% 29%,
+    75% 18%,80% 27%,85% 17%,90% 25%,95% 16%,100% 23%,
+    100% 100%,0 100%);
+  animation:waveMove 7s ease-in-out infinite;
+}
+
+.wave.opponent{
+  bottom:35px;
+  background:linear-gradient(180deg,
+    rgba(70,80,100,.85),
+    rgba(35,43,58,.9));
+  opacity:.72;
+  clip-path:polygon(
+    0 65%,7% 59%,14% 66%,21% 55%,28% 63%,
+    35% 52%,42% 61%,49% 50%,56% 59%,63% 48%,
+    70% 57%,77% 46%,84% 54%,91% 44%,100% 51%,
+    100% 100%,0 100%);
+  animation:waveMoveReverse 9s ease-in-out infinite;
+}
+
+@keyframes waveMove{
+  0%,100%{transform:translateX(-1%) scaleY(1)}
+  50%{transform:translateX(2%) scaleY(1.08)}
+}
+
+@keyframes waveMoveReverse{
+  0%,100%{transform:translateX(1%) scaleY(1)}
+  50%{transform:translateX(-2%) scaleY(1.08)}
+}
+
+/* ---------------- CONTENT ---------------- */
+
+.content{
+  position:relative;
+  z-index:2;
+  max-width:680px;
+  margin:auto;
+  padding:24px 18px 40px;
+}
+
+.header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:18px;
 }
 
 .logo{
-  font-size:23px;
   font-weight:900;
-  letter-spacing:-1px;
+  letter-spacing:-1.5px;
+  font-size:22px;
 }
 
-.logo span{
-  color:#a6ff00;
+.logo span{color:#4ca7ff}
+
+.live-dot{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:#b9c6d9;
+  font-size:11px;
+}
+
+.live-dot i{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#38d996;
+  box-shadow:0 0 12px #38d996;
+}
+
+/* GAME */
+
+.game{
+  text-align:center;
+  margin-top:34px;
 }
 
 .date{
-  color:#777;
+  color:#9fb0c8;
   font-size:12px;
+  margin-bottom:10px;
 }
 
-.card{
-  background:#0d0d0d;
-  border:1px solid #1d1d1d;
-  border-radius:20px;
-  padding:18px;
-  margin-bottom:14px;
-}
-
-.card-title{
-  font-size:14px;
-  font-weight:800;
-  margin-bottom:14px;
-}
-
-.hero{
-  background:
-    radial-gradient(circle at 90% 0%,rgba(166,255,0,.13),transparent 40%),
-    #0d0d0d;
-}
-
-.greeting{
-  color:#777;
-  font-size:12px;
-}
-
-.big-title{
-  margin-top:5px;
-  font-size:29px;
-  font-weight:900;
-  letter-spacing:-1.5px;
-}
-
-.accent{
-  color:#a6ff00;
-}
-
-
-/* =========================
-   SUBJECT STUDY MAP
-========================= */
-
-.study-map-title{
-  margin-top:20px;
-  margin-bottom:8px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.study-map-title span:first-child{
-  color:#777;
-  font-size:11px;
-  font-weight:700;
-}
-
-.study-map-title span:last-child{
-  color:#555;
-  font-size:10px;
-}
-
-.study-map{
-  width:100%;
-  height:210px;
-  display:flex;
-  gap:4px;
-  overflow:hidden;
-  border-radius:14px;
-  background:#171717;
-}
-
-.study-map-column{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-  min-width:0;
-  min-height:0;
-}
-
-.study-tile{
-  position:relative;
-  min-width:0;
-  min-height:0;
-  overflow:hidden;
-  border-radius:8px;
-  border:1px solid rgba(255,255,255,.06);
-  padding:12px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  transition:
-    flex .3s,
-    background .3s,
-    transform .2s;
-}
-
-.study-tile:active{
-  transform:scale(.985);
-}
-
-.study-tile.none{
-  background:#242424;
-}
-
-.study-tile.low{
-  background:#542424;
-}
-
-.study-tile.medium{
-  background:#554b22;
-}
-
-.study-tile.high{
-  background:#304d20;
-}
-
-.study-tile-name{
-  font-size:13px;
-  font-weight:900;
-  color:#fff;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.study-tile-percent{
-  font-size:11px;
-  color:rgba(255,255,255,.7);
-  margin-top:4px;
-}
-
-.study-tile-bar{
-  height:3px;
-  border-radius:99px;
-  background:rgba(255,255,255,.13);
-  overflow:hidden;
-  margin-top:8px;
-}
-
-.study-tile-bar i{
-  display:block;
-  height:100%;
-  background:#a6ff00;
-  border-radius:99px;
-}
-
-.study-map-empty{
-  width:100%;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#555;
-  font-size:12px;
-  text-align:center;
-}
-
-.progress-info{
-  display:flex;
-  justify-content:space-between;
-  margin-top:18px;
-  margin-bottom:7px;
-  font-size:12px;
-  color:#777;
-}
-
-.progress-info strong{
-  color:#a6ff00;
-}
-
-.progress{
-  height:8px;
-  background:#202020;
-  border-radius:99px;
-  overflow:hidden;
-}
-
-.progress-bar{
-  height:100%;
-  width:0%;
-  background:#a6ff00;
-  border-radius:99px;
-  transition:width .3s;
-}
-
-.tabs{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:5px;
-  padding:5px;
-  background:#0b0b0b;
-  border-radius:14px;
-  margin-bottom:14px;
-}
-
-.tab{
-  background:transparent;
-  color:#666;
-  padding:10px 2px;
-  border-radius:10px;
-  font-size:10px;
-  font-weight:700;
-}
-
-.tab.active{
-  background:#191919;
-  color:#a6ff00;
-}
-
-.section{
-  display:none;
-}
-
-.section.active{
-  display:block;
-}
-
-.add-row{
-  display:flex;
-  gap:6px;
-  margin-bottom:12px;
-}
-
-input,select,textarea{
-  background:#151515;
-  color:#fff;
-  border:1px solid #292929;
-  border-radius:11px;
-  padding:11px;
-  outline:none;
-}
-
-input:focus,select:focus,textarea:focus{
-  border-color:#a6ff00;
-}
-
-.add-row input{
-  flex:1;
-  min-width:0;
-}
-
-.add-btn{
-  background:#a6ff00;
-  color:#050505;
-  border-radius:11px;
-  padding:0 15px;
-  font-weight:900;
-}
-
-.task{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:12px 0;
-  border-bottom:1px solid #181818;
-}
-
-.task:last-child{
-  border-bottom:none;
-}
-
-.check{
-  width:21px;
-  height:21px;
-  border:1px solid #444;
-  border-radius:6px;
-  flex-shrink:0;
+.matchup{
   display:flex;
   justify-content:center;
   align-items:center;
+  gap:18px;
 }
 
-.task.done .check{
-  background:#a6ff00;
-  border-color:#a6ff00;
-  color:#000;
+.team{
+  width:100px;
 }
 
-.task-main{
-  flex:1;
-  min-width:0;
-}
-
-.task-text{
-  font-size:14px;
-}
-
-.task.done .task-text{
-  color:#555;
-  text-decoration:line-through;
-}
-
-.task-meta{
-  margin-top:3px;
-  color:#666;
-  font-size:11px;
-}
-
-.delete{
-  background:none;
-  color:#555;
-  font-size:18px;
-  padding:4px 7px;
-}
-
-.empty{
-  text-align:center;
-  color:#555;
-  font-size:13px;
-  padding:25px 5px;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:7px;
-}
-
-.stat{
-  background:#151515;
-  border-radius:13px;
-  padding:13px 5px;
-  text-align:center;
-}
-
-.stat strong{
-  display:block;
-  color:#a6ff00;
-  font-size:20px;
-}
-
-.stat span{
-  color:#666;
-  font-size:10px;
-}
-
-.exam-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-}
-
-.exam-grid label{
-  display:block;
-  color:#777;
-  font-size:11px;
+.team .mark{
+  font-size:37px;
   margin-bottom:5px;
 }
 
-.exam-grid input{
-  width:100%;
+.team .name{
+  font-weight:800;
+  font-size:18px;
 }
 
-.save-exam{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
+.team .sub{
+  font-size:11px;
+  color:#9ba9bd;
+  margin-top:4px;
 }
 
-.subject-row{
+.vs{
+  color:#8291a9;
+  font-size:12px;
+  font-weight:800;
+}
+
+/* PROBABILITY */
+
+.probability{
+  margin-top:24px;
+}
+
+.prob{
+  display:flex;
+  justify-content:center;
+  align-items:end;
+  gap:22px;
+}
+
+.percent{
+  font-size:46px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:-3px;
+}
+
+.percent.nc{color:#54adff}
+.percent.op{color:#b5c0d0}
+
+.prob-label{
+  font-size:11px;
+  color:#9caac0;
+  margin-top:7px;
+}
+
+.bar{
+  display:flex;
+  height:7px;
+  width:88%;
+  margin:17px auto 0;
+  overflow:hidden;
+  border-radius:20px;
+  background:#222c3d;
+}
+
+.bar-nc{
+  width:64%;
+  background:linear-gradient(90deg,#006cff,#3fb0ff);
+  transition:width 1s ease;
+}
+
+.bar-op{
+  flex:1;
+  background:#596477;
+}
+
+.status{
+  margin-top:12px;
+  font-size:13px;
+  font-weight:700;
+}
+
+.pitchers{
+  margin-top:8px;
+  color:#b5c1d3;
+  font-size:11px;
+}
+
+/* CARDS */
+
+.section{
+  margin-top:28px;
+}
+
+.section-title{
   display:flex;
   align-items:center;
-  gap:8px;
-  margin-bottom:10px;
+  justify-content:space-between;
+  margin-bottom:11px;
 }
 
-.subject-name{
-  width:60px;
-  font-size:13px;
+.section-title h2{
+  font-size:14px;
+  margin:0;
 }
 
-.subject-row input{
-  width:65px;
-  text-align:center;
+.section-title span{
+  color:#8492a8;
+  font-size:10px;
 }
 
-.weight-line{
-  flex:1;
-  height:5px;
-  background:#222;
-  border-radius:99px;
-  overflow:hidden;
+.card{
+  background:rgba(5,17,38,.72);
+  border:1px solid var(--line);
+  border-radius:18px;
+  backdrop-filter:blur(15px);
+  -webkit-backdrop-filter:blur(15px);
 }
 
-.weight-line i{
-  display:block;
-  height:100%;
-  background:#a6ff00;
+/* PLAYERS */
+
+.players{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
-.note-form{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
+.player{
+  padding:14px;
 }
 
-.note-form select,
-.note-form input,
-.note-form textarea{
-  width:100%;
-}
-
-.note-form textarea{
-  min-height:75px;
-  resize:vertical;
-}
-
-.note-submit{
-  width:100%;
-  padding:12px;
-  background:#a6ff00;
-  color:#050505;
-  border-radius:11px;
-  font-weight:900;
-}
-
-.note{
-  padding:15px 0;
-  border-bottom:1px solid #1c1c1c;
-}
-
-.note:last-child{
-  border-bottom:none;
-}
-
-.note-head{
+.player-top{
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
 
-.note-subject{
-  color:#a6ff00;
-  font-size:11px;
+.player-name{
   font-weight:800;
-}
-
-.note-delete{
-  background:none;
-  color:#555;
-  font-size:17px;
-}
-
-.note-title{
-  margin-top:7px;
-  font-size:14px;
-  font-weight:800;
-}
-
-.note-text{
-  margin-top:7px;
-  color:#aaa;
-  font-size:12px;
-  line-height:1.55;
-}
-
-.note-review{
-  margin-top:8px;
-  padding:8px 10px;
-  background:#151515;
-  border-radius:9px;
-  color:#777;
-  font-size:11px;
-}
-
-.note.reviewed .note-title{
-  color:#555;
-  text-decoration:line-through;
-}
-
-.note.reviewed .note-review{
-  color:#a6ff00;
-}
-
-.review-btn{
-  margin-top:9px;
-  padding:7px 10px;
-  border-radius:8px;
-  background:#191919;
-  color:#888;
-  font-size:11px;
-}
-
-.stopwatch{
-  text-align:center;
-}
-
-.stopwatch-title{
-  color:#777;
-  font-size:12px;
-  font-weight:700;
-  letter-spacing:1px;
-}
-
-.stopwatch-time{
-  margin:15px 0 18px;
-  font-size:52px;
-  font-weight:900;
-  letter-spacing:2px;
-  font-variant-numeric:tabular-nums;
-}
-
-.stopwatch-buttons{
-  display:flex;
-  gap:7px;
-}
-
-.stopwatch-buttons button{
-  flex:1;
-  padding:12px;
-  border-radius:12px;
-  background:#191919;
-  color:#fff;
-}
-
-.stopwatch-buttons .start{
-  background:#a6ff00;
-  color:#000;
-  font-weight:900;
-}
-
-.study-time{
-  margin-top:13px;
-  color:#666;
-  font-size:11px;
-}
-
-.tira{
-  background:
-    radial-gradient(circle at 90% 0%,rgba(166,255,0,.08),transparent 35%),
-    #0d0d0d;
-}
-
-.chat{
-  min-height:100px;
-  max-height:250px;
-  overflow-y:auto;
-  margin-bottom:10px;
-}
-
-.message{
-  max-width:88%;
-  padding:10px 12px;
-  border-radius:12px;
-  margin-bottom:7px;
   font-size:13px;
-  line-height:1.5;
-  white-space:pre-line;
 }
 
-.message.bot{
-  background:#171717;
+.player-team{
+  color:#7e8ca3;
+  font-size:10px;
 }
 
-.message.user{
-  background:#a6ff00;
-  color:#000;
-  margin-left:auto;
+.stars{
+  color:#58adff;
+  letter-spacing:1px;
+  font-size:11px;
+  margin-top:9px;
 }
 
-.chat-row{
-  display:flex;
-  gap:6px;
+.player-stat{
+  margin-top:6px;
+  color:#aebbd0;
+  font-size:10px;
 }
 
-.chat-row input{
-  flex:1;
-}
+/* OTHER GAMES */
 
-
-/* SETTINGS */
-
-.subject-manage{
-  display:flex;
-  gap:7px;
-  margin-bottom:8px;
-}
-
-.subject-manage input{
-  flex:1;
-}
-
-.subject-item{
+.other-game{
   display:flex;
   align-items:center;
-  gap:7px;
-  padding:10px 0;
-  border-bottom:1px solid #1b1b1b;
+  justify-content:space-between;
+  padding:13px 15px;
+  border-bottom:1px solid rgba(255,255,255,.07);
 }
 
-.subject-item:last-child{
-  border-bottom:none;
+.other-game:last-child{border-bottom:0}
+
+.teams{
+  font-size:12px;
+  line-height:1.7;
 }
 
-.subject-item input{
+.score{
+  font-weight:900;
+  font-size:15px;
+}
+
+.inning{
+  font-size:9px;
+  color:#4de09d;
+}
+
+/* SCHEDULE */
+
+.schedule{
+  padding:3px 15px;
+}
+
+.schedule-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 0;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.schedule-item:last-child{border-bottom:0}
+
+.schedule-date{
+  width:70px;
+}
+
+.schedule-date strong{
+  display:block;
+  font-size:13px;
+}
+
+.schedule-date span{
+  color:#7f8da4;
+  font-size:9px;
+}
+
+.schedule-match{
   flex:1;
-}
-
-.subject-item button{
-  background:#191919;
-  color:#777;
-  border-radius:8px;
-  padding:8px 10px;
-}
-
-.subject-item .delete-subject{
-  color:#ff6666;
-}
-
-.total-weight{
-  margin-top:12px;
-  padding:10px;
-  border-radius:10px;
-  background:#151515;
   text-align:center;
   font-size:12px;
-  color:#777;
+  font-weight:700;
 }
 
-.total-weight strong{
-  color:#a6ff00;
+.schedule-place{
+  width:65px;
+  text-align:right;
+  color:#8290a6;
+  font-size:9px;
 }
 
-.reset{
-  width:100%;
-  padding:12px;
-  border-radius:12px;
-  background:#151515;
-  color:#666;
-}
+/* FOOTER */
 
+.disclaimer{
+  margin-top:25px;
+  text-align:center;
+  color:#69778d;
+  font-size:9px;
+  line-height:1.6;
+}
 
 /* MOBILE */
 
-@media(max-width:500px){
-
-  .study-map{
-    height:190px;
-  }
-
-  .study-tile{
-    padding:9px;
-  }
-
-  .study-tile-name{
-    font-size:12px;
-  }
-
-  .study-tile-percent{
-    font-size:10px;
-  }
-
+@media(max-width:380px){
+  .content{padding-left:14px;padding-right:14px}
+  .percent{font-size:40px}
+  .team{width:85px}
 }
 </style>
 </head>
@@ -715,2481 +416,277 @@ input:focus,select:focus,textarea:focus{
 
 <div class="app">
 
-<header>
-  <div class="logo">
-    HYORA <span>STUDY</span>
+  <div class="wave-area">
+    <div class="wave opponent"></div>
+    <div class="wave nc"></div>
   </div>
 
-  <div class="date" id="date"></div>
-</header>
+  <main class="content">
 
-
-<!-- HERO -->
-
-<div class="card hero">
-
-  <div class="greeting">
-    TODAY'S STUDY
-  </div>
-
-  <div class="big-title">
-    오늘도 <span class="accent">끝까지.</span>
-  </div>
-
-
-  <!-- 과목별 공부량 타일 -->
-
-  <div class="study-map-title">
-    <span>과목별 공부량</span>
-    <span>비중 × 실제 진행률</span>
-  </div>
-
-  <div
-    class="study-map"
-    id="studyMap">
-  </div>
-
-
-  <div class="progress-info">
-    <span>시험기간 전체 진행률</span>
-    <strong id="overallPercent">0%</strong>
-  </div>
-
-  <div class="progress">
-    <div
-      class="progress-bar"
-      id="overallBar">
-    </div>
-  </div>
-
-</div>
-
-
-<!-- TABS -->
-
-<div class="tabs">
-
-  <button
-    class="tab active"
-    data-tab="today">
-    오늘
-  </button>
-
-  <button
-    class="tab"
-    data-tab="week">
-    주간
-  </button>
-
-  <button
-    class="tab"
-    data-tab="exam">
-    시험기간
-  </button>
-
-  <button
-    class="tab"
-    data-tab="mistakes">
-    오답노트
-  </button>
-
-  <button
-    class="tab"
-    data-tab="settings">
-    설정
-  </button>
-
-</div>
-
-
-<!-- TODAY -->
-
-<section
-  class="section active"
-  id="today">
-
-  <div class="card">
-
-    <div class="card-title">
-      오늘 할 일
-    </div>
-
-    <div class="add-row">
-
-      <input
-        id="todayInput"
-        placeholder="오늘 할 일을 추가해줘">
-
-      <select id="todaySubject"></select>
-
-      <button
-        class="add-btn"
-        onclick="addTask('today')">
-        +
-      </button>
-
-    </div>
-
-    <div id="todayTasks"></div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="card-title">
-      오늘 통계
-    </div>
-
-    <div class="stats">
-
-      <div class="stat">
-        <strong id="todayDone">0</strong>
-        <span>완료</span>
+    <header class="header">
+      <div class="logo">승리를 <span>가져가</span> 🦕</div>
+      <div class="live-dot">
+        <i></i>
+        LIVE DATA
       </div>
+    </header>
 
-      <div class="stat">
-        <strong id="todayTotal">0</strong>
-        <span>전체</span>
-      </div>
+    <section class="game">
 
-      <div class="stat">
-        <strong id="todayRate">0%</strong>
-        <span>달성률</span>
-      </div>
+      <div class="date">2026.09.22 · 정규시즌</div>
 
-    </div>
+      <div class="matchup">
 
-  </div>
+        <div class="team">
+          <div class="mark">🦕</div>
+          <div class="name">NC</div>
+          <div class="sub">다이노스 · AWAY</div>
+        </div>
 
-</section>
+        <div class="vs">VS</div>
 
-
-<!-- WEEK -->
-
-<section
-  class="section"
-  id="week">
-
-  <div class="card">
-
-    <div class="card-title">
-      이번 주에 끝낼 공부
-    </div>
-
-    <div class="add-row">
-
-      <input
-        id="weekInput"
-        placeholder="이번 주 공부 추가">
-
-      <select id="weekSubject"></select>
-
-      <button
-        class="add-btn"
-        onclick="addTask('week')">
-        +
-      </button>
-
-    </div>
-
-    <div id="weekTasks"></div>
-
-  </div>
-
-</section>
-
-
-<!-- EXAM -->
-
-<section
-  class="section"
-  id="exam">
-
-  <div class="card">
-
-    <div class="card-title">
-      시험기간
-    </div>
-
-    <div class="exam-grid">
-
-      <div>
-
-        <label>시작일</label>
-
-        <input
-          type="date"
-          id="examStart">
+        <div class="team">
+          <div class="mark">🦁</div>
+          <div class="name">삼성</div>
+          <div class="sub">라이온즈 · HOME</div>
+        </div>
 
       </div>
 
-      <div>
+      <div class="probability">
 
-        <label>시험일</label>
+        <div class="prob">
 
-        <input
-          type="date"
-          id="examEnd">
+          <div>
+            <div class="percent nc" id="ncPercent">64%</div>
+            <div class="prob-label">NC 분석값</div>
+          </div>
+
+          <div style="font-size:20px;color:#5e6b80">:</div>
+
+          <div>
+            <div class="percent op" id="opPercent">36%</div>
+            <div class="prob-label">삼성 분석값</div>
+          </div>
+
+        </div>
+
+        <div class="bar">
+          <div class="bar-nc" id="ncBar"></div>
+          <div class="bar-op"></div>
+        </div>
+
+        <div class="status" id="status">
+          🔵 NC 우세
+        </div>
+
+        <div class="pitchers">
+          선발 · NC <b>신민혁</b>
+          &nbsp; vs &nbsp;
+          삼성 <b>원태인</b>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 주요 선수 -->
+    <section class="section">
+
+      <div class="section-title">
+        <h2>⭐ KEY PLAYERS</h2>
+        <span>주요 선수</span>
+      </div>
+
+      <div class="players">
+
+        <div class="player card">
+          <div class="player-top">
+            <div>
+              <div class="player-name">박건우</div>
+              <div class="player-team">NC · OF</div>
+            </div>
+          </div>
+          <div class="stars">★★★★★</div>
+          <div class="player-stat">타선 영향도 · HIGH</div>
+        </div>
+
+        <div class="player card">
+          <div class="player-top">
+            <div>
+              <div class="player-name">김주원</div>
+              <div class="player-team">NC · SS</div>
+            </div>
+          </div>
+          <div class="stars">★★★★☆</div>
+          <div class="player-stat">수비 영향도 · HIGH</div>
+        </div>
+
+        <div class="player card">
+          <div class="player-top">
+            <div>
+              <div class="player-name">구자욱</div>
+              <div class="player-team">삼성 · OF</div>
+            </div>
+          </div>
+          <div class="stars">★★★★★</div>
+          <div class="player-stat">타선 영향도 · HIGH</div>
+        </div>
+
+        <div class="player card">
+          <div class="player-top">
+            <div>
+              <div class="player-name">강민호</div>
+              <div class="player-team">삼성 · C</div>
+            </div>
+          </div>
+          <div class="stars">★★★★☆</div>
+          <div class="player-stat">경험 영향도 · HIGH</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 다른 경기 -->
+    <section class="section">
+
+      <div class="section-title">
+        <h2>📺 OTHER GAMES</h2>
+        <span>점수만 표시</span>
+      </div>
+
+      <div class="card">
+
+        <div class="other-game">
+          <div class="teams">LG<br>두산</div>
+          <div class="score">3 : 2</div>
+          <div class="inning">LIVE · 6회</div>
+        </div>
+
+        <div class="other-game">
+          <div class="teams">롯데<br>한화</div>
+          <div class="score">1 : 4</div>
+          <div class="inning">LIVE · 5회</div>
+        </div>
+
+        <div class="other-game">
+          <div class="teams">KIA<br>SSG</div>
+          <div class="score">0 : 0</div>
+          <div class="inning">2회</div>
+        </div>
 
       </div>
 
+    </section>
+
+    <!-- 일정 -->
+    <section class="section">
+
+      <div class="section-title">
+        <h2>📅 NC GAME SCHEDULE</h2>
+        <span>다가오는 경기</span>
+      </div>
+
+      <div class="schedule card">
+
+        <div class="schedule-item">
+          <div class="schedule-date">
+            <strong>09.22</strong>
+            <span>오늘</span>
+          </div>
+          <div class="schedule-match">NC vs 삼성</div>
+          <div class="schedule-place">대구<br>18:30</div>
+        </div>
+
+        <div class="schedule-item">
+          <div class="schedule-date">
+            <strong>09.23</strong>
+            <span>수요일</span>
+          </div>
+          <div class="schedule-match">NC vs KT</div>
+          <div class="schedule-place">수원<br>18:30</div>
+        </div>
+
+        <div class="schedule-item">
+          <div class="schedule-date">
+            <strong>09.24</strong>
+            <span>목요일</span>
+          </div>
+          <div class="schedule-match">NC vs KT</div>
+          <div class="schedule-place">수원<br>17:00</div>
+        </div>
+
+        <div class="schedule-item">
+          <div class="schedule-date">
+            <strong>09.25</strong>
+            <span>금요일</span>
+          </div>
+          <div class="schedule-match">한화 vs NC</div>
+          <div class="schedule-place">대전<br>17:00</div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <div class="disclaimer">
+      분석값은 경기 데이터를 바탕으로 한 참고용 추정치입니다.<br>
+      실제 경기 결과를 보장하지 않습니다.
     </div>
 
-    <button
-      class="add-btn save-exam"
-      onclick="saveExamDate()">
-      시험기간 저장
-    </button>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="card-title">
-      시험일까지 끝낼 공부
-    </div>
-
-    <div class="add-row">
-
-      <input
-        id="examInput"
-        placeholder="시험 전까지 끝낼 공부">
-
-      <select id="examSubject"></select>
-
-      <button
-        class="add-btn"
-        onclick="addTask('exam')">
-        +
-      </button>
-
-    </div>
-
-    <div id="examTasks"></div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="card-title">
-      과목별 비중
-    </div>
-
-    <div id="weights"></div>
-
-  </div>
-
-</section>
-
-
-<!-- MISTAKES -->
-
-<section
-  class="section"
-  id="mistakes">
-
-  <div class="card">
-
-    <div class="card-title">
-      오답노트 추가
-    </div>
-
-    <div class="note-form">
-
-      <select id="noteSubject"></select>
-
-      <input
-        id="noteTitle"
-        placeholder="문제 / 단원 / 오답 제목">
-
-      <textarea
-        id="noteReason"
-        placeholder="왜 틀렸는지 적어줘"></textarea>
-
-      <textarea
-        id="notePoint"
-        placeholder="다음에 기억할 점"></textarea>
-
-      <button
-        class="note-submit"
-        onclick="addNote()">
-        오답 저장
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="card-title">
-      내 오답노트
-    </div>
-
-    <div id="notes"></div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="card-title">
-      과목별 오답
-    </div>
-
-    <div
-      class="stats"
-      id="mistakeStats">
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- SETTINGS -->
-
-<section
-  class="section"
-  id="settings">
-
-  <div class="card">
-
-    <div class="card-title">
-      과목 설정
-    </div>
-
-    <div class="subject-manage">
-
-      <input
-        id="newSubject"
-        placeholder="예: 기술가정">
-
-      <button
-        class="add-btn"
-        onclick="addSubject()">
-        + 추가
-      </button>
-
-    </div>
-
-    <div id="subjectList"></div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="card-title">
-      과목별 시험 비중
-    </div>
-
-    <div id="settingsWeights"></div>
-
-    <div class="total-weight">
-
-      현재 비중 합계:
-      <strong id="totalWeight">
-        0%
-      </strong>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- STOPWATCH -->
-
-<div class="card stopwatch">
-
-  <div class="stopwatch-title">
-    STUDY STOPWATCH
-  </div>
-
-  <div
-    class="stopwatch-time"
-    id="stopwatch">
-    00:00:00
-  </div>
-
-  <div class="stopwatch-buttons">
-
-    <button onclick="resetStopwatch()">
-      리셋
-    </button>
-
-    <button
-      class="start"
-      id="stopwatchButton"
-      onclick="toggleStopwatch()">
-      시작
-    </button>
-
-  </div>
-
-  <div class="study-time">
-
-    공부시간:
-    <span id="totalStudyTime">
-      00:00:00
-    </span>
-
-  </div>
-
+  </main>
 </div>
-
-
-<!-- TIRA -->
-
-<div class="card tira">
-
-  <div class="card-title">
-    ✦ 티라
-  </div>
-
-  <div
-    class="chat"
-    id="chat">
-
-    <div class="message bot">
-
-      안녕 효라! 👋
-      오늘 공부 계획이나 시험기간 진행률,
-      오답노트에 대해 물어봐!
-
-    </div>
-
-  </div>
-
-  <div class="chat-row">
-
-    <input
-      id="tiraInput"
-      placeholder="티라에게 물어보기">
-
-    <button
-      class="add-btn"
-      onclick="askTira()">
-      전송
-    </button>
-
-  </div>
-
-</div>
-
-
-<!-- RESET -->
-
-<div class="card">
-
-  <button
-    class="reset"
-    onclick="resetAll()">
-    전체 데이터 초기화
-  </button>
-
-</div>
-
-</div>
-
 
 <script>
+/*
+  승리를 가져가
+  1차 UI 버전
 
-/* =========================
-   DATA
-========================= */
+  다음 단계:
+  - KBO 실시간 경기 데이터 연결
+  - 선발투수 자동 표시
+  - 실제 선수 기록 연결
+  - 실시간 분석값 재계산
+  - 경기 종료 후 결과 기록
+*/
 
-let data =
-JSON.parse(
-  localStorage.getItem("hyoraStudy")
-) || {
-
-  today:[],
-  week:[],
-  exam:[],
-  mistakes:[],
-
-  subjects:[
-    "국어",
-    "영어",
-    "수학",
-    "과학",
-    "사회"
-  ],
-
-  weights:{
-    국어:20,
-    영어:20,
-    수학:20,
-    과학:20,
-    사회:20
-  },
-
-  examStart:"",
-  examEnd:""
-
+const demoData = {
+  nc: 64,
+  opponent: 36
 };
 
+function updateWave(nc){
+  nc = Math.max(1,Math.min(99,nc));
 
-/* =========================
-   OLD DATA COMPATIBILITY
-========================= */
+  document.getElementById("ncPercent").textContent = nc + "%";
+  document.getElementById("opPercent").textContent = (100-nc) + "%";
+  document.getElementById("ncBar").style.width = nc + "%";
 
-if(!Array.isArray(data.subjects)){
-
-  data.subjects=[
-    "국어",
-    "영어",
-    "수학",
-    "과학",
-    "사회"
-  ];
-
-}
-
-if(!data.weights){
-  data.weights={};
-}
-
-data.subjects.forEach(subject=>{
-
-  if(
-    typeof data.weights[subject] !== "number"
-  ){
-
-    data.weights[subject]=0;
-
-  }
-
-});
-
-
-if(!Array.isArray(data.today)){
-  data.today=[];
-}
-
-if(!Array.isArray(data.week)){
-  data.week=[];
-}
-
-if(!Array.isArray(data.exam)){
-  data.exam=[];
-}
-
-if(!Array.isArray(data.mistakes)){
-  data.mistakes=[];
-}
-
-
-/* =========================
-   SAVE
-========================= */
-
-function saveData(){
-
-  localStorage.setItem(
-    "hyoraStudy",
-    JSON.stringify(data)
-  );
-
-}
-
-
-/* =========================
-   DATE
-========================= */
-
-function updateDate(){
-
-  const now=new Date();
-
-  const y=
-    now.getFullYear();
-
-  const m=
-    String(
-      now.getMonth()+1
-    ).padStart(2,"0");
-
-  const d=
-    String(
-      now.getDate()
-    ).padStart(2,"0");
-
-  document.getElementById(
-    "date"
-  ).textContent=
-    `${y}.${m}.${d}`;
-
-}
-
-updateDate();
-
-
-/* =========================
-   TABS
-========================= */
-
-document
-.querySelectorAll(".tab")
-.forEach(button=>{
-
-  button.addEventListener(
-    "click",
-    function(){
-
-      document
-      .querySelectorAll(".tab")
-      .forEach(tab=>{
-        tab.classList.remove("active");
-      });
-
-      document
-      .querySelectorAll(".section")
-      .forEach(section=>{
-        section.classList.remove("active");
-      });
-
-      this.classList.add("active");
-
-      document
-      .getElementById(
-        this.dataset.tab
-      )
-      .classList.add("active");
-
-    }
-  );
-
-});
-
-
-/* =========================
-   SUBJECT SELECTS
-========================= */
-
-function renderSubjectSelects(){
-
-  const selects=[
-    "todaySubject",
-    "weekSubject",
-    "examSubject",
-    "noteSubject"
-  ];
-
-  selects.forEach(id=>{
-
-    const select=
-      document.getElementById(id);
-
-    if(!select)return;
-
-    const current=
-      select.value;
-
-    select.innerHTML=
-      data.subjects
-      .map(subject=>`
-
-        <option value="${escapeHTML(subject)}">
-          ${escapeHTML(subject)}
-        </option>
-
-      `)
-      .join("");
-
-    if(
-      data.subjects.includes(current)
-    ){
-
-      select.value=current;
-
-    }
-
-  });
-
-}
-
-
-/* =========================
-   ADD SUBJECT
-========================= */
-
-function addSubject(){
-
-  const input=
-    document.getElementById(
-      "newSubject"
-    );
-
-  const name=
-    input.value.trim();
-
-  if(!name){
-
-    alert(
-      "과목 이름을 입력해줘!"
-    );
-
-    return;
-
-  }
-
-  if(
-    data.subjects.includes(name)
-  ){
-
-    alert(
-      "이미 있는 과목이야!"
-    );
-
-    return;
-
-  }
-
-  data.subjects.push(name);
-
-  data.weights[name]=0;
-
-  input.value="";
-
-  saveData();
-
-  render();
-
-}
-
-
-/* =========================
-   DELETE SUBJECT
-========================= */
-
-function deleteSubject(name){
-
-  if(
-    data.subjects.length<=1
-  ){
-
-    alert(
-      "과목은 최소 1개가 있어야 해!"
-    );
-
-    return;
-
-  }
-
-  const used =
-    [
-      ...data.today,
-      ...data.week,
-      ...data.exam,
-      ...data.mistakes
-    ].some(
-      item=>item.subject===name
-    );
-
-  if(used){
-
-    const ok=
-      confirm(
-        `"${name}" 과목을 삭제하면 이 과목으로 저장된 계획과 오답의 과목 표시가 사라질 수 있어. 그래도 삭제할까?`
-      );
-
-    if(!ok)return;
-
-  }
-
-  data.subjects=
-    data.subjects.filter(
-      subject=>subject!==name
-    );
-
-  delete data.weights[name];
-
-  saveData();
-
-  render();
-
-}
-
-
-/* =========================
-   RENAME SUBJECT
-========================= */
-
-function renameSubject(
-  oldName,
-  newName
-){
-
-  newName=
-    newName.trim();
-
-  if(!newName){
-
-    alert(
-      "과목 이름을 입력해줘!"
-    );
-
-    return;
-
-  }
-
-  if(
-    oldName!==newName &&
-    data.subjects.includes(newName)
-  ){
-
-    alert(
-      "이미 있는 과목이야!"
-    );
-
-    return;
-
-  }
-
-  const index=
-    data.subjects.indexOf(
-      oldName
-    );
-
-  if(index===-1)return;
-
-  data.subjects[index]=
-    newName;
-
-  data.weights[newName]=
-    data.weights[oldName] || 0;
-
-  delete data.weights[oldName];
-
-  [
-    ...data.today,
-    ...data.week,
-    ...data.exam,
-    ...data.mistakes
-  ].forEach(item=>{
-
-    if(
-      item.subject===oldName
-    ){
-
-      item.subject=
-        newName;
-
-    }
-
-  });
-
-  saveData();
-
-  render();
-
-}
-
-
-/* =========================
-   SUBJECT LIST
-========================= */
-
-function renderSubjectList(){
-
-  const box=
-    document.getElementById(
-      "subjectList"
-    );
-
-  if(!data.subjects.length){
-
-    box.innerHTML=`
-      <div class="empty">
-        아직 과목이 없어.
-      </div>
-    `;
-
-    return;
-
-  }
-
-  box.innerHTML=
-    data.subjects
-    .map(subject=>`
-
-      <div class="subject-item">
-
-        <input
-          value="${escapeHTML(subject)}"
-          id="subject_${encodeURIComponent(subject)}"
-        >
-
-        <button
-          onclick="
-            renameSubject(
-              '${escapeJS(subject)}',
-              document.getElementById(
-                'subject_${encodeURIComponent(subject)}'
-              ).value
-            )
-          "
-        >
-          수정
-        </button>
-
-        <button
-          class="delete-subject"
-          onclick="
-            deleteSubject(
-              '${escapeJS(subject)}'
-            )
-          "
-        >
-          삭제
-        </button>
-
-      </div>
-
-    `)
-    .join("");
-
-}
-
-
-/* =========================
-   TASK ADD
-========================= */
-
-function addTask(type){
-
-  const input=
-    document.getElementById(
-      type+"Input"
-    );
-
-  const subject=
-    document.getElementById(
-      type+"Subject"
-    ).value;
-
-  const text=
-    input.value.trim();
-
-  if(!text)return;
-
-  data[type].push({
-
-    id:Date.now(),
-
-    text:text,
-
-    subject:subject,
-
-    done:false
-
-  });
-
-  input.value="";
-
-  saveData();
-
-  render();
-
-}
-
-
-/* =========================
-   TASK TOGGLE
-========================= */
-
-function toggleTask(
-  type,
-  id
-){
-
-  const task=
-    data[type].find(
-      item=>item.id===id
-    );
-
-  if(!task)return;
-
-  task.done=
-    !task.done;
-
-  saveData();
-
-  render();
-
-}
-
-
-/* =========================
-   TASK DELETE
-========================= */
-
-function deleteTask(
-  type,
-  id
-){
-
-  data[type]=
-    data[type].filter(
-      item=>item.id!==id
-    );
-
-  saveData();
-
-  render();
-
-}
-
-
-/* =========================
-   TASK RENDER
-========================= */
-
-function renderTasks(
-  type,
-  elementId
-){
-
-  const box=
-    document.getElementById(
-      elementId
-    );
-
-  const tasks=
-    data[type];
-
-  if(!tasks.length){
-
-    box.innerHTML=`
-      <div class="empty">
-        아직 계획이 없어!<br>
-        위에서 직접 추가해봐 ✦
-      </div>
-    `;
-
-    return;
-
-  }
-
-  box.innerHTML=
-    tasks
-    .map(task=>`
-
-      <div class="task ${
-        task.done?"done":""
-      }">
-
-        <div
-          class="check"
-          onclick="
-            toggleTask(
-              '${type}',
-              ${task.id}
-            )
-          "
-        >
-          ${task.done?"✓":""}
-        </div>
-
-        <div
-          class="task-main"
-          onclick="
-            toggleTask(
-              '${type}',
-              ${task.id}
-            )
-          "
-        >
-
-          <div class="task-text">
-            ${escapeHTML(task.text)}
-          </div>
-
-          <div class="task-meta">
-            ${escapeHTML(task.subject)}
-          </div>
-
-        </div>
-
-        <button
-          class="delete"
-          onclick="
-            deleteTask(
-              '${type}',
-              ${task.id}
-            )
-          "
-        >
-          ×
-        </button>
-
-      </div>
-
-    `)
-    .join("");
-
-}
-
-
-/* =========================
-   TODAY STATS
-========================= */
-
-function renderTodayStats(){
-
-  const total=
-    data.today.length;
-
-  const done=
-    data.today.filter(
-      task=>task.done
-    ).length;
-
-  document.getElementById(
-    "todayDone"
-  ).textContent=
-    done;
-
-  document.getElementById(
-    "todayTotal"
-  ).textContent=
-    total;
-
-  document.getElementById(
-    "todayRate"
-  ).textContent=
-    total
-      ? Math.round(
-          done/total*100
-        )+"%"
-      :"0%";
-
-}
-
-
-/* =========================
-   EXAM PROGRESS
-========================= */
-
-function getExamProgress(){
-
-  const total=
-    data.exam.length;
-
-  if(!total)return 0;
-
-  const done=
-    data.exam.filter(
-      task=>task.done
-    ).length;
-
-  return Math.round(
-    done/total*100
-  );
-
-}
-
-
-/* =========================
-   SUBJECT PROGRESS
-========================= */
-
-function getSubjectProgress(subject){
-
-  const tasks=
-    data.exam.filter(
-      task=>task.subject===subject
-    );
-
-  if(!tasks.length){
-    return null;
-  }
-
-  const done=
-    tasks.filter(
-      task=>task.done
-    ).length;
-
-  return Math.round(
-    done/tasks.length*100
-  );
-
-}
-
-
-/* =========================
-   STUDY TILE COLOR
-========================= */
-
-function getStudyLevel(percent){
-
-  if(percent===null){
-    return "none";
-  }
-
-  if(percent<40){
-    return "low";
-  }
-
-  if(percent<80){
-    return "medium";
-  }
-
-  return "high";
-
-}
-
-
-/* =========================
-   SUBJECT TILE
-========================= */
-
-function createStudyTile(subject){
-
-  const percent=
-    getSubjectProgress(subject);
-
-  const weight=
-    Number(
-      data.weights[subject]
-    )||0;
-
-  const tile=
-    document.createElement(
-      "div"
-    );
-
-  tile.className=
-    "study-tile "+
-    getStudyLevel(percent);
-
-  tile.style.flex=
-    Math.max(
-      weight,
-      1
-    );
-
-  const percentText=
-    percent===null
-      ?"계획 없음"
-      :percent+"% 완료";
-
-  const barWidth=
-    percent===null
-      ?0
-      :percent;
-
-  tile.innerHTML=`
-
-    <div>
-
-      <div class="study-tile-name">
-        ${escapeHTML(subject)}
-      </div>
-
-      <div class="study-tile-percent">
-        ${percentText}
-      </div>
-
-    </div>
-
-    <div class="study-tile-bar">
-      <i style="width:${barWidth}%"></i>
-    </div>
-
-  `;
-
-  return tile;
-
-}
-
-
-/* =========================
-   BUILD SUBJECT MAP
-========================= */
-
-function renderStudyMap(){
-
-  const box=
-    document.getElementById(
-      "studyMap"
-    );
-
-  box.innerHTML="";
-
-  if(!data.subjects.length){
-
-    box.innerHTML=`
-      <div class="study-map-empty">
-        과목을 추가하면<br>
-        공부량 지도가 만들어져!
-      </div>
-    `;
-
-    return;
-
-  }
-
+  const wave = document.querySelector(".wave.nc");
 
   /*
-    과목 비중을 이용해서
-    서로 다른 크기의 타일을
-    하나의 직사각형 안에 배치한다.
+    우세할수록 NC 파도가 커지도록
+    scaleY를 부드럽게 변화
   */
-
-  const subjects=
-    [...data.subjects]
-    .sort(
-      (a,b)=>
-        (Number(data.weights[b])||0)
-        -
-        (Number(data.weights[a])||0)
-    );
-
-
-  /*
-    너무 작은 비중 때문에
-    타일이 사라지지 않도록
-    최소값을 조금 둔다.
-  */
-
-  const weightedSubjects=
-    subjects.map(subject=>({
-
-      subject,
-
-      weight:
-        Math.max(
-          Number(
-            data.weights[subject]
-          )||0,
-          1
-        )
-
-    }));
-
-
-  /*
-    가장 큰 과목을 중심으로
-    좌우/상하 영역을 번갈아
-    나누는 방식으로 배치한다.
-  */
-
-  const totalWeight=
-    weightedSubjects.reduce(
-      (sum,item)=>
-        sum+item.weight,
-      0
-    );
-
-
-  if(weightedSubjects.length===1){
-
-    const tile=
-      createStudyTile(
-        weightedSubjects[0].subject
-      );
-
-    tile.style.width="100%";
-    box.appendChild(tile);
-
-    return;
-
-  }
-
-
-  /*
-    화면 폭에 따라
-    2~3개의 큰 영역을 만든 뒤
-    각 영역 안에 타일을 쌓는다.
-  */
-
-  const columns=[];
-
-  let currentColumn={
-    items:[],
-    weight:0
-  };
-
-  const target=
-    totalWeight/2;
-
-
-  weightedSubjects.forEach(item=>{
-
-    if(
-      currentColumn.items.length>0 &&
-      currentColumn.weight+item.weight>target &&
-      columns.length<2
-    ){
-
-      columns.push(
-        currentColumn
-      );
-
-      currentColumn={
-        items:[],
-        weight:0
-      };
-
-    }
-
-    currentColumn.items.push(item);
-
-    currentColumn.weight+=
-      item.weight;
-
-  });
-
-
-  if(currentColumn.items.length){
-    columns.push(currentColumn);
-  }
-
-
-  /*
-    3개 이상의 과목이 있을 때
-    최대 3개의 큰 영역으로 정리한다.
-  */
-
-  if(columns.length>3){
-
-    const merged={
-      items:[],
-      weight:0
-    };
-
-    while(columns.length>2){
-
-      const last=
-        columns.pop();
-
-      merged.items.push(
-        ...last.items
-      );
-
-      merged.weight+=
-        last.weight;
-
-    }
-
-    columns.push(merged);
-
-  }
-
-
-  const columnTotal=
-    columns.reduce(
-      (sum,column)=>
-        sum+column.weight,
-      0
-    );
-
-
-  columns.forEach(column=>{
-
-    const columnBox=
-      document.createElement(
-        "div"
-      );
-
-    columnBox.className=
-      "study-map-column";
-
-    columnBox.style.flex=
-      Math.max(
-        column.weight,
-        1
-      );
-
-    column.items.forEach(item=>{
-
-      const tile=
-        createStudyTile(
-          item.subject
-        );
-
-      const ratio=
-        item.weight/
-        column.weight;
-
-      tile.style.flex=
-        Math.max(
-          ratio,
-          .05
-        );
-
-      columnBox.appendChild(
-        tile
-      );
-
-    });
-
-    box.appendChild(
-      columnBox
-    );
-
-  });
-
-}
-
-
-/* =========================
-   PROGRESS
-========================= */
-
-function renderProgress(){
-
-  const percent=
-    getExamProgress();
-
-  document.getElementById(
-    "overallPercent"
-  ).textContent=
-    percent+"%";
-
-  document.getElementById(
-    "overallBar"
-  ).style.width=
-    percent+"%";
-
-  renderStudyMap();
-
-}
-
-
-/* =========================
-   WEIGHTS
-========================= */
-
-function renderWeights(){
-
-  const box=
-    document.getElementById(
-      "weights"
-    );
-
-  box.innerHTML=
-    data.subjects
-    .map(subject=>{
-
-      const value=
-        data.weights[subject]||0;
-
-      return `
-
-        <div class="subject-row">
-
-          <div class="subject-name">
-            ${escapeHTML(subject)}
-          </div>
-
-          <input
-            type="number"
-            min="0"
-            max="100"
-            value="${value}"
-            onchange="
-              changeWeight(
-                '${escapeJS(subject)}',
-                this.value
-              )
-            "
-          >
-
-          <div class="weight-line">
-
-            <i
-              style="width:${Math.min(
-                100,
-                Math.max(
-                  0,
-                  value
-                )
-              )}%"
-            ></i>
-
-          </div>
-
-        </div>
-
-      `;
-
-    })
-    .join("");
-
-}
-
-
-function renderSettingsWeights(){
-
-  const box=
-    document.getElementById(
-      "settingsWeights"
-    );
-
-  box.innerHTML=
-    data.subjects
-    .map(subject=>{
-
-      const value=
-        data.weights[subject]||0;
-
-      return `
-
-        <div class="subject-row">
-
-          <div class="subject-name">
-            ${escapeHTML(subject)}
-          </div>
-
-          <input
-            type="number"
-            min="0"
-            max="100"
-            value="${value}"
-            onchange="
-              changeWeight(
-                '${escapeJS(subject)}',
-                this.value
-              )
-            "
-          >
-
-          <div class="weight-line">
-
-            <i
-              style="width:${Math.min(
-                100,
-                Math.max(
-                  0,
-                  value
-                )
-              )}%"
-            ></i>
-
-          </div>
-
-        </div>
-
-      `;
-
-    })
-    .join("");
-
-  const total=
-    data.subjects.reduce(
-      (sum,subject)=>
-        sum+
-        (
-          Number(
-            data.weights[subject]
-          )||0
-        ),
-      0
-    );
-
-  document.getElementById(
-    "totalWeight"
-  ).textContent=
-    total+"%";
-
-}
-
-
-function changeWeight(
-  subject,
-  value
-){
-
-  let number=
-    Number(value);
-
-  if(Number.isNaN(number)){
-    number=0;
-  }
-
-  number=
-    Math.max(
-      0,
-      Math.min(
-        100,
-        number
-      )
-    );
-
-  data.weights[subject]=
-    number;
-
-  saveData();
-
-  render();
-
-}
-
-
-/* =========================
-   EXAM DATE
-========================= */
-
-function loadExamDate(){
-
-  document.getElementById(
-    "examStart"
-  ).value=
-    data.examStart||"";
-
-  document.getElementById(
-    "examEnd"
-  ).value=
-    data.examEnd||"";
-
-}
-
-
-function saveExamDate(){
-
-  data.examStart=
-    document.getElementById(
-      "examStart"
-    ).value;
-
-  data.examEnd=
-    document.getElementById(
-      "examEnd"
-    ).value;
-
-  saveData();
-
-  alert(
-    "시험기간이 저장됐어!"
-  );
-
-}
-
-
-/* =========================
-   MISTAKE NOTE
-========================= */
-
-function addNote(){
-
-  const subject=
-    document.getElementById(
-      "noteSubject"
-    ).value;
-
-  const title=
-    document.getElementById(
-      "noteTitle"
-    ).value.trim();
-
-  const reason=
-    document.getElementById(
-      "noteReason"
-    ).value.trim();
-
-  const point=
-    document.getElementById(
-      "notePoint"
-    ).value.trim();
-
-  if(!title){
-
-    alert(
-      "오답 제목을 입력해줘!"
-    );
-
-    return;
-
-  }
-
-  data.mistakes.unshift({
-
-    id:Date.now(),
-
-    subject,
-
-    title,
-
-    reason,
-
-    point,
-
-    reviewed:false
-
-  });
-
-  document.getElementById(
-    "noteTitle"
-  ).value="";
-
-  document.getElementById(
-    "noteReason"
-  ).value="";
-
-  document.getElementById(
-    "notePoint"
-  ).value="";
-
-  saveData();
-
-  renderNotes();
-
-}
-
-
-function toggleNote(id){
-
-  const note=
-    data.mistakes.find(
-      item=>item.id===id
-    );
-
-  if(!note)return;
-
-  note.reviewed=
-    !note.reviewed;
-
-  saveData();
-
-  renderNotes();
-
-}
-
-
-function deleteNote(id){
-
-  data.mistakes=
-    data.mistakes.filter(
-      note=>note.id!==id
-    );
-
-  saveData();
-
-  renderNotes();
-
-}
-
-
-function renderNotes(){
-
-  const box=
-    document.getElementById(
-      "notes"
-    );
-
-  if(!data.mistakes.length){
-
-    box.innerHTML=`
-
-      <div class="empty">
-        아직 오답이 없어!<br>
-        틀린 문제를 하나씩 기록해보자 📕
-      </div>
-
-    `;
-
+  const scale = 0.75 + (nc / 100) * 0.65;
+  wave.style.transform = "scaleY(" + scale + ")";
+
+  const status = document.getElementById("status");
+
+  if(nc >= 60){
+    status.textContent = "🔵 NC 우세";
+  }else if(nc <= 40){
+    status.textContent = "⚪ 상대팀 우세";
   }else{
-
-    box.innerHTML=
-      data.mistakes
-      .map(note=>`
-
-        <div class="note ${
-          note.reviewed
-          ?"reviewed"
-          :""
-        }">
-
-          <div class="note-head">
-
-            <div class="note-subject">
-              ${escapeHTML(note.subject)}
-            </div>
-
-            <button
-              class="note-delete"
-              onclick="
-                deleteNote(
-                  ${note.id}
-                )
-              "
-            >
-              ×
-            </button>
-
-          </div>
-
-          <div class="note-title">
-            ${escapeHTML(note.title)}
-          </div>
-
-          ${
-            note.reason
-            ?`
-              <div class="note-text">
-
-                <b>틀린 이유</b><br>
-
-                ${escapeHTML(
-                  note.reason
-                )}
-
-              </div>
-            `
-            :""
-          }
-
-          ${
-            note.point
-            ?`
-              <div class="note-review">
-
-                <b>기억할 점</b><br>
-
-                ${escapeHTML(
-                  note.point
-                )}
-
-              </div>
-            `
-            :""
-          }
-
-          <button
-            class="review-btn"
-            onclick="
-              toggleNote(
-                ${note.id}
-              )
-            "
-          >
-
-            ${
-              note.reviewed
-              ?"✓ 복습 완료"
-              :"복습 완료 체크"
-            }
-
-          </button>
-
-        </div>
-
-      `)
-      .join("");
-
+    status.textContent = "🟡 접전";
   }
-
-  renderMistakeStats();
-
 }
 
-
-function renderMistakeStats(){
-
-  const box=
-    document.getElementById(
-      "mistakeStats"
-    );
-
-  box.innerHTML=
-    data.subjects
-    .map(subject=>{
-
-      const count=
-        data.mistakes.filter(
-          note=>
-            note.subject===subject
-        ).length;
-
-      return `
-
-        <div class="stat">
-
-          <strong>
-            ${count}
-          </strong>
-
-          <span>
-            ${escapeHTML(subject)}
-          </span>
-
-        </div>
-
-      `;
-
-    })
-    .join("");
-
-}
-
-
-/* =========================
-   STOPWATCH
-========================= */
-
-let stopwatchSeconds=
-  Number(
-    localStorage.getItem(
-      "hyoraStopwatch"
-    )
-  )||0;
-
-let stopwatchRunning=
-  false;
-
-let stopwatchInterval=
-  null;
-
-
-function formatTime(seconds){
-
-  const hours=
-    Math.floor(
-      seconds/3600
-    );
-
-  const minutes=
-    Math.floor(
-      (seconds%3600)/60
-    );
-
-  const secs=
-    seconds%60;
-
-  return [
-
-    String(hours)
-      .padStart(2,"0"),
-
-    String(minutes)
-      .padStart(2,"0"),
-
-    String(secs)
-      .padStart(2,"0")
-
-  ].join(":");
-
-}
-
-
-function renderStopwatch(){
-
-  document.getElementById(
-    "stopwatch"
-  ).textContent=
-    formatTime(
-      stopwatchSeconds
-    );
-
-  document.getElementById(
-    "totalStudyTime"
-  ).textContent=
-    formatTime(
-      stopwatchSeconds
-    );
-
-}
-
-
-function toggleStopwatch(){
-
-  if(stopwatchRunning){
-
-    stopStopwatch();
-
-  }else{
-
-    startStopwatch();
-
-  }
-
-}
-
-
-function startStopwatch(){
-
-  if(stopwatchRunning)return;
-
-  stopwatchRunning=
-    true;
-
-  document.getElementById(
-    "stopwatchButton"
-  ).textContent=
-    "일시정지";
-
-  stopwatchInterval=
-    setInterval(()=>{
-
-      stopwatchSeconds++;
-
-      localStorage.setItem(
-        "hyoraStopwatch",
-        stopwatchSeconds
-      );
-
-      renderStopwatch();
-
-    },1000);
-
-}
-
-
-function stopStopwatch(){
-
-  stopwatchRunning=
-    false;
-
-  clearInterval(
-    stopwatchInterval
-  );
-
-  stopwatchInterval=
-    null;
-
-  document.getElementById(
-    "stopwatchButton"
-  ).textContent=
-    "시작";
-
-}
-
-
-function resetStopwatch(){
-
-  stopStopwatch();
-
-  stopwatchSeconds=
-    0;
-
-  localStorage.setItem(
-    "hyoraStopwatch",
-    "0"
-  );
-
-  renderStopwatch();
-
-}
-
-
-/* =========================
-   TIRA
-========================= */
-
-function askTira(){
-
-  const input=
-    document.getElementById(
-      "tiraInput"
-    );
-
-  const text=
-    input.value.trim();
-
-  if(!text)return;
-
-  addChat(
-    text,
-    "user"
-  );
-
-  input.value="";
-
-  setTimeout(()=>{
-
-    addChat(
-      getTiraReply(text),
-      "bot"
-    );
-
-  },200);
-
-}
-
-
-function addChat(
-  text,
-  type
-){
-
-  const chat=
-    document.getElementById(
-      "chat"
-    );
-
-  const message=
-    document.createElement(
-      "div"
-    );
-
-  message.className=
-    "message "+type;
-
-  message.textContent=
-    text;
-
-  chat.appendChild(
-    message
-  );
-
-  chat.scrollTop=
-    chat.scrollHeight;
-
-}
-
-
-function getTiraReply(text){
-
-  const progress=
-    getExamProgress();
-
-  const examTotal=
-    data.exam.length;
-
-  const examDone=
-    data.exam.filter(
-      task=>task.done
-    ).length;
-
-  const mistakeCount=
-    data.mistakes.length;
-
-
-  if(
-    text.includes("진행률")||
-    text.includes("퍼센트")||
-    text.includes("몇 프로")
-  ){
-
-    return `
-
-시험기간 전체 진행률은
-${progress}%야!
-
-${examDone}/${examTotal}개 완료했어.
-
-    `.trim();
-
-  }
-
-
-  if(
-    text.includes("오답")||
-    text.includes("틀린")
-  ){
-
-    return `
-
-현재 오답노트에는
-${mistakeCount}개의 오답이 있어.
-
-복습 완료도 하나씩 늘려보자 📕
-
-    `.trim();
-
-  }
-
-
-  if(
-    text.includes("오늘")||
-    text.includes("할 일")
-  ){
-
-    const total=
-      data.today.length;
-
-    const done=
-      data.today.filter(
-        task=>task.done
-      ).length;
-
-    return `
-
-오늘은 ${total}개 중
-${done}개 완료했어!
-
-남은 건
-${total-done}개야.
-
-    `.trim();
-
-  }
-
-
-  if(
-    text.includes("과목")
-  ){
-
-    return `
-
-지금 설정된 과목은
-
-${data.subjects.join(" · ")}
-
-이야!
-
-설정 탭에서
-직접 추가하거나 수정할 수 있어 ✦
-
-    `.trim();
-
-  }
-
-
-  return `
-
-응! ✦
-
-현재 시험기간 진행률은
-${progress}%이고,
-
-오답노트에는
-${mistakeCount}개가 있어.
-
-하나씩 끝내보자!
-
-  `.trim();
-
-}
-
-
-/* =========================
-   ESCAPE
-========================= */
-
-function escapeHTML(text){
-
-  return String(text)
-
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-
-    .replace(
-      /</g,
-      "&lt;"
-    )
-
-    .replace(
-      />/g,
-      "&gt;"
-    )
-
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-
-    .replace(
-      /'/g,
-      "&#039;"
-    );
-
-}
-
-
-function escapeJS(text){
-
-  return String(text)
-
-    .replace(
-      /\\/g,
-      "\\\\"
-    )
-
-    .replace(
-      /'/g,
-      "\\'"
-    );
-
-}
-
-
-/* =========================
-   RESET
-========================= */
-
-function resetAll(){
-
-  const confirmed=
-    confirm(
-      "정말 모든 공부 데이터를 삭제할까?"
-    );
-
-  if(!confirmed)return;
-
-  localStorage.removeItem(
-    "hyoraStudy"
-  );
-
-  localStorage.removeItem(
-    "hyoraStopwatch"
-  );
-
-  location.reload();
-
-}
-
-
-/* =========================
-   RENDER ALL
-========================= */
-
-function render(){
-
-  renderSubjectSelects();
-
-  renderSubjectList();
-
-  renderTasks(
-    "today",
-    "todayTasks"
-  );
-
-  renderTasks(
-    "week",
-    "weekTasks"
-  );
-
-  renderTasks(
-    "exam",
-    "examTasks"
-  );
-
-  renderTodayStats();
-
-  renderProgress();
-
-  renderWeights();
-
-  renderSettingsWeights();
-
-  renderNotes();
-
-  loadExamDate();
-
-  renderStopwatch();
-
-}
-
-
-/* =========================
-   START
-========================= */
-
-render();
-
+updateWave(demoData.nc);
+
+/*
+  실제 API 연결 시 이 부분에서
+  경기 데이터가 들어올 때마다 updateWave(newValue)를 호출하면 됨.
+*/
 </script>
 
 </body>
