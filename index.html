@@ -7,619 +7,577 @@
 <title>HYORA STUDY</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
-body {
-  margin: 0;
-  background: #050505;
-  color: #f5f5f5;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Display",
-    "Pretendard",
-    sans-serif;
+body{
+  margin:0;
+  background:#050505;
+  color:#f5f5f5;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Pretendard",sans-serif;
 }
 
-button,
-input,
-select,
-textarea {
-  font: inherit;
+button,input,select,textarea{
+  font:inherit;
 }
 
-button {
-  border: 0;
-  cursor: pointer;
+button{
+  border:0;
+  cursor:pointer;
 }
 
-.app {
-  max-width: 760px;
-  margin: auto;
-  padding: 20px 16px 100px;
+.app{
+  max-width:760px;
+  margin:auto;
+  padding:20px 16px 100px;
 }
 
-/* =========================
-   HEADER
-========================= */
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 18px;
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
 }
 
-.logo {
-  font-size: 23px;
-  font-weight: 900;
-  letter-spacing: -1px;
+.logo{
+  font-size:23px;
+  font-weight:900;
+  letter-spacing:-1px;
 }
 
-.logo span {
-  color: #a6ff00;
+.logo span{
+  color:#a6ff00;
 }
 
-.date {
-  color: #777;
-  font-size: 12px;
+.date{
+  color:#777;
+  font-size:12px;
 }
 
-/* =========================
-   CARD
-========================= */
-
-.card {
-  background: #0d0d0d;
-  border: 1px solid #1d1d1d;
-  border-radius: 20px;
-  padding: 18px;
-  margin-bottom: 14px;
+.card{
+  background:#0d0d0d;
+  border:1px solid #1d1d1d;
+  border-radius:20px;
+  padding:18px;
+  margin-bottom:14px;
 }
 
-.card-title {
-  font-size: 14px;
-  font-weight: 800;
-  margin-bottom: 14px;
+.card-title{
+  font-size:14px;
+  font-weight:800;
+  margin-bottom:14px;
 }
 
-/* =========================
-   HERO
-========================= */
-
-.hero {
+.hero{
   background:
-    radial-gradient(
-      circle at 90% 0%,
-      rgba(166,255,0,.13),
-      transparent 40%
-    ),
+    radial-gradient(circle at 90% 0%,rgba(166,255,0,.13),transparent 40%),
     #0d0d0d;
 }
 
-.greeting {
-  color: #777;
-  font-size: 12px;
+.greeting{
+  color:#777;
+  font-size:12px;
 }
 
-.big-title {
-  margin-top: 5px;
-  font-size: 29px;
-  font-weight: 900;
-  letter-spacing: -1.5px;
+.big-title{
+  margin-top:5px;
+  font-size:29px;
+  font-weight:900;
+  letter-spacing:-1.5px;
 }
 
-.accent {
-  color: #a6ff00;
+.accent{
+  color:#a6ff00;
 }
 
-/* =========================
-   PROGRESS
-========================= */
-
-.progress-info {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 18px;
-  margin-bottom: 7px;
-  font-size: 12px;
-  color: #777;
+.progress-info{
+  display:flex;
+  justify-content:space-between;
+  margin-top:18px;
+  margin-bottom:7px;
+  font-size:12px;
+  color:#777;
 }
 
-.progress-info strong {
-  color: #a6ff00;
+.progress-info strong{
+  color:#a6ff00;
 }
 
-.progress {
-  height: 8px;
-  background: #202020;
-  border-radius: 99px;
-  overflow: hidden;
+.progress{
+  height:8px;
+  background:#202020;
+  border-radius:99px;
+  overflow:hidden;
 }
 
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: #a6ff00;
-  border-radius: 99px;
-  transition: width .3s;
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:#a6ff00;
+  border-radius:99px;
+  transition:width .3s;
 }
 
-/* =========================
-   TABS
-========================= */
-
-.tabs {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 5px;
-  padding: 5px;
-  background: #0b0b0b;
-  border-radius: 14px;
-  margin-bottom: 14px;
+.tabs{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:5px;
+  padding:5px;
+  background:#0b0b0b;
+  border-radius:14px;
+  margin-bottom:14px;
 }
 
-.tab {
-  background: transparent;
-  color: #666;
-  padding: 10px 3px;
-  border-radius: 10px;
-  font-size: 11px;
-  font-weight: 700;
+.tab{
+  background:transparent;
+  color:#666;
+  padding:10px 2px;
+  border-radius:10px;
+  font-size:10px;
+  font-weight:700;
 }
 
-.tab.active {
-  background: #191919;
-  color: #a6ff00;
+.tab.active{
+  background:#191919;
+  color:#a6ff00;
 }
 
-/* =========================
-   SECTIONS
-========================= */
-
-.section {
-  display: none;
+.section{
+  display:none;
 }
 
-.section.active {
-  display: block;
+.section.active{
+  display:block;
 }
 
-/* =========================
-   INPUT
-========================= */
-
-.add-row {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 12px;
+.add-row{
+  display:flex;
+  gap:6px;
+  margin-bottom:12px;
 }
 
-input,
-select,
-textarea {
-  background: #151515;
-  color: #fff;
-  border: 1px solid #292929;
-  border-radius: 11px;
-  padding: 11px;
-  outline: none;
+input,select,textarea{
+  background:#151515;
+  color:#fff;
+  border:1px solid #292929;
+  border-radius:11px;
+  padding:11px;
+  outline:none;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: #a6ff00;
+input:focus,select:focus,textarea:focus{
+  border-color:#a6ff00;
 }
 
-.add-row input {
-  flex: 1;
-  min-width: 0;
+.add-row input{
+  flex:1;
+  min-width:0;
 }
 
-.add-btn {
-  background: #a6ff00;
-  color: #050505;
-  border-radius: 11px;
-  padding: 0 15px;
-  font-weight: 900;
+.add-btn{
+  background:#a6ff00;
+  color:#050505;
+  border-radius:11px;
+  padding:0 15px;
+  font-weight:900;
 }
 
-/* =========================
-   TASK
-========================= */
-
-.task {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 0;
-  border-bottom: 1px solid #181818;
+.task{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 0;
+  border-bottom:1px solid #181818;
 }
 
-.task:last-child {
-  border-bottom: none;
+.task:last-child{
+  border-bottom:none;
 }
 
-.check {
-  width: 21px;
-  height: 21px;
-  border: 1px solid #444;
-  border-radius: 6px;
-  flex-shrink: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.check{
+  width:21px;
+  height:21px;
+  border:1px solid #444;
+  border-radius:6px;
+  flex-shrink:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-.task.done .check {
-  background: #a6ff00;
-  border-color: #a6ff00;
-  color: #000;
+.task.done .check{
+  background:#a6ff00;
+  border-color:#a6ff00;
+  color:#000;
 }
 
-.task-main {
-  flex: 1;
-  min-width: 0;
+.task-main{
+  flex:1;
+  min-width:0;
 }
 
-.task-text {
-  font-size: 14px;
+.task-text{
+  font-size:14px;
 }
 
-.task.done .task-text {
-  color: #555;
-  text-decoration: line-through;
+.task.done .task-text{
+  color:#555;
+  text-decoration:line-through;
 }
 
-.task-meta {
-  margin-top: 3px;
-  color: #666;
-  font-size: 11px;
+.task-meta{
+  margin-top:3px;
+  color:#666;
+  font-size:11px;
 }
 
-.delete {
-  background: none;
-  color: #555;
-  font-size: 18px;
-  padding: 4px 7px;
+.delete{
+  background:none;
+  color:#555;
+  font-size:18px;
+  padding:4px 7px;
 }
 
-.empty {
-  text-align: center;
-  color: #555;
-  font-size: 13px;
-  padding: 25px 5px;
+.empty{
+  text-align:center;
+  color:#555;
+  font-size:13px;
+  padding:25px 5px;
 }
 
-/* =========================
-   STATS
-========================= */
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 7px;
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
 }
 
-.stat {
-  background: #151515;
-  border-radius: 13px;
-  padding: 13px 5px;
-  text-align: center;
+.stat{
+  background:#151515;
+  border-radius:13px;
+  padding:13px 5px;
+  text-align:center;
 }
 
-.stat strong {
-  display: block;
-  color: #a6ff00;
-  font-size: 20px;
+.stat strong{
+  display:block;
+  color:#a6ff00;
+  font-size:20px;
 }
 
-.stat span {
-  color: #666;
-  font-size: 10px;
+.stat span{
+  color:#666;
+  font-size:10px;
 }
 
-/* =========================
-   EXAM
-========================= */
-
-.exam-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
+.exam-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
 }
 
-.exam-grid label {
-  display: block;
-  color: #777;
-  font-size: 11px;
-  margin-bottom: 5px;
+.exam-grid label{
+  display:block;
+  color:#777;
+  font-size:11px;
+  margin-bottom:5px;
 }
 
-.exam-grid input {
-  width: 100%;
+.exam-grid input{
+  width:100%;
 }
 
-.save-exam {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
+.save-exam{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
 }
 
-/* =========================
-   WEIGHTS
-========================= */
-
-.subject-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
+.subject-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:10px;
 }
 
-.subject-name {
-  width: 48px;
-  font-size: 13px;
+.subject-name{
+  width:60px;
+  font-size:13px;
 }
 
-.subject-row input {
-  width: 65px;
-  text-align: center;
+.subject-row input{
+  width:65px;
+  text-align:center;
 }
 
-.weight-line {
-  flex: 1;
-  height: 5px;
-  background: #222;
-  border-radius: 99px;
-  overflow: hidden;
+.weight-line{
+  flex:1;
+  height:5px;
+  background:#222;
+  border-radius:99px;
+  overflow:hidden;
 }
 
-.weight-line i {
-  display: block;
-  height: 100%;
-  background: #a6ff00;
+.weight-line i{
+  display:block;
+  height:100%;
+  background:#a6ff00;
 }
 
-/* =========================
-   WRONG ANSWER NOTE
-========================= */
-
-.note-form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.note-form{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
 }
 
 .note-form select,
 .note-form input,
-.note-form textarea {
-  width: 100%;
+.note-form textarea{
+  width:100%;
 }
 
-.note-form textarea {
-  min-height: 75px;
-  resize: vertical;
+.note-form textarea{
+  min-height:75px;
+  resize:vertical;
 }
 
-.note-submit {
-  width: 100%;
-  padding: 12px;
-  background: #a6ff00;
-  color: #050505;
-  border-radius: 11px;
-  font-weight: 900;
+.note-submit{
+  width:100%;
+  padding:12px;
+  background:#a6ff00;
+  color:#050505;
+  border-radius:11px;
+  font-weight:900;
 }
 
-.note {
-  padding: 15px 0;
-  border-bottom: 1px solid #1c1c1c;
+.note{
+  padding:15px 0;
+  border-bottom:1px solid #1c1c1c;
 }
 
-.note:last-child {
-  border-bottom: none;
+.note:last-child{
+  border-bottom:none;
 }
 
-.note-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.note-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.note-subject {
-  color: #a6ff00;
-  font-size: 11px;
-  font-weight: 800;
+.note-subject{
+  color:#a6ff00;
+  font-size:11px;
+  font-weight:800;
 }
 
-.note-delete {
-  background: none;
-  color: #555;
-  font-size: 17px;
+.note-delete{
+  background:none;
+  color:#555;
+  font-size:17px;
 }
 
-.note-title {
-  margin-top: 7px;
-  font-size: 14px;
-  font-weight: 800;
+.note-title{
+  margin-top:7px;
+  font-size:14px;
+  font-weight:800;
 }
 
-.note-text {
-  margin-top: 7px;
-  color: #aaa;
-  font-size: 12px;
-  line-height: 1.55;
+.note-text{
+  margin-top:7px;
+  color:#aaa;
+  font-size:12px;
+  line-height:1.55;
 }
 
-.note-review {
-  margin-top: 8px;
-  padding: 8px 10px;
-  background: #151515;
-  border-radius: 9px;
-  color: #777;
-  font-size: 11px;
+.note-review{
+  margin-top:8px;
+  padding:8px 10px;
+  background:#151515;
+  border-radius:9px;
+  color:#777;
+  font-size:11px;
 }
 
-.note.reviewed .note-title {
-  color: #555;
-  text-decoration: line-through;
+.note.reviewed .note-title{
+  color:#555;
+  text-decoration:line-through;
 }
 
-.note.reviewed .note-review {
-  color: #a6ff00;
+.note.reviewed .note-review{
+  color:#a6ff00;
 }
 
-.review-btn {
-  margin-top: 9px;
-  padding: 7px 10px;
-  border-radius: 8px;
-  background: #191919;
-  color: #888;
-  font-size: 11px;
+.review-btn{
+  margin-top:9px;
+  padding:7px 10px;
+  border-radius:8px;
+  background:#191919;
+  color:#888;
+  font-size:11px;
 }
 
-/* =========================
-   STOPWATCH
-========================= */
-
-.stopwatch {
-  text-align: center;
+.stopwatch{
+  text-align:center;
 }
 
-.stopwatch-title {
-  color: #777;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1px;
+.stopwatch-title{
+  color:#777;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1px;
 }
 
-.stopwatch-time {
-  margin: 15px 0 18px;
-  font-size: 52px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  font-variant-numeric: tabular-nums;
+.stopwatch-time{
+  margin:15px 0 18px;
+  font-size:52px;
+  font-weight:900;
+  letter-spacing:2px;
+  font-variant-numeric:tabular-nums;
 }
 
-.stopwatch-buttons {
-  display: flex;
-  gap: 7px;
+.stopwatch-buttons{
+  display:flex;
+  gap:7px;
 }
 
-.stopwatch-buttons button {
-  flex: 1;
-  padding: 12px;
-  border-radius: 12px;
-  background: #191919;
-  color: #fff;
+.stopwatch-buttons button{
+  flex:1;
+  padding:12px;
+  border-radius:12px;
+  background:#191919;
+  color:#fff;
 }
 
-.stopwatch-buttons .start {
-  background: #a6ff00;
-  color: #000;
-  font-weight: 900;
+.stopwatch-buttons .start{
+  background:#a6ff00;
+  color:#000;
+  font-weight:900;
 }
 
-.study-time {
-  margin-top: 13px;
-  color: #666;
-  font-size: 11px;
+.study-time{
+  margin-top:13px;
+  color:#666;
+  font-size:11px;
 }
 
-/* =========================
-   TIRA
-========================= */
-
-.tira {
+.tira{
   background:
-    radial-gradient(
-      circle at 90% 0%,
-      rgba(166,255,0,.08),
-      transparent 35%
-    ),
+    radial-gradient(circle at 90% 0%,rgba(166,255,0,.08),transparent 35%),
     #0d0d0d;
 }
 
-.chat {
-  min-height: 100px;
-  max-height: 250px;
-  overflow-y: auto;
-  margin-bottom: 10px;
+.chat{
+  min-height:100px;
+  max-height:250px;
+  overflow-y:auto;
+  margin-bottom:10px;
 }
 
-.message {
-  max-width: 88%;
-  padding: 10px 12px;
-  border-radius: 12px;
-  margin-bottom: 7px;
-  font-size: 13px;
-  line-height: 1.5;
-  white-space: pre-line;
+.message{
+  max-width:88%;
+  padding:10px 12px;
+  border-radius:12px;
+  margin-bottom:7px;
+  font-size:13px;
+  line-height:1.5;
+  white-space:pre-line;
 }
 
-.message.bot {
-  background: #171717;
+.message.bot{
+  background:#171717;
 }
 
-.message.user {
-  background: #a6ff00;
-  color: #000;
-  margin-left: auto;
+.message.user{
+  background:#a6ff00;
+  color:#000;
+  margin-left:auto;
 }
 
-.chat-row {
-  display: flex;
-  gap: 6px;
+.chat-row{
+  display:flex;
+  gap:6px;
 }
 
-.chat-row input {
-  flex: 1;
+.chat-row input{
+  flex:1;
 }
 
-/* =========================
-   RESET
-========================= */
+/* SETTINGS */
 
-.reset {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  background: #151515;
-  color: #666;
+.subject-manage{
+  display:flex;
+  gap:7px;
+  margin-bottom:8px;
+}
+
+.subject-manage input{
+  flex:1;
+}
+
+.subject-item{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:10px 0;
+  border-bottom:1px solid #1b1b1b;
+}
+
+.subject-item:last-child{
+  border-bottom:none;
+}
+
+.subject-item input{
+  flex:1;
+}
+
+.subject-item button{
+  background:#191919;
+  color:#777;
+  border-radius:8px;
+  padding:8px 10px;
+}
+
+.subject-item .delete-subject{
+  color:#ff6666;
+}
+
+.total-weight{
+  margin-top:12px;
+  padding:10px;
+  border-radius:10px;
+  background:#151515;
+  text-align:center;
+  font-size:12px;
+  color:#777;
+}
+
+.total-weight strong{
+  color:#a6ff00;
+}
+
+.reset{
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  background:#151515;
+  color:#666;
 }
 </style>
 </head>
-
 
 <body>
 
 <div class="app">
 
-<!-- =========================
-     HEADER
-========================= -->
-
 <header>
-
   <div class="logo">
     HYORA <span>STUDY</span>
   </div>
-
-  <div
-    class="date"
-    id="date">
-  </div>
-
+  <div class="date" id="date"></div>
 </header>
 
-
-<!-- =========================
-     HERO
-========================= -->
 
 <div class="card hero">
 
@@ -632,69 +590,45 @@ textarea:focus {
   </div>
 
   <div class="progress-info">
-
-    <span>
-      시험기간 전체 진행률
-    </span>
-
-    <strong id="overallPercent">
-      0%
-    </strong>
-
+    <span>시험기간 전체 진행률</span>
+    <strong id="overallPercent">0%</strong>
   </div>
 
   <div class="progress">
-
-    <div
-      class="progress-bar"
-      id="overallBar">
-    </div>
-
+    <div class="progress-bar" id="overallBar"></div>
   </div>
 
 </div>
 
 
-<!-- =========================
-     TABS
-========================= -->
-
 <div class="tabs">
 
-  <button
-    class="tab active"
-    data-tab="today">
+  <button class="tab active" data-tab="today">
     오늘
   </button>
 
-  <button
-    class="tab"
-    data-tab="week">
+  <button class="tab" data-tab="week">
     주간
   </button>
 
-  <button
-    class="tab"
-    data-tab="exam">
+  <button class="tab" data-tab="exam">
     시험기간
   </button>
 
-  <button
-    class="tab"
-    data-tab="mistakes">
+  <button class="tab" data-tab="mistakes">
     오답노트
+  </button>
+
+  <button class="tab" data-tab="settings">
+    설정
   </button>
 
 </div>
 
 
-<!-- =========================
-     TODAY
-========================= -->
+<!-- TODAY -->
 
-<section
-  class="section active"
-  id="today">
+<section class="section active" id="today">
 
   <div class="card">
 
@@ -708,16 +642,7 @@ textarea:focus {
         id="todayInput"
         placeholder="오늘 할 일을 추가해줘">
 
-      <select id="todaySubject">
-
-        <option>국어</option>
-        <option>영어</option>
-        <option>수학</option>
-        <option>과학</option>
-        <option>사회</option>
-        <option>기타</option>
-
-      </select>
+      <select id="todaySubject"></select>
 
       <button
         class="add-btn"
@@ -762,13 +687,9 @@ textarea:focus {
 </section>
 
 
-<!-- =========================
-     WEEK
-========================= -->
+<!-- WEEK -->
 
-<section
-  class="section"
-  id="week">
+<section class="section" id="week">
 
   <div class="card">
 
@@ -782,16 +703,7 @@ textarea:focus {
         id="weekInput"
         placeholder="이번 주 공부 추가">
 
-      <select id="weekSubject">
-
-        <option>국어</option>
-        <option>영어</option>
-        <option>수학</option>
-        <option>과학</option>
-        <option>사회</option>
-        <option>기타</option>
-
-      </select>
+      <select id="weekSubject"></select>
 
       <button
         class="add-btn"
@@ -808,13 +720,9 @@ textarea:focus {
 </section>
 
 
-<!-- =========================
-     EXAM
-========================= -->
+<!-- EXAM -->
 
-<section
-  class="section"
-  id="exam">
+<section class="section" id="exam">
 
   <div class="card">
 
@@ -826,9 +734,7 @@ textarea:focus {
 
       <div>
 
-        <label>
-          시작일
-        </label>
+        <label>시작일</label>
 
         <input
           type="date"
@@ -838,9 +744,7 @@ textarea:focus {
 
       <div>
 
-        <label>
-          시험일
-        </label>
+        <label>시험일</label>
 
         <input
           type="date"
@@ -871,16 +775,7 @@ textarea:focus {
         id="examInput"
         placeholder="시험 전까지 끝낼 공부">
 
-      <select id="examSubject">
-
-        <option>국어</option>
-        <option>영어</option>
-        <option>수학</option>
-        <option>과학</option>
-        <option>사회</option>
-        <option>기타</option>
-
-      </select>
+      <select id="examSubject"></select>
 
       <button
         class="add-btn"
@@ -908,13 +803,9 @@ textarea:focus {
 </section>
 
 
-<!-- =========================
-     WRONG ANSWER NOTE
-========================= -->
+<!-- MISTAKES -->
 
-<section
-  class="section"
-  id="mistakes">
+<section class="section" id="mistakes">
 
   <div class="card">
 
@@ -924,15 +815,7 @@ textarea:focus {
 
     <div class="note-form">
 
-      <select id="noteSubject">
-
-        <option>국어</option>
-        <option>영어</option>
-        <option>수학</option>
-        <option>과학</option>
-        <option>사회</option>
-
-      </select>
+      <select id="noteSubject"></select>
 
       <input
         id="noteTitle"
@@ -940,13 +823,11 @@ textarea:focus {
 
       <textarea
         id="noteReason"
-        placeholder="왜 틀렸는지 적어줘">
-      </textarea>
+        placeholder="왜 틀렸는지 적어줘"></textarea>
 
       <textarea
         id="notePoint"
-        placeholder="다음에 기억할 점">
-      </textarea>
+        placeholder="다음에 기억할 점"></textarea>
 
       <button
         class="note-submit"
@@ -976,9 +857,55 @@ textarea:focus {
       과목별 오답
     </div>
 
-    <div
-      class="stats"
-      id="mistakeStats">
+    <div class="stats" id="mistakeStats"></div>
+
+  </div>
+
+</section>
+
+
+<!-- SETTINGS -->
+
+<section class="section" id="settings">
+
+  <div class="card">
+
+    <div class="card-title">
+      과목 설정
+    </div>
+
+    <div class="subject-manage">
+
+      <input
+        id="newSubject"
+        placeholder="예: 기술가정">
+
+      <button
+        class="add-btn"
+        onclick="addSubject()">
+        + 추가
+      </button>
+
+    </div>
+
+    <div id="subjectList"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      과목별 시험 비중
+    </div>
+
+    <div id="settingsWeights"></div>
+
+    <div class="total-weight">
+      현재 비중 합계:
+      <strong id="totalWeight">
+        0%
+      </strong>
     </div>
 
   </div>
@@ -986,9 +913,7 @@ textarea:focus {
 </section>
 
 
-<!-- =========================
-     STOPWATCH
-========================= -->
+<!-- STOPWATCH -->
 
 <div class="card stopwatch">
 
@@ -996,16 +921,13 @@ textarea:focus {
     STUDY STOPWATCH
   </div>
 
-  <div
-    class="stopwatch-time"
-    id="stopwatch">
+  <div class="stopwatch-time" id="stopwatch">
     00:00:00
   </div>
 
   <div class="stopwatch-buttons">
 
-    <button
-      onclick="resetStopwatch()">
+    <button onclick="resetStopwatch()">
       리셋
     </button>
 
@@ -1019,20 +941,16 @@ textarea:focus {
   </div>
 
   <div class="study-time">
-
     공부시간:
     <span id="totalStudyTime">
       00:00:00
     </span>
-
   </div>
 
 </div>
 
 
-<!-- =========================
-     TIRA
-========================= -->
+<!-- TIRA -->
 
 <div class="card tira">
 
@@ -1040,9 +958,7 @@ textarea:focus {
     ✦ 티라
   </div>
 
-  <div
-    class="chat"
-    id="chat">
+  <div class="chat" id="chat">
 
     <div class="message bot">
       안녕 효라! 👋
@@ -1069,8 +985,6 @@ textarea:focus {
 </div>
 
 
-<!-- RESET -->
-
 <div class="card">
 
   <button
@@ -1086,46 +1000,90 @@ textarea:focus {
 
 <script>
 
-/* ==================================================
+/* =========================
    DATA
-================================================== */
+========================= */
 
 let data =
 JSON.parse(
   localStorage.getItem("hyoraStudy")
 ) || {
 
-  today: [],
+  today:[],
+  week:[],
+  exam:[],
+  mistakes:[],
 
-  week: [],
+  subjects:[
+    "국어",
+    "영어",
+    "수학",
+    "과학",
+    "사회"
+  ],
 
-  exam: [],
+  weights:{
+    국어:20,
+    영어:20,
+    수학:20,
+    과학:20,
+    사회:20
+  },
 
-  mistakes: [],
-
-  examStart: "",
-
-  examEnd: "",
-
-  weights: {
-
-    국어: 20,
-    영어: 20,
-    수학: 20,
-    과학: 20,
-    사회: 20,
-    기타: 0
-
-  }
+  examStart:"",
+  examEnd:""
 
 };
 
 
-/* ==================================================
-   SAVE
-================================================== */
+/* =========================
+   OLD DATA COMPATIBILITY
+========================= */
 
-function saveData() {
+if(!Array.isArray(data.subjects)){
+  data.subjects=[
+    "국어",
+    "영어",
+    "수학",
+    "과학",
+    "사회"
+  ];
+}
+
+if(!data.weights){
+  data.weights={};
+}
+
+data.subjects.forEach(subject=>{
+  if(
+    typeof data.weights[subject] !== "number"
+  ){
+    data.weights[subject]=0;
+  }
+});
+
+if(!Array.isArray(data.today)){
+  data.today=[];
+}
+
+if(!Array.isArray(data.week)){
+  data.week=[];
+}
+
+if(!Array.isArray(data.exam)){
+  data.exam=[];
+}
+
+if(!Array.isArray(data.mistakes)){
+  data.mistakes=[];
+}
+
+
+/* =========================
+   SAVE
+========================= */
+
+function saveData(){
 
   localStorage.setItem(
     "hyoraStudy",
@@ -1135,80 +1093,65 @@ function saveData() {
 }
 
 
-/* ==================================================
+/* =========================
    DATE
-================================================== */
+========================= */
 
-function updateDate() {
+function updateDate(){
 
-  const now = new Date();
+  const now=new Date();
 
-  const year =
-    now.getFullYear();
+  const y=now.getFullYear();
 
-  const month =
-    String(
-      now.getMonth() + 1
-    ).padStart(2,"0");
+  const m=String(
+    now.getMonth()+1
+  ).padStart(2,"0");
 
-  const day =
-    String(
-      now.getDate()
-    ).padStart(2,"0");
+  const d=String(
+    now.getDate()
+  ).padStart(2,"0");
 
   document.getElementById(
     "date"
-  ).textContent =
-    `${year}.${month}.${day}`;
+  ).textContent=
+    `${y}.${m}.${d}`;
 
 }
 
 updateDate();
 
 
-/* ==================================================
+/* =========================
    TABS
-================================================== */
+========================= */
 
 document
 .querySelectorAll(".tab")
-.forEach(button => {
+.forEach(button=>{
 
   button.addEventListener(
     "click",
-    function() {
+    function(){
 
       document
       .querySelectorAll(".tab")
-      .forEach(tab => {
-
-        tab.classList.remove(
-          "active"
-        );
-
+      .forEach(tab=>{
+        tab.classList.remove("active");
       });
 
       document
       .querySelectorAll(".section")
-      .forEach(section => {
-
-        section.classList.remove(
-          "active"
-        );
-
+      .forEach(section=>{
+        section.classList.remove("active");
       });
 
-      this.classList.add(
-        "active"
-      );
+      this.classList.add("active");
 
       document
       .getElementById(
         this.dataset.tab
       )
-      .classList.add(
-        "active"
-      );
+      .classList.add("active");
 
     }
   );
@@ -1216,44 +1159,80 @@ document
 });
 
 
-/* ==================================================
-   TASK ADD
-================================================== */
+/* =========================
+   SUBJECT SELECTS
+========================= */
 
-function addTask(type) {
+function renderSubjectSelects(){
 
-  const input =
-    document.getElementById(
-      type + "Input"
-    );
+  const selects=[
+    "todaySubject",
+    "weekSubject",
+    "examSubject",
+    "noteSubject"
+  ];
 
-  const subject =
-    document.getElementById(
-      type + "Subject"
-    ).value;
+  selects.forEach(id=>{
 
-  const text =
-    input.value.trim();
+    const select=
+      document.getElementById(id);
 
-  if (!text) {
+    if(!select)return;
 
-    return;
+    const current=
+      select.value;
 
-  }
+    select.innerHTML=
+      data.subjects
+      .map(subject=>`
+        <option value="${escapeHTML(subject)}">
+          ${escapeHTML(subject)}
+        </option>
+      `)
+      .join("");
 
-  data[type].push({
-
-    id: Date.now(),
-
-    text: text,
-
-    subject: subject,
-
-    done: false
+    if(
+      data.subjects.includes(current)
+    ){
+      select.value=current;
+    }
 
   });
 
-  input.value = "";
+}
+
+
+/* =========================
+   ADD SUBJECT
+========================= */
+
+function addSubject(){
+
+  const input=
+    document.getElementById(
+      "newSubject"
+    );
+
+  const name=
+    input.value.trim();
+
+  if(!name){
+    alert("과목 이름을 입력해줘!");
+    return;
+  }
+
+  if(
+    data.subjects.includes(name)
+  ){
+    alert("이미 있는 과목이야!");
+    return;
+  }
+
+  data.subjects.push(name);
+
+  data.weights[name]=0;
+
+  input.value="";
 
   saveData();
 
@@ -1262,28 +1241,239 @@ function addTask(type) {
 }
 
 
-/* ==================================================
-   TASK CHECK
-================================================== */
+/* =========================
+   DELETE SUBJECT
+========================= */
+
+function deleteSubject(name){
+
+  if(
+    data.subjects.length<=1
+  ){
+    alert("과목은 최소 1개가 있어야 해!");
+    return;
+  }
+
+  const used =
+    [
+      ...data.today,
+      ...data.week,
+      ...data.exam,
+      ...data.mistakes
+    ].some(
+      item=>item.subject===name
+    );
+
+  if(used){
+
+    const ok=
+      confirm(
+        `"${name}" 과목을 삭제하면 이 과목으로 저장된 계획과 오답의 과목 표시가 사라질 수 있어. 그래도 삭제할까?`
+      );
+
+    if(!ok)return;
+
+  }
+
+  data.subjects=
+    data.subjects.filter(
+      subject=>subject!==name
+    );
+
+  delete data.weights[name];
+
+  saveData();
+
+  render();
+
+}
+
+
+/* =========================
+   RENAME SUBJECT
+========================= */
+
+function renameSubject(
+  oldName,
+  newName
+){
+
+  newName=newName.trim();
+
+  if(!newName){
+    alert("과목 이름을 입력해줘!");
+    return;
+  }
+
+  if(
+    oldName!==newName &&
+    data.subjects.includes(newName)
+  ){
+    alert("이미 있는 과목이야!");
+    return;
+  }
+
+  const index=
+    data.subjects.indexOf(
+      oldName
+    );
+
+  if(index===-1)return;
+
+  data.subjects[index]=newName;
+
+  data.weights[newName]=
+    data.weights[oldName] || 0;
+
+  delete data.weights[oldName];
+
+  [
+    ...data.today,
+    ...data.week,
+    ...data.exam,
+    ...data.mistakes
+  ].forEach(item=>{
+
+    if(
+      item.subject===oldName
+    ){
+      item.subject=newName;
+    }
+
+  });
+
+  saveData();
+
+  render();
+
+}
+
+
+/* =========================
+   SUBJECT LIST
+========================= */
+
+function renderSubjectList(){
+
+  const box=
+    document.getElementById(
+      "subjectList"
+    );
+
+  if(!data.subjects.length){
+
+    box.innerHTML=`
+      <div class="empty">
+        아직 과목이 없어.
+      </div>
+    `;
+
+    return;
+
+  }
+
+  box.innerHTML=
+    data.subjects
+    .map(subject=>`
+
+      <div class="subject-item">
+
+        <input
+          value="${escapeHTML(subject)}"
+          id="subject_${encodeURIComponent(subject)}"
+        >
+
+        <button
+          onclick="
+            renameSubject(
+              '${escapeJS(subject)}',
+              document.getElementById(
+                'subject_${encodeURIComponent(subject)}'
+              ).value
+            )
+          "
+        >
+          수정
+        </button>
+
+        <button
+          class="delete-subject"
+          onclick="
+            deleteSubject(
+              '${escapeJS(subject)}'
+            )
+          "
+        >
+          삭제
+        </button>
+
+      </div>
+
+    `)
+    .join("");
+
+}
+
+
+/* =========================
+   TASK ADD
+========================= */
+
+function addTask(type){
+
+  const input=
+    document.getElementById(
+      type+"Input"
+    );
+
+  const subject=
+    document.getElementById(
+      type+"Subject"
+    ).value;
+
+  const text=
+    input.value.trim();
+
+  if(!text)return;
+
+  data[type].push({
+
+    id:Date.now(),
+
+    text:text,
+
+    subject:subject,
+
+    done:false
+
+  });
+
+  input.value="";
+
+  saveData();
+
+  render();
+
+}
+
+
+/* =========================
+   TASK TOGGLE
+========================= */
 
 function toggleTask(
   type,
   id
-) {
+){
 
-  const task =
+  const task=
     data[type].find(
-      item => item.id === id
+      item=>item.id===id
     );
 
-  if (!task) {
+  if(!task)return;
 
-    return;
-
-  }
-
-  task.done =
-    !task.done;
+  task.done=!task.done;
 
   saveData();
 
@@ -1292,18 +1482,18 @@ function toggleTask(
 }
 
 
-/* ==================================================
+/* =========================
    TASK DELETE
-================================================== */
+========================= */
 
 function deleteTask(
   type,
   id
-) {
+){
 
-  data[type] =
+  data[type]=
     data[type].filter(
-      item => item.id !== id
+      item=>item.id!==id
     );
 
   saveData();
@@ -1313,26 +1503,26 @@ function deleteTask(
 }
 
 
-/* ==================================================
+/* =========================
    TASK RENDER
-================================================== */
+========================= */
 
 function renderTasks(
   type,
   elementId
-) {
+){
 
-  const box =
+  const box=
     document.getElementById(
       elementId
     );
 
-  const tasks =
+  const tasks=
     data[type];
 
-  if (!tasks.length) {
+  if(!tasks.length){
 
-    box.innerHTML = `
+    box.innerHTML=`
       <div class="empty">
         아직 계획이 없어!<br>
         위에서 직접 추가해봐 ✦
@@ -1343,13 +1533,12 @@ function renderTasks(
 
   }
 
-  box.innerHTML =
-    tasks.map(task => `
+  box.innerHTML=
+    tasks.map(task=>`
 
-      <div class="
-        task
-        ${task.done ? "done" : ""}
-      ">
+      <div class="task ${
+        task.done?"done":""
+      }">
 
         <div
           class="check"
@@ -1360,7 +1549,7 @@ function renderTasks(
             )
           "
         >
-          ${task.done ? "✓" : ""}
+          ${task.done?"✓":""}
         </div>
 
         <div
@@ -1378,7 +1567,7 @@ function renderTasks(
           </div>
 
           <div class="task-meta">
-            ${task.subject}
+            ${escapeHTML(task.subject)}
           </div>
 
         </div>
@@ -1402,152 +1591,203 @@ function renderTasks(
 }
 
 
-/* ==================================================
+/* =========================
    TODAY STATS
-================================================== */
+========================= */
 
-function renderTodayStats() {
+function renderTodayStats(){
 
-  const total =
+  const total=
     data.today.length;
 
-  const done =
+  const done=
     data.today.filter(
-      task => task.done
+      task=>task.done
     ).length;
 
   document.getElementById(
     "todayDone"
-  ).textContent =
-    done;
+  ).textContent=done;
 
   document.getElementById(
     "todayTotal"
-  ).textContent =
-    total;
+  ).textContent=total;
 
   document.getElementById(
     "todayRate"
-  ).textContent =
+  ).textContent=
     total
       ? Math.round(
-          done / total * 100
-        ) + "%"
-      : "0%";
+          done/total*100
+        )+"%"
+      :"0%";
 
 }
 
 
-/* ==================================================
+/* =========================
    EXAM PROGRESS
-================================================== */
+========================= */
 
-function getExamProgress() {
+function getExamProgress(){
 
-  const total =
+  const total=
     data.exam.length;
 
-  if (!total) {
+  if(!total)return 0;
 
-    return 0;
-
-  }
-
-  const done =
+  const done=
     data.exam.filter(
-      task => task.done
+      task=>task.done
     ).length;
 
   return Math.round(
-    done / total * 100
+    done/total*100
   );
 
 }
 
 
-function renderProgress() {
+function renderProgress(){
 
-  const percent =
+  const percent=
     getExamProgress();
 
   document.getElementById(
     "overallPercent"
-  ).textContent =
-    percent + "%";
+  ).textContent=
+    percent+"%";
 
   document.getElementById(
     "overallBar"
-  ).style.width =
-    percent + "%";
+  ).style.width=
+    percent+"%";
 
 }
 
 
-/* ==================================================
+/* =========================
    WEIGHTS
-================================================== */
+========================= */
 
-const subjects = [
-  "국어",
-  "영어",
-  "수학",
-  "과학",
-  "사회",
-  "기타"
-];
+function renderWeights(){
 
-
-function renderWeights() {
-
-  const box =
+  const box=
     document.getElementById(
       "weights"
     );
 
-  box.innerHTML =
-    subjects.map(
-      subject => {
+  box.innerHTML=
+    data.subjects
+    .map(subject=>{
 
-        const value =
-          data.weights[subject] || 0;
+      const value=
+        data.weights[subject]||0;
 
-        return `
+      return `
 
-          <div class="subject-row">
+        <div class="subject-row">
 
-            <div class="subject-name">
-              ${subject}
-            </div>
-
-            <input
-              type="number"
-              min="0"
-              max="100"
-              value="${value}"
-              onchange="
-                changeWeight(
-                  '${subject}',
-                  this.value
-                )
-              "
-            >
-
-            <div class="weight-line">
-
-              <i
-                style="
-                  width:${value}%;
-                "
-              ></i>
-
-            </div>
-
+          <div class="subject-name">
+            ${escapeHTML(subject)}
           </div>
 
-        `;
+          <input
+            type="number"
+            min="0"
+            max="100"
+            value="${value}"
+            onchange="
+              changeWeight(
+                '${escapeJS(subject)}',
+                this.value
+              )
+            "
+          >
 
-      }
-    ).join("");
+          <div class="weight-line">
+            <i
+              style="width:${Math.min(
+                100,
+                Math.max(0,value)
+              )}%"
+            ></i>
+          </div>
+
+        </div>
+
+      `;
+
+    })
+    .join("");
+
+}
+
+
+function renderSettingsWeights(){
+
+  const box=
+    document.getElementById(
+      "settingsWeights"
+    );
+
+  box.innerHTML=
+    data.subjects
+    .map(subject=>{
+
+      const value=
+        data.weights[subject]||0;
+
+      return `
+
+        <div class="subject-row">
+
+          <div class="subject-name">
+            ${escapeHTML(subject)}
+          </div>
+
+          <input
+            type="number"
+            min="0"
+            max="100"
+            value="${value}"
+            onchange="
+              changeWeight(
+                '${escapeJS(subject)}',
+                this.value
+              )
+            "
+          >
+
+          <div class="weight-line">
+            <i
+              style="width:${Math.min(
+                100,
+                Math.max(0,value)
+              )}%"
+            ></i>
+          </div>
+
+        </div>
+
+      `;
+
+    })
+    .join("");
+
+  const total=
+    data.subjects.reduce(
+      (sum,subject)=>
+        sum+(Number(
+          data.weights[subject]
+        )||0),
+      0
+    );
+
+  document.getElementById(
+    "totalWeight"
+  ).textContent=
+    total+"%";
 
 }
 
@@ -1555,20 +1795,16 @@ function renderWeights() {
 function changeWeight(
   subject,
   value
-) {
+){
 
-  let number =
+  let number=
     Number(value);
 
-  if (
-    Number.isNaN(number)
-  ) {
-
-    number = 0;
-
+  if(Number.isNaN(number)){
+    number=0;
   }
 
-  number =
+  number=
     Math.max(
       0,
       Math.min(
@@ -1577,43 +1813,43 @@ function changeWeight(
       )
     );
 
-  data.weights[subject] =
+  data.weights[subject]=
     number;
 
   saveData();
 
-  renderWeights();
+  render();
 
 }
 
 
-/* ==================================================
+/* =========================
    EXAM DATE
-================================================== */
+========================= */
 
-function loadExamDate() {
+function loadExamDate(){
 
   document.getElementById(
     "examStart"
-  ).value =
-    data.examStart || "";
+  ).value=
+    data.examStart||"";
 
   document.getElementById(
     "examEnd"
-  ).value =
-    data.examEnd || "";
+  ).value=
+    data.examEnd||"";
 
 }
 
 
-function saveExamDate() {
+function saveExamDate(){
 
-  data.examStart =
+  data.examStart=
     document.getElementById(
       "examStart"
     ).value;
 
-  data.examEnd =
+  data.examEnd=
     document.getElementById(
       "examEnd"
     ).value;
@@ -1627,33 +1863,33 @@ function saveExamDate() {
 }
 
 
-/* ==================================================
-   WRONG ANSWER NOTE
-================================================== */
+/* =========================
+   MISTAKE NOTE
+========================= */
 
-function addNote() {
+function addNote(){
 
-  const subject =
+  const subject=
     document.getElementById(
       "noteSubject"
     ).value;
 
-  const title =
+  const title=
     document.getElementById(
       "noteTitle"
     ).value.trim();
 
-  const reason =
+  const reason=
     document.getElementById(
       "noteReason"
     ).value.trim();
 
-  const point =
+  const point=
     document.getElementById(
       "notePoint"
     ).value.trim();
 
-  if (!title) {
+  if(!title){
 
     alert(
       "오답 제목을 입력해줘!"
@@ -1665,31 +1901,31 @@ function addNote() {
 
   data.mistakes.unshift({
 
-    id: Date.now(),
+    id:Date.now(),
 
-    subject: subject,
+    subject,
 
-    title: title,
+    title,
 
-    reason: reason,
+    reason,
 
-    point: point,
+    point,
 
-    reviewed: false
+    reviewed:false
 
   });
 
   document.getElementById(
     "noteTitle"
-  ).value = "";
+  ).value="";
 
   document.getElementById(
     "noteReason"
-  ).value = "";
+  ).value="";
 
   document.getElementById(
     "notePoint"
-  ).value = "";
+  ).value="";
 
   saveData();
 
@@ -1698,20 +1934,16 @@ function addNote() {
 }
 
 
-function toggleNote(id) {
+function toggleNote(id){
 
-  const note =
+  const note=
     data.mistakes.find(
-      item => item.id === id
+      item=>item.id===id
     );
 
-  if (!note) {
+  if(!note)return;
 
-    return;
-
-  }
-
-  note.reviewed =
+  note.reviewed=
     !note.reviewed;
 
   saveData();
@@ -1721,11 +1953,11 @@ function toggleNote(id) {
 }
 
 
-function deleteNote(id) {
+function deleteNote(id){
 
-  data.mistakes =
+  data.mistakes=
     data.mistakes.filter(
-      note => note.id !== id
+      note=>note.id!==id
     );
 
   saveData();
@@ -1735,37 +1967,36 @@ function deleteNote(id) {
 }
 
 
-function renderNotes() {
+function renderNotes(){
 
-  const box =
+  const box=
     document.getElementById(
       "notes"
     );
 
-  if (!data.mistakes.length) {
+  if(!data.mistakes.length){
 
-    box.innerHTML = `
+    box.innerHTML=`
       <div class="empty">
         아직 오답이 없어!<br>
         틀린 문제를 하나씩 기록해보자 📕
       </div>
     `;
 
-  } else {
+  }else{
 
-    box.innerHTML =
+    box.innerHTML=
       data.mistakes
-      .map(note => `
+      .map(note=>`
 
-        <div class="
-          note
-          ${note.reviewed ? "reviewed" : ""}
-        ">
+        <div class="note ${
+          note.reviewed?"reviewed":""
+        }">
 
           <div class="note-head">
 
             <div class="note-subject">
-              ${note.subject}
+              ${escapeHTML(note.subject)}
             </div>
 
             <button
@@ -1782,35 +2013,29 @@ function renderNotes() {
           </div>
 
           <div class="note-title">
-            ${escapeHTML(
-              note.title
-            )}
+            ${escapeHTML(note.title)}
           </div>
 
           ${
             note.reason
-              ? `
-                <div class="note-text">
-                  <b>틀린 이유</b><br>
-                  ${escapeHTML(
-                    note.reason
-                  )}
-                </div>
-              `
-              : ""
+            ?`
+              <div class="note-text">
+                <b>틀린 이유</b><br>
+                ${escapeHTML(note.reason)}
+              </div>
+            `
+            :""
           }
 
           ${
             note.point
-              ? `
-                <div class="note-review">
-                  <b>기억할 점</b><br>
-                  ${escapeHTML(
-                    note.point
-                  )}
-                </div>
-              `
-              : ""
+            ?`
+              <div class="note-review">
+                <b>기억할 점</b><br>
+                ${escapeHTML(note.point)}
+              </div>
+            `
+            :""
           }
 
           <button
@@ -1823,8 +2048,8 @@ function renderNotes() {
           >
             ${
               note.reviewed
-                ? "✓ 복습 완료"
-                : "복습 완료 체크"
+              ?"✓ 복습 완료"
+              :"복습 완료 체크"
             }
           </button>
 
@@ -1840,27 +2065,21 @@ function renderNotes() {
 }
 
 
-function renderMistakeStats() {
+function renderMistakeStats(){
 
-  const box =
+  const box=
     document.getElementById(
       "mistakeStats"
     );
 
-  box.innerHTML =
-    [
-      "국어",
-      "영어",
-      "수학",
-      "과학",
-      "사회"
-    ]
-    .map(subject => {
+  box.innerHTML=
+    data.subjects
+    .map(subject=>{
 
-      const count =
+      const count=
         data.mistakes.filter(
-          note =>
-            note.subject === subject
+          note=>
+            note.subject===subject
         ).length;
 
       return `
@@ -1872,7 +2091,7 @@ function renderMistakeStats() {
           </strong>
 
           <span>
-            ${subject}
+            ${escapeHTML(subject)}
           </span>
 
         </div>
@@ -1885,67 +2104,58 @@ function renderMistakeStats() {
 }
 
 
-/* ==================================================
+/* =========================
    STOPWATCH
-================================================== */
+========================= */
 
-let stopwatchSeconds =
+let stopwatchSeconds=
   Number(
     localStorage.getItem(
       "hyoraStopwatch"
     )
-  ) || 0;
+  )||0;
 
-let stopwatchRunning =
-  false;
+let stopwatchRunning=false;
 
-let stopwatchInterval =
-  null;
+let stopwatchInterval=null;
 
 
-function formatTime(seconds) {
+function formatTime(seconds){
 
-  const hours =
+  const hours=
     Math.floor(
-      seconds / 3600
+      seconds/3600
     );
 
-  const minutes =
+  const minutes=
     Math.floor(
-      (seconds % 3600) / 60
+      (seconds%3600)/60
     );
 
-  const secs =
-    seconds % 60;
+  const secs=
+    seconds%60;
 
   return [
-
-    String(hours)
-      .padStart(2,"0"),
-
-    String(minutes)
-      .padStart(2,"0"),
-
-    String(secs)
-      .padStart(2,"0")
-
+    String(hours).padStart(2,"0"),
+    String(minutes).padStart(2,"0"),
+    String(secs).padStart(2,"0")
   ].join(":");
 
 }
 
 
-function renderStopwatch() {
+function renderStopwatch(){
 
   document.getElementById(
     "stopwatch"
-  ).textContent =
+  ).textContent=
     formatTime(
       stopwatchSeconds
     );
 
   document.getElementById(
     "totalStudyTime"
-  ).textContent =
+  ).textContent=
     formatTime(
       stopwatchSeconds
     );
@@ -1953,15 +2163,13 @@ function renderStopwatch() {
 }
 
 
-function toggleStopwatch() {
+function toggleStopwatch(){
 
-  if (
-    stopwatchRunning
-  ) {
+  if(stopwatchRunning){
 
     stopStopwatch();
 
-  } else {
+  }else{
 
     startStopwatch();
 
@@ -1970,70 +2178,57 @@ function toggleStopwatch() {
 }
 
 
-function startStopwatch() {
+function startStopwatch(){
 
-  if (
-    stopwatchRunning
-  ) {
+  if(stopwatchRunning)return;
 
-    return;
-
-  }
-
-  stopwatchRunning =
-    true;
+  stopwatchRunning=true;
 
   document.getElementById(
     "stopwatchButton"
-  ).textContent =
+  ).textContent=
     "일시정지";
 
-  stopwatchInterval =
-    setInterval(
-      () => {
+  stopwatchInterval=
+    setInterval(()=>{
 
-        stopwatchSeconds++;
+      stopwatchSeconds++;
 
-        localStorage.setItem(
-          "hyoraStopwatch",
-          stopwatchSeconds
-        );
+      localStorage.setItem(
+        "hyoraStopwatch",
+        stopwatchSeconds
+      );
 
-        renderStopwatch();
+      renderStopwatch();
 
-      },
-      1000
-    );
+    },1000);
 
 }
 
 
-function stopStopwatch() {
+function stopStopwatch(){
 
-  stopwatchRunning =
-    false;
+  stopwatchRunning=false;
 
   clearInterval(
     stopwatchInterval
   );
 
-  stopwatchInterval =
-    null;
+  stopwatchInterval=null;
 
   document.getElementById(
     "stopwatchButton"
-  ).textContent =
+  ).textContent=
     "시작";
 
 }
 
 
-function resetStopwatch() {
+function resetStopwatch(){
 
   stopStopwatch();
 
-  stopwatchSeconds =
-    0;
+  stopwatchSeconds=0;
 
   localStorage.setItem(
     "hyoraStopwatch",
@@ -2045,44 +2240,37 @@ function resetStopwatch() {
 }
 
 
-/* ==================================================
+/* =========================
    TIRA
-================================================== */
+========================= */
 
-function askTira() {
+function askTira(){
 
-  const input =
+  const input=
     document.getElementById(
       "tiraInput"
     );
 
-  const text =
+  const text=
     input.value.trim();
 
-  if (!text) {
-
-    return;
-
-  }
+  if(!text)return;
 
   addChat(
     text,
     "user"
   );
 
-  input.value = "";
+  input.value="";
 
-  setTimeout(
-    () => {
+  setTimeout(()=>{
 
-      addChat(
-        getTiraReply(text),
-        "bot"
-      );
+    addChat(
+      getTiraReply(text),
+      "bot"
+    );
 
-    },
-    200
-  );
+  },200);
 
 }
 
@@ -2090,56 +2278,56 @@ function askTira() {
 function addChat(
   text,
   type
-) {
+){
 
-  const chat =
+  const chat=
     document.getElementById(
       "chat"
     );
 
-  const message =
+  const message=
     document.createElement(
       "div"
     );
 
-  message.className =
-    "message " + type;
+  message.className=
+    "message "+type;
 
-  message.textContent =
+  message.textContent=
     text;
 
   chat.appendChild(
     message
   );
 
-  chat.scrollTop =
+  chat.scrollTop=
     chat.scrollHeight;
 
 }
 
 
-function getTiraReply(text) {
+function getTiraReply(text){
 
-  const progress =
+  const progress=
     getExamProgress();
 
-  const examTotal =
+  const examTotal=
     data.exam.length;
 
-  const examDone =
+  const examDone=
     data.exam.filter(
-      task => task.done
+      task=>task.done
     ).length;
 
-  const mistakeCount =
+  const mistakeCount=
     data.mistakes.length;
 
 
-  if (
-    text.includes("진행률") ||
-    text.includes("퍼센트") ||
+  if(
+    text.includes("진행률")||
+    text.includes("퍼센트")||
     text.includes("몇 프로")
-  ) {
+  ){
 
     return `
 시험기간 전체 진행률은
@@ -2151,32 +2339,32 @@ ${examDone}/${examTotal}개 완료했어.
   }
 
 
-  if (
-    text.includes("오답") ||
+  if(
+    text.includes("오답")||
     text.includes("틀린")
-  ) {
+  ){
 
     return `
 현재 오답노트에는
 ${mistakeCount}개의 오답이 있어.
 
-복습 완료한 오답도 하나씩 늘려보자 📕
+복습 완료도 하나씩 늘려보자 📕
     `.trim();
 
   }
 
 
-  if (
-    text.includes("오늘") ||
+  if(
+    text.includes("오늘")||
     text.includes("할 일")
-  ) {
+  ){
 
-    const total =
+    const total=
       data.today.length;
 
-    const done =
+    const done=
       data.today.filter(
-        task => task.done
+        task=>task.done
       ).length;
 
     return `
@@ -2184,51 +2372,25 @@ ${mistakeCount}개의 오답이 있어.
 ${done}개 완료했어!
 
 남은 건
-${total - done}개야.
+${total-done}개야.
     `.trim();
 
   }
 
 
-  if (
-    text.includes("시험")
-  ) {
-
-    if (!data.examEnd) {
-
-      return `
-아직 시험일을 설정하지 않았어!
-
-시험기간 탭에서
-시험일을 먼저 설정해줘.
-      `.trim();
-
-    }
-
-    const end =
-      new Date(
-        data.examEnd
-      );
-
-    const today =
-      new Date();
-
-    const diff =
-      Math.ceil(
-        (
-          end - today
-        ) /
-        (
-          1000 * 60 * 60 * 24
-        )
-      );
+  if(
+    text.includes("과목")
+  ){
 
     return `
-시험일까지 약
-${Math.max(0,diff)}일 남았어.
+지금 설정된 과목은
 
-전체 계획은
-${progress}% 완료!
+${data.subjects.join(" · ")}
+
+이야!
+
+설정 탭에서
+직접 추가하거나 수정할 수 있어 ✦
     `.trim();
 
   }
@@ -2249,53 +2411,43 @@ ${mistakeCount}개가 있어.
 }
 
 
-/* ==================================================
-   SECURITY
-================================================== */
+/* =========================
+   ESCAPE
+========================= */
 
-function escapeHTML(text) {
+function escapeHTML(text){
 
   return String(text)
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-    .replace(
-      /</g,
-      "&lt;"
-    )
-    .replace(
-      />/g,
-      "&gt;"
-    )
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-    .replace(
-      /'/g,
-      "&#039;"
-    );
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
 
-/* ==================================================
+function escapeJS(text){
+
+  return String(text)
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'");
+
+}
+
+
+/* =========================
    RESET
-================================================== */
+========================= */
 
-function resetAll() {
+function resetAll(){
 
-  const confirmed =
+  const confirmed=
     confirm(
       "정말 모든 공부 데이터를 삭제할까?"
     );
 
-  if (!confirmed) {
-
-    return;
-
-  }
+  if(!confirmed)return;
 
   localStorage.removeItem(
     "hyoraStudy"
@@ -2310,11 +2462,15 @@ function resetAll() {
 }
 
 
-/* ==================================================
-   RENDER
-================================================== */
+/* =========================
+   RENDER ALL
+========================= */
 
-function render() {
+function render(){
+
+  renderSubjectSelects();
+
+  renderSubjectList();
 
   renderTasks(
     "today",
@@ -2337,6 +2493,8 @@ function render() {
 
   renderWeights();
 
+  renderSettingsWeights();
+
   renderNotes();
 
   loadExamDate();
@@ -2346,9 +2504,9 @@ function render() {
 }
 
 
-/* ==================================================
+/* =========================
    START
-================================================== */
+========================= */
 
 render();
 
