@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
-
 <title>HYORA STUDY</title>
 
 <style>
@@ -27,13 +26,14 @@ body {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 
 button {
+  border: 0;
   cursor: pointer;
-  border: none;
 }
 
 .app {
@@ -42,7 +42,9 @@ button {
   padding: 20px 16px 100px;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header {
   display: flex;
@@ -66,7 +68,9 @@ header {
   font-size: 12px;
 }
 
-/* CARD */
+/* =========================
+   CARD
+========================= */
 
 .card {
   background: #0d0d0d;
@@ -82,7 +86,9 @@ header {
   margin-bottom: 14px;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero {
   background:
@@ -110,7 +116,9 @@ header {
   color: #a6ff00;
 }
 
-/* PROGRESS */
+/* =========================
+   PROGRESS
+========================= */
 
 .progress-info {
   display: flex;
@@ -140,11 +148,13 @@ header {
   transition: width .3s;
 }
 
-/* TABS */
+/* =========================
+   TABS
+========================= */
 
 .tabs {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 5px;
   padding: 5px;
   background: #0b0b0b;
@@ -155,9 +165,9 @@ header {
 .tab {
   background: transparent;
   color: #666;
-  padding: 10px 5px;
+  padding: 10px 3px;
   border-radius: 10px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
 }
 
@@ -166,7 +176,9 @@ header {
   color: #a6ff00;
 }
 
-/* SECTIONS */
+/* =========================
+   SECTIONS
+========================= */
 
 .section {
   display: none;
@@ -176,7 +188,9 @@ header {
   display: block;
 }
 
-/* INPUT */
+/* =========================
+   INPUT
+========================= */
 
 .add-row {
   display: flex;
@@ -185,7 +199,8 @@ header {
 }
 
 input,
-select {
+select,
+textarea {
   background: #151515;
   color: #fff;
   border: 1px solid #292929;
@@ -195,7 +210,8 @@ select {
 }
 
 input:focus,
-select:focus {
+select:focus,
+textarea:focus {
   border-color: #a6ff00;
 }
 
@@ -212,7 +228,9 @@ select:focus {
   font-weight: 900;
 }
 
-/* TASK */
+/* =========================
+   TASK
+========================= */
 
 .task {
   display: flex;
@@ -277,11 +295,13 @@ select:focus {
   padding: 25px 5px;
 }
 
-/* STATS */
+/* =========================
+   STATS
+========================= */
 
 .stats {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 7px;
 }
 
@@ -303,7 +323,9 @@ select:focus {
   font-size: 10px;
 }
 
-/* EXAM */
+/* =========================
+   EXAM
+========================= */
 
 .exam-grid {
   display: grid;
@@ -328,7 +350,9 @@ select:focus {
   margin-top: 10px;
 }
 
-/* WEIGHTS */
+/* =========================
+   WEIGHTS
+========================= */
 
 .subject-row {
   display: flex;
@@ -361,7 +385,106 @@ select:focus {
   background: #a6ff00;
 }
 
-/* STOPWATCH */
+/* =========================
+   WRONG ANSWER NOTE
+========================= */
+
+.note-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.note-form select,
+.note-form input,
+.note-form textarea {
+  width: 100%;
+}
+
+.note-form textarea {
+  min-height: 75px;
+  resize: vertical;
+}
+
+.note-submit {
+  width: 100%;
+  padding: 12px;
+  background: #a6ff00;
+  color: #050505;
+  border-radius: 11px;
+  font-weight: 900;
+}
+
+.note {
+  padding: 15px 0;
+  border-bottom: 1px solid #1c1c1c;
+}
+
+.note:last-child {
+  border-bottom: none;
+}
+
+.note-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-subject {
+  color: #a6ff00;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.note-delete {
+  background: none;
+  color: #555;
+  font-size: 17px;
+}
+
+.note-title {
+  margin-top: 7px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.note-text {
+  margin-top: 7px;
+  color: #aaa;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.note-review {
+  margin-top: 8px;
+  padding: 8px 10px;
+  background: #151515;
+  border-radius: 9px;
+  color: #777;
+  font-size: 11px;
+}
+
+.note.reviewed .note-title {
+  color: #555;
+  text-decoration: line-through;
+}
+
+.note.reviewed .note-review {
+  color: #a6ff00;
+}
+
+.review-btn {
+  margin-top: 9px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: #191919;
+  color: #888;
+  font-size: 11px;
+}
+
+/* =========================
+   STOPWATCH
+========================= */
 
 .stopwatch {
   text-align: center;
@@ -407,7 +530,9 @@ select:focus {
   font-size: 11px;
 }
 
-/* TIRA */
+/* =========================
+   TIRA
+========================= */
 
 .tira {
   background:
@@ -433,6 +558,7 @@ select:focus {
   margin-bottom: 7px;
   font-size: 13px;
   line-height: 1.5;
+  white-space: pre-line;
 }
 
 .message.bot {
@@ -454,12 +580,9 @@ select:focus {
   flex: 1;
 }
 
-.small {
-  color: #666;
-  font-size: 11px;
-}
-
-/* RESET */
+/* =========================
+   RESET
+========================= */
 
 .reset {
   width: 100%;
@@ -471,20 +594,32 @@ select:focus {
 </style>
 </head>
 
+
 <body>
 
 <div class="app">
 
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
+
   <div class="logo">
     HYORA <span>STUDY</span>
   </div>
 
-  <div class="date" id="date"></div>
+  <div
+    class="date"
+    id="date">
+  </div>
+
 </header>
 
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
 
 <div class="card hero">
 
@@ -497,21 +632,32 @@ select:focus {
   </div>
 
   <div class="progress-info">
-    <span>시험기간 전체 진행률</span>
-    <strong id="overallPercent">0%</strong>
+
+    <span>
+      시험기간 전체 진행률
+    </span>
+
+    <strong id="overallPercent">
+      0%
+    </strong>
+
   </div>
 
   <div class="progress">
+
     <div
       class="progress-bar"
       id="overallBar">
     </div>
+
   </div>
 
 </div>
 
 
-<!-- TABS -->
+<!-- =========================
+     TABS
+========================= -->
 
 <div class="tabs">
 
@@ -533,10 +679,18 @@ select:focus {
     시험기간
   </button>
 
+  <button
+    class="tab"
+    data-tab="mistakes">
+    오답노트
+  </button>
+
 </div>
 
 
-<!-- TODAY -->
+<!-- =========================
+     TODAY
+========================= -->
 
 <section
   class="section active"
@@ -555,12 +709,14 @@ select:focus {
         placeholder="오늘 할 일을 추가해줘">
 
       <select id="todaySubject">
+
         <option>국어</option>
         <option>영어</option>
         <option>수학</option>
         <option>과학</option>
         <option>사회</option>
         <option>기타</option>
+
       </select>
 
       <button
@@ -606,7 +762,9 @@ select:focus {
 </section>
 
 
-<!-- WEEK -->
+<!-- =========================
+     WEEK
+========================= -->
 
 <section
   class="section"
@@ -625,12 +783,14 @@ select:focus {
         placeholder="이번 주 공부 추가">
 
       <select id="weekSubject">
+
         <option>국어</option>
         <option>영어</option>
         <option>수학</option>
         <option>과학</option>
         <option>사회</option>
         <option>기타</option>
+
       </select>
 
       <button
@@ -648,7 +808,9 @@ select:focus {
 </section>
 
 
-<!-- EXAM -->
+<!-- =========================
+     EXAM
+========================= -->
 
 <section
   class="section"
@@ -663,17 +825,27 @@ select:focus {
     <div class="exam-grid">
 
       <div>
-        <label>시작일</label>
+
+        <label>
+          시작일
+        </label>
+
         <input
           type="date"
           id="examStart">
+
       </div>
 
       <div>
-        <label>시험일</label>
+
+        <label>
+          시험일
+        </label>
+
         <input
           type="date"
           id="examEnd">
+
       </div>
 
     </div>
@@ -700,12 +872,14 @@ select:focus {
         placeholder="시험 전까지 끝낼 공부">
 
       <select id="examSubject">
+
         <option>국어</option>
         <option>영어</option>
         <option>수학</option>
         <option>과학</option>
         <option>사회</option>
         <option>기타</option>
+
       </select>
 
       <button
@@ -729,8 +903,82 @@ select:focus {
 
     <div id="weights"></div>
 
-    <div class="small">
-      시험기간 계획에서 과목별 중요도를 직접 설정할 수 있어.
+  </div>
+
+</section>
+
+
+<!-- =========================
+     WRONG ANSWER NOTE
+========================= -->
+
+<section
+  class="section"
+  id="mistakes">
+
+  <div class="card">
+
+    <div class="card-title">
+      오답노트 추가
+    </div>
+
+    <div class="note-form">
+
+      <select id="noteSubject">
+
+        <option>국어</option>
+        <option>영어</option>
+        <option>수학</option>
+        <option>과학</option>
+        <option>사회</option>
+
+      </select>
+
+      <input
+        id="noteTitle"
+        placeholder="문제 / 단원 / 오답 제목">
+
+      <textarea
+        id="noteReason"
+        placeholder="왜 틀렸는지 적어줘">
+      </textarea>
+
+      <textarea
+        id="notePoint"
+        placeholder="다음에 기억할 점">
+      </textarea>
+
+      <button
+        class="note-submit"
+        onclick="addNote()">
+        오답 저장
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      내 오답노트
+    </div>
+
+    <div id="notes"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      과목별 오답
+    </div>
+
+    <div
+      class="stats"
+      id="mistakeStats">
     </div>
 
   </div>
@@ -738,7 +986,9 @@ select:focus {
 </section>
 
 
-<!-- STOPWATCH -->
+<!-- =========================
+     STOPWATCH
+========================= -->
 
 <div class="card stopwatch">
 
@@ -769,14 +1019,20 @@ select:focus {
   </div>
 
   <div class="study-time">
-    오늘 누적 공부시간:
-    <span id="totalStudyTime">00:00:00</span>
+
+    공부시간:
+    <span id="totalStudyTime">
+      00:00:00
+    </span>
+
   </div>
 
 </div>
 
 
-<!-- TIRA -->
+<!-- =========================
+     TIRA
+========================= -->
 
 <div class="card tira">
 
@@ -789,8 +1045,9 @@ select:focus {
     id="chat">
 
     <div class="message bot">
-      안녕 효라! 👋<br>
-      오늘 공부 계획이나 시험기간 진행률을 물어봐!
+      안녕 효라! 👋
+      오늘 공부 계획이나 시험기간 진행률,
+      오답노트에 대해 물어봐!
     </div>
 
   </div>
@@ -812,6 +1069,8 @@ select:focus {
 </div>
 
 
+<!-- RESET -->
+
 <div class="card">
 
   <button
@@ -827,9 +1086,9 @@ select:focus {
 
 <script>
 
-/* =========================
+/* ==================================================
    DATA
-========================= */
+================================================== */
 
 let data =
 JSON.parse(
@@ -842,29 +1101,29 @@ JSON.parse(
 
   exam: [],
 
+  mistakes: [],
+
   examStart: "",
 
   examEnd: "",
 
   weights: {
+
     국어: 20,
     영어: 20,
     수학: 20,
     과학: 20,
     사회: 20,
     기타: 0
-  },
 
-  totalStudySeconds: 0,
-
-  lastStudyDate: ""
+  }
 
 };
 
 
-/* =========================
+/* ==================================================
    SAVE
-========================= */
+================================================== */
 
 function saveData() {
 
@@ -876,36 +1135,40 @@ function saveData() {
 }
 
 
-/* =========================
+/* ==================================================
    DATE
-========================= */
+================================================== */
 
 function updateDate() {
 
   const now = new Date();
 
-  const y = now.getFullYear();
+  const year =
+    now.getFullYear();
 
-  const m =
-    String(now.getMonth()+1)
-    .padStart(2,"0");
+  const month =
+    String(
+      now.getMonth() + 1
+    ).padStart(2,"0");
 
-  const d =
-    String(now.getDate())
-    .padStart(2,"0");
+  const day =
+    String(
+      now.getDate()
+    ).padStart(2,"0");
 
-  document.getElementById("date")
-    .textContent =
-    `${y}.${m}.${d}`;
+  document.getElementById(
+    "date"
+  ).textContent =
+    `${year}.${month}.${day}`;
 
 }
 
 updateDate();
 
 
-/* =========================
-   TAB
-========================= */
+/* ==================================================
+   TABS
+================================================== */
 
 document
 .querySelectorAll(".tab")
@@ -913,25 +1176,39 @@ document
 
   button.addEventListener(
     "click",
-    () => {
+    function() {
 
       document
       .querySelectorAll(".tab")
-      .forEach(x =>
-        x.classList.remove("active")
-      );
+      .forEach(tab => {
+
+        tab.classList.remove(
+          "active"
+        );
+
+      });
 
       document
       .querySelectorAll(".section")
-      .forEach(x =>
-        x.classList.remove("active")
+      .forEach(section => {
+
+        section.classList.remove(
+          "active"
+        );
+
+      });
+
+      this.classList.add(
+        "active"
       );
 
-      button.classList.add("active");
-
       document
-      .getElementById(button.dataset.tab)
-      .classList.add("active");
+      .getElementById(
+        this.dataset.tab
+      )
+      .classList.add(
+        "active"
+      );
 
     }
   );
@@ -939,9 +1216,9 @@ document
 });
 
 
-/* =========================
-   ADD TASK
-========================= */
+/* ==================================================
+   TASK ADD
+================================================== */
 
 function addTask(type) {
 
@@ -958,7 +1235,11 @@ function addTask(type) {
   const text =
     input.value.trim();
 
-  if (!text) return;
+  if (!text) {
+
+    return;
+
+  }
 
   data[type].push({
 
@@ -981,20 +1262,28 @@ function addTask(type) {
 }
 
 
-/* =========================
-   TOGGLE TASK
-========================= */
+/* ==================================================
+   TASK CHECK
+================================================== */
 
-function toggleTask(type,id) {
+function toggleTask(
+  type,
+  id
+) {
 
   const task =
     data[type].find(
-      x => x.id === id
+      item => item.id === id
     );
 
-  if (!task) return;
+  if (!task) {
 
-  task.done = !task.done;
+    return;
+
+  }
+
+  task.done =
+    !task.done;
 
   saveData();
 
@@ -1003,15 +1292,18 @@ function toggleTask(type,id) {
 }
 
 
-/* =========================
-   DELETE TASK
-========================= */
+/* ==================================================
+   TASK DELETE
+================================================== */
 
-function deleteTask(type,id) {
+function deleteTask(
+  type,
+  id
+) {
 
   data[type] =
     data[type].filter(
-      x => x.id !== id
+      item => item.id !== id
     );
 
   saveData();
@@ -1021,9 +1313,9 @@ function deleteTask(type,id) {
 }
 
 
-/* =========================
-   RENDER TASK
-========================= */
+/* ==================================================
+   TASK RENDER
+================================================== */
 
 function renderTasks(
   type,
@@ -1031,7 +1323,9 @@ function renderTasks(
 ) {
 
   const box =
-    document.getElementById(elementId);
+    document.getElementById(
+      elementId
+    );
 
   const tasks =
     data[type];
@@ -1046,14 +1340,16 @@ function renderTasks(
     `;
 
     return;
-  }
 
+  }
 
   box.innerHTML =
     tasks.map(task => `
 
-      <div class="task
-        ${task.done ? "done" : ""}">
+      <div class="
+        task
+        ${task.done ? "done" : ""}
+      ">
 
         <div
           class="check"
@@ -1062,12 +1358,10 @@ function renderTasks(
               '${type}',
               ${task.id}
             )
-          ">
-
+          "
+        >
           ${task.done ? "✓" : ""}
-
         </div>
-
 
         <div
           class="task-main"
@@ -1076,7 +1370,8 @@ function renderTasks(
               '${type}',
               ${task.id}
             )
-          ">
+          "
+        >
 
           <div class="task-text">
             ${escapeHTML(task.text)}
@@ -1088,7 +1383,6 @@ function renderTasks(
 
         </div>
 
-
         <button
           class="delete"
           onclick="
@@ -1096,10 +1390,9 @@ function renderTasks(
               '${type}',
               ${task.id}
             )
-          ">
-
+          "
+        >
           ×
-
         </button>
 
       </div>
@@ -1109,9 +1402,9 @@ function renderTasks(
 }
 
 
-/* =========================
+/* ==================================================
    TODAY STATS
-========================= */
+================================================== */
 
 function renderTodayStats() {
 
@@ -1119,43 +1412,51 @@ function renderTodayStats() {
     data.today.length;
 
   const done =
-    data.today
-    .filter(x => x.done)
-    .length;
+    data.today.filter(
+      task => task.done
+    ).length;
 
   document.getElementById(
     "todayDone"
-  ).textContent = done;
+  ).textContent =
+    done;
 
   document.getElementById(
     "todayTotal"
-  ).textContent = total;
+  ).textContent =
+    total;
 
   document.getElementById(
     "todayRate"
   ).textContent =
     total
-      ? Math.round(done / total * 100) + "%"
+      ? Math.round(
+          done / total * 100
+        ) + "%"
       : "0%";
 
 }
 
 
-/* =========================
+/* ==================================================
    EXAM PROGRESS
-========================= */
+================================================== */
 
 function getExamProgress() {
 
   const total =
     data.exam.length;
 
-  if (!total) return 0;
+  if (!total) {
+
+    return 0;
+
+  }
 
   const done =
-    data.exam
-    .filter(x => x.done)
-    .length;
+    data.exam.filter(
+      task => task.done
+    ).length;
 
   return Math.round(
     done / total * 100
@@ -1164,7 +1465,7 @@ function getExamProgress() {
 }
 
 
-function renderOverallProgress() {
+function renderProgress() {
 
   const percent =
     getExamProgress();
@@ -1182,9 +1483,9 @@ function renderOverallProgress() {
 }
 
 
-/* =========================
+/* ==================================================
    WEIGHTS
-========================= */
+================================================== */
 
 const subjects = [
   "국어",
@@ -1199,48 +1500,54 @@ const subjects = [
 function renderWeights() {
 
   const box =
-    document.getElementById("weights");
+    document.getElementById(
+      "weights"
+    );
 
   box.innerHTML =
-    subjects.map(subject => {
+    subjects.map(
+      subject => {
 
-      const value =
-        data.weights[subject] || 0;
+        const value =
+          data.weights[subject] || 0;
 
-      return `
+        return `
 
-        <div class="subject-row">
+          <div class="subject-row">
 
-          <div class="subject-name">
-            ${subject}
+            <div class="subject-name">
+              ${subject}
+            </div>
+
+            <input
+              type="number"
+              min="0"
+              max="100"
+              value="${value}"
+              onchange="
+                changeWeight(
+                  '${subject}',
+                  this.value
+                )
+              "
+            >
+
+            <div class="weight-line">
+
+              <i
+                style="
+                  width:${value}%;
+                "
+              ></i>
+
+            </div>
+
           </div>
 
-          <input
-            type="number"
-            min="0"
-            max="100"
-            value="${value}"
-            onchange="
-              changeWeight(
-                '${subject}',
-                this.value
-              )
-            "
-          >
+        `;
 
-          <div class="weight-line">
-            <i
-              style="
-                width:${value}%;
-              ">
-            </i>
-          </div>
-
-        </div>
-
-      `;
-
-    }).join("");
+      }
+    ).join("");
 
 }
 
@@ -1253,13 +1560,21 @@ function changeWeight(
   let number =
     Number(value);
 
-  if (isNaN(number))
+  if (
+    Number.isNaN(number)
+  ) {
+
     number = 0;
+
+  }
 
   number =
     Math.max(
       0,
-      Math.min(100,number)
+      Math.min(
+        100,
+        number
+      )
     );
 
   data.weights[subject] =
@@ -1272,9 +1587,9 @@ function changeWeight(
 }
 
 
-/* =========================
+/* ==================================================
    EXAM DATE
-========================= */
+================================================== */
 
 function loadExamDate() {
 
@@ -1312,40 +1627,288 @@ function saveExamDate() {
 }
 
 
-/* =========================
+/* ==================================================
+   WRONG ANSWER NOTE
+================================================== */
+
+function addNote() {
+
+  const subject =
+    document.getElementById(
+      "noteSubject"
+    ).value;
+
+  const title =
+    document.getElementById(
+      "noteTitle"
+    ).value.trim();
+
+  const reason =
+    document.getElementById(
+      "noteReason"
+    ).value.trim();
+
+  const point =
+    document.getElementById(
+      "notePoint"
+    ).value.trim();
+
+  if (!title) {
+
+    alert(
+      "오답 제목을 입력해줘!"
+    );
+
+    return;
+
+  }
+
+  data.mistakes.unshift({
+
+    id: Date.now(),
+
+    subject: subject,
+
+    title: title,
+
+    reason: reason,
+
+    point: point,
+
+    reviewed: false
+
+  });
+
+  document.getElementById(
+    "noteTitle"
+  ).value = "";
+
+  document.getElementById(
+    "noteReason"
+  ).value = "";
+
+  document.getElementById(
+    "notePoint"
+  ).value = "";
+
+  saveData();
+
+  renderNotes();
+
+}
+
+
+function toggleNote(id) {
+
+  const note =
+    data.mistakes.find(
+      item => item.id === id
+    );
+
+  if (!note) {
+
+    return;
+
+  }
+
+  note.reviewed =
+    !note.reviewed;
+
+  saveData();
+
+  renderNotes();
+
+}
+
+
+function deleteNote(id) {
+
+  data.mistakes =
+    data.mistakes.filter(
+      note => note.id !== id
+    );
+
+  saveData();
+
+  renderNotes();
+
+}
+
+
+function renderNotes() {
+
+  const box =
+    document.getElementById(
+      "notes"
+    );
+
+  if (!data.mistakes.length) {
+
+    box.innerHTML = `
+      <div class="empty">
+        아직 오답이 없어!<br>
+        틀린 문제를 하나씩 기록해보자 📕
+      </div>
+    `;
+
+  } else {
+
+    box.innerHTML =
+      data.mistakes
+      .map(note => `
+
+        <div class="
+          note
+          ${note.reviewed ? "reviewed" : ""}
+        ">
+
+          <div class="note-head">
+
+            <div class="note-subject">
+              ${note.subject}
+            </div>
+
+            <button
+              class="note-delete"
+              onclick="
+                deleteNote(
+                  ${note.id}
+                )
+              "
+            >
+              ×
+            </button>
+
+          </div>
+
+          <div class="note-title">
+            ${escapeHTML(
+              note.title
+            )}
+          </div>
+
+          ${
+            note.reason
+              ? `
+                <div class="note-text">
+                  <b>틀린 이유</b><br>
+                  ${escapeHTML(
+                    note.reason
+                  )}
+                </div>
+              `
+              : ""
+          }
+
+          ${
+            note.point
+              ? `
+                <div class="note-review">
+                  <b>기억할 점</b><br>
+                  ${escapeHTML(
+                    note.point
+                  )}
+                </div>
+              `
+              : ""
+          }
+
+          <button
+            class="review-btn"
+            onclick="
+              toggleNote(
+                ${note.id}
+              )
+            "
+          >
+            ${
+              note.reviewed
+                ? "✓ 복습 완료"
+                : "복습 완료 체크"
+            }
+          </button>
+
+        </div>
+
+      `)
+      .join("");
+
+  }
+
+  renderMistakeStats();
+
+}
+
+
+function renderMistakeStats() {
+
+  const box =
+    document.getElementById(
+      "mistakeStats"
+    );
+
+  box.innerHTML =
+    [
+      "국어",
+      "영어",
+      "수학",
+      "과학",
+      "사회"
+    ]
+    .map(subject => {
+
+      const count =
+        data.mistakes.filter(
+          note =>
+            note.subject === subject
+        ).length;
+
+      return `
+
+        <div class="stat">
+
+          <strong>
+            ${count}
+          </strong>
+
+          <span>
+            ${subject}
+          </span>
+
+        </div>
+
+      `;
+
+    })
+    .join("");
+
+}
+
+
+/* ==================================================
    STOPWATCH
-========================= */
+================================================== */
 
-/*
-  중요:
-  이건 타이머가 아니라
-  00:00:00 → 계속 증가하는
-  실제 스톱워치다.
-*/
-
-let stopwatchSeconds = 0;
-
-let stopwatchRunning = false;
-
-let stopwatchInterval = null;
-
-
-/* 페이지를 새로 열어도
-   현재 스톱워치 시간이 유지되도록
-   별도 저장 */
-
-stopwatchSeconds =
+let stopwatchSeconds =
   Number(
     localStorage.getItem(
       "hyoraStopwatch"
     )
   ) || 0;
 
+let stopwatchRunning =
+  false;
+
+let stopwatchInterval =
+  null;
+
 
 function formatTime(seconds) {
 
   const hours =
-    Math.floor(seconds / 3600);
+    Math.floor(
+      seconds / 3600
+    );
 
   const minutes =
     Math.floor(
@@ -1355,14 +1918,16 @@ function formatTime(seconds) {
   const secs =
     seconds % 60;
 
-
   return [
 
-    String(hours).padStart(2,"0"),
+    String(hours)
+      .padStart(2,"0"),
 
-    String(minutes).padStart(2,"0"),
+    String(minutes)
+      .padStart(2,"0"),
 
-    String(secs).padStart(2,"0")
+    String(secs)
+      .padStart(2,"0")
 
   ].join(":");
 
@@ -1378,12 +1943,21 @@ function renderStopwatch() {
       stopwatchSeconds
     );
 
+  document.getElementById(
+    "totalStudyTime"
+  ).textContent =
+    formatTime(
+      stopwatchSeconds
+    );
+
 }
 
 
 function toggleStopwatch() {
 
-  if (stopwatchRunning) {
+  if (
+    stopwatchRunning
+  ) {
 
     stopStopwatch();
 
@@ -1398,45 +1972,53 @@ function toggleStopwatch() {
 
 function startStopwatch() {
 
-  if (stopwatchRunning)
+  if (
+    stopwatchRunning
+  ) {
+
     return;
 
-  stopwatchRunning = true;
+  }
+
+  stopwatchRunning =
+    true;
 
   document.getElementById(
     "stopwatchButton"
   ).textContent =
     "일시정지";
 
-
   stopwatchInterval =
-    setInterval(() => {
+    setInterval(
+      () => {
 
-      stopwatchSeconds++;
+        stopwatchSeconds++;
 
-      localStorage.setItem(
-        "hyoraStopwatch",
-        stopwatchSeconds
-      );
+        localStorage.setItem(
+          "hyoraStopwatch",
+          stopwatchSeconds
+        );
 
-      renderStopwatch();
+        renderStopwatch();
 
-      updateStudyTime();
-
-    },1000);
+      },
+      1000
+    );
 
 }
 
 
 function stopStopwatch() {
 
-  stopwatchRunning = false;
+  stopwatchRunning =
+    false;
 
   clearInterval(
     stopwatchInterval
   );
 
-  stopwatchInterval = null;
+  stopwatchInterval =
+    null;
 
   document.getElementById(
     "stopwatchButton"
@@ -1450,7 +2032,8 @@ function resetStopwatch() {
 
   stopStopwatch();
 
-  stopwatchSeconds = 0;
+  stopwatchSeconds =
+    0;
 
   localStorage.setItem(
     "hyoraStopwatch",
@@ -1462,25 +2045,9 @@ function resetStopwatch() {
 }
 
 
-/* =========================
-   STUDY TIME
-========================= */
-
-function updateStudyTime() {
-
-  document.getElementById(
-    "totalStudyTime"
-  ).textContent =
-    formatTime(
-      stopwatchSeconds
-    );
-
-}
-
-
-/* =========================
+/* ==================================================
    TIRA
-========================= */
+================================================== */
 
 function askTira() {
 
@@ -1492,7 +2059,11 @@ function askTira() {
   const text =
     input.value.trim();
 
-  if (!text) return;
+  if (!text) {
+
+    return;
+
+  }
 
   addChat(
     text,
@@ -1501,18 +2072,17 @@ function askTira() {
 
   input.value = "";
 
+  setTimeout(
+    () => {
 
-  setTimeout(() => {
+      addChat(
+        getTiraReply(text),
+        "bot"
+      );
 
-    const reply =
-      getTiraReply(text);
-
-    addChat(
-      reply,
-      "bot"
-    );
-
-  },200);
+    },
+    200
+  );
 
 }
 
@@ -1550,10 +2120,6 @@ function addChat(
 
 function getTiraReply(text) {
 
-  const t =
-    text.toLowerCase();
-
-
   const progress =
     getExamProgress();
 
@@ -1562,29 +2128,47 @@ function getTiraReply(text) {
 
   const examDone =
     data.exam.filter(
-      x => x.done
+      task => task.done
     ).length;
+
+  const mistakeCount =
+    data.mistakes.length;
 
 
   if (
-    t.includes("진행률") ||
-    t.includes("퍼센트") ||
-    t.includes("몇 프로")
+    text.includes("진행률") ||
+    text.includes("퍼센트") ||
+    text.includes("몇 프로")
   ) {
 
     return `
 시험기간 전체 진행률은
 ${progress}%야!
 
-현재 ${examDone}/${examTotal}개 완료했어.
-  `.trim();
+${examDone}/${examTotal}개 완료했어.
+    `.trim();
 
   }
 
 
   if (
-    t.includes("오늘") ||
-    t.includes("할 일")
+    text.includes("오답") ||
+    text.includes("틀린")
+  ) {
+
+    return `
+현재 오답노트에는
+${mistakeCount}개의 오답이 있어.
+
+복습 완료한 오답도 하나씩 늘려보자 📕
+    `.trim();
+
+  }
+
+
+  if (
+    text.includes("오늘") ||
+    text.includes("할 일")
   ) {
 
     const total =
@@ -1592,151 +2176,126 @@ ${progress}%야!
 
     const done =
       data.today.filter(
-        x => x.done
+        task => task.done
       ).length;
-
-    if (!total) {
-
-      return
-        "오늘 계획이 아직 없어! 하나 추가해보자 ✦";
-
-    }
 
     return `
 오늘은 ${total}개 중
-${done}개 완료했어.
+${done}개 완료했어!
 
-남은 건 ${total-done}개야!
+남은 건
+${total - done}개야.
     `.trim();
 
   }
 
 
   if (
-    t.includes("시험")
+    text.includes("시험")
   ) {
 
     if (!data.examEnd) {
 
-      return
-        "아직 시험일을 설정하지 않았어! 시험기간 탭에서 시험일을 설정해줘.";
+      return `
+아직 시험일을 설정하지 않았어!
+
+시험기간 탭에서
+시험일을 먼저 설정해줘.
+      `.trim();
 
     }
 
     const end =
-      new Date(data.examEnd);
+      new Date(
+        data.examEnd
+      );
 
     const today =
       new Date();
 
     const diff =
       Math.ceil(
-        (end - today) /
-        (1000*60*60*24)
+        (
+          end - today
+        ) /
+        (
+          1000 * 60 * 60 * 24
+        )
       );
 
     return `
-시험기간 전체 계획은
-${examTotal}개고,
-
-현재 ${progress}% 완료했어.
-
 시험일까지 약
-${Math.max(0,diff)}일 남았어!
-    `.trim();
+${Math.max(0,diff)}일 남았어.
 
-  }
-
-
-  for (
-    const subject
-    of subjects
-  ) {
-
-    if (
-      text.includes(subject)
-    ) {
-
-      const tasks =
-        data.exam.filter(
-          x =>
-            x.subject === subject
-        );
-
-      const done =
-        tasks.filter(
-          x => x.done
-        ).length;
-
-      return `
-${subject} 계획은
-${tasks.length}개이고
-
-${done}개 완료했어!
-      `.trim();
-
-    }
-
-  }
-
-
-  if (
-    t.includes("힘들") ||
-    t.includes("하기 싫") ||
-    t.includes("귀찮")
-  ) {
-
-    return `
-괜찮아.
-일단 딱 하나만 끝내자.
-
-하나 완료하면
-그다음 하나로 넘어가자 💪
+전체 계획은
+${progress}% 완료!
     `.trim();
 
   }
 
 
   return `
-응! 내가 확인해볼게 ✦
+응! ✦
 
-현재 시험기간 전체 진행률은
-${progress}%야.
+현재 시험기간 진행률은
+${progress}%이고,
 
-오늘 계획도 하나씩 끝내보자!
+오답노트에는
+${mistakeCount}개가 있어.
+
+하나씩 끝내보자!
   `.trim();
 
 }
 
 
-/* =========================
-   ESCAPE
-========================= */
+/* ==================================================
+   SECURITY
+================================================== */
 
 function escapeHTML(text) {
 
-  return text
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+  return String(text)
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
 
-/* =========================
+/* ==================================================
    RESET
-========================= */
+================================================== */
 
 function resetAll() {
 
-  const ok =
+  const confirmed =
     confirm(
       "정말 모든 공부 데이터를 삭제할까?"
     );
 
-  if (!ok) return;
+  if (!confirmed) {
+
+    return;
+
+  }
 
   localStorage.removeItem(
     "hyoraStudy"
@@ -1751,9 +2310,9 @@ function resetAll() {
 }
 
 
-/* =========================
-   RENDER ALL
-========================= */
+/* ==================================================
+   RENDER
+================================================== */
 
 function render() {
 
@@ -1774,22 +2333,22 @@ function render() {
 
   renderTodayStats();
 
-  renderOverallProgress();
+  renderProgress();
 
   renderWeights();
+
+  renderNotes();
 
   loadExamDate();
 
   renderStopwatch();
 
-  updateStudyTime();
-
 }
 
 
-/* =========================
+/* ==================================================
    START
-========================= */
+================================================== */
 
 render();
 
